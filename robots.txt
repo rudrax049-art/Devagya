@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://devagya.com/sitemap.xml
+Sitemap: https://devagyavastu.com/sitemap.xml
