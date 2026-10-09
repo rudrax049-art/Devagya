@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore an interactive directional dial and a preliminary spatial planning questionnaire from Devagya Vastu.">
+  <meta name="theme-color" content="#f8fafc">
+  <title>Spatial Toolsuite | Devagya Vastu</title>
+  <link rel="canonical" href="https://devagyavastu.com/audit-hub.html">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={theme:{extend:{colors:{navy:"#0f172a",bone:"#f8fafc",brass:"#b45309"},fontFamily:{sans:["DM Sans","Helvetica Neue","Arial","sans-serif"],serif:["Playfair Display","Georgia","serif"]}}}};</script>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <div data-site-header></div>
+  <main id="main-content">
+    <section class="page-hero"><div class="container"><p class="eyebrow">Interactive workspace</p><h1 class="display">A clearer read on your plan.</h1><p class="lede">Use the directional dial as an educational reference, then complete a short questionnaire for a preliminary layout review. This is not a technical survey or engineering assessment.</p></div></section>
+    <section class="section" style="padding-top:12px">
+      <div class="container tool-shell">
+        <div class="tab-list" role="tablist" aria-label="Spatial tools">
+          <button class="tab-button" id="tab-dial" type="button" role="tab" aria-selected="true" aria-controls="panel-dial">🧭 Digital Spatial Dial</button>
+          <button class="tab-button" id="tab-audit" type="button" role="tab" aria-selected="false" aria-controls="panel-audit">📊 Structural Vastu Audit</button>
+        </div>
+        <section class="tool-panel is-active" id="panel-dial" role="tabpanel" aria-labelledby="tab-dial">
+          <div class="dial-layout">
+            <div class="compass" aria-label="Compass visualization">
+              <span class="compass-cardinal cardinal-n">N</span><span class="compass-cardinal cardinal-e">E</span><span class="compass-cardinal cardinal-s">S</span><span class="compass-cardinal cardinal-w">W</span>
+              <span class="dial-needle" id="dialNeedle" aria-hidden="true"></span>
+              <div class="compass-center"><span><strong id="degreeValue">0°</strong><small>Clockwise from North</small></span></div>
+            </div>
+            <div>
+              <p class="eyebrow">Manual orientation tool</p>
+              <h2 class="section-title">Read a direction.<br>Consider its use.</h2>
+              <p class="lede">Move the slider to inspect one of eight directional sectors. Confirm compass readings against a site survey before design decisions.</p>
+              <label for="degreeSlider" class="field"><strong>Orientation in degrees</strong><input class="range-control" id="degreeSlider" type="range" min="0" max="360" value="0" aria-describedby="rangeHelp"></label>
+              <div class="range-labels" id="rangeHelp"><span>0° North</span><span>90° East</span><span>180° South</span><span>270° West</span><span>360°</span></div>
+              <article class="zone-result" aria-live="polite"><p class="eyebrow" id="sectorLabel">Sector reference</p><h3 id="zoneName">North</h3><p id="zoneTip">Review north-facing openings for glare, privacy and cross-ventilation; confirm window sizing against climate and local code.</p></article>
+            </div>
+          </div>
+        </section>
+        <section class="tool-panel" id="panel-audit" role="tabpanel" aria-labelledby="tab-audit" hidden>
+          <div class="quiz-progress" id="quizProgress" aria-label="Question progress"><span class="is-current"></span><span></span><span></span><span></span></div>
+          <div class="quiz-question" id="quizQuestion"></div>
+          <div class="locked-results is-locked" id="lockedResults">
+            <div class="results-content" id="resultsContent" aria-hidden="true" tabindex="-1" aria-live="polite">
+              <article class="result-card"><span>Preliminary rating</span><p id="scoreResult">Pending your responses</p></article>
+              <article class="result-card"><span>Potential opportunity</span><p id="winResult">Complete the questionnaire to see a planning observation.</p></article>
+              <article class="result-card"><span>Item to verify</span><p id="riskResult">A remote review cannot verify site conditions.</p></article>
+            </div>
+            <div class="lead-gate" id="leadGate" hidden>
+              <h3>Unlock your preliminary review</h3>
+              <p>Share your contact details to reveal a simple questionnaire-based score and two planning prompts. This is indicative guidance, not a professional assessment. Details stay in this browser session; this static demo does not transmit or store them.</p>
+              <form class="lead-form" id="auditLeadForm" novalidate>
+                <div class="field"><label for="auditName">Full name</label><input id="auditName" name="name" autocomplete="name" required></div>
+                <div class="field"><label for="auditEmail">Email address</label><input id="auditEmail" type="email" name="email" autocomplete="email" required></div>
+                <div class="field full"><label for="auditPhone">Phone number</label><input id="auditPhone" type="tel" name="phone" autocomplete="tel" required></div>
+                <p class="form-message field full" id="auditFormMessage" role="alert"></p>
+                <button class="button field full" type="submit">Show preliminary review</button>
+              </form>
+            </div>
+          </div>
+          <p class="lede" style="font-size:.75rem">The score is an educational heuristic based on your selected answers and does not certify Vastu compliance, code compliance, safety or performance.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+  <div data-site-footer></div>
+  <script src="components/navigation.js" defer></script>
+  <script src="components/audit.js" defer></script>
+</body>
+</html>
