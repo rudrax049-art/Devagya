@@ -100,30 +100,45 @@ if (siteHeader) {
 }
 
 if (menuToggle && primaryNav) {
+  const mobileNavQuery = window.matchMedia('(max-width: 820px)');
+  const setMenuOpen = (open) => {
+    menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    primaryNav.classList.toggle('is-open', open);
+    primaryNav.inert = mobileNavQuery.matches && !open;
+    document.body.classList.toggle('menu-open', open);
+  };
+
+  if (mobileNavQuery.matches) primaryNav.inert = true;
+
   menuToggle.addEventListener('click', () => {
     const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', String(!isOpen));
-    menuToggle.setAttribute('aria-label', isOpen ? 'Open navigation' : 'Close navigation');
-    primaryNav.classList.toggle('is-open', !isOpen);
-    document.body.classList.toggle('menu-open', !isOpen);
+    setMenuOpen(!isOpen);
   });
   primaryNav.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.setAttribute('aria-label', 'Open navigation');
-      primaryNav.classList.remove('is-open');
-      document.body.classList.remove('menu-open');
+      setMenuOpen(false);
     });
   });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.setAttribute('aria-label', 'Open navigation');
-      primaryNav.classList.remove('is-open');
-      document.body.classList.remove('menu-open');
+      setMenuOpen(false);
       menuToggle.focus();
     }
   });
+
+  const handleNavigationBreakpoint = (event) => {
+    if (event.matches) {
+      primaryNav.inert = menuToggle.getAttribute('aria-expanded') !== 'true';
+    } else {
+      setMenuOpen(false);
+    }
+  };
+  if (typeof mobileNavQuery.addEventListener === 'function') {
+    mobileNavQuery.addEventListener('change', handleNavigationBreakpoint);
+  } else if (typeof mobileNavQuery.addListener === 'function') {
+    mobileNavQuery.addListener(handleNavigationBreakpoint);
+  }
 }
 
 if (primaryNav) {
