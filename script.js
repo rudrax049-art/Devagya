@@ -80,6 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const submitBtn = leadForm.querySelector('button[type="submit"]');
       const successEl = leadForm.querySelector('.form-success');
+      const errorEl = leadForm.querySelector('.form-error');
+      if (errorEl) errorEl.classList.remove('show');
       const originalLabel = submitBtn ? submitBtn.textContent : '';
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
       try {
@@ -88,16 +90,15 @@ document.addEventListener('DOMContentLoaded', () => {
           body: new FormData(leadForm),
           headers: { Accept: 'application/json' }
         });
-        const data = await res.json().catch(() => ({}));
-        if (res.ok && data.success !== false) {
+        const data = await res.json().catch(() => null);
+        if (res.ok && data && data.success === true) {
           leadForm.reset();
           if (successEl) successEl.classList.add('show');
         } else {
-          // Fall back to a normal form submit if the API rejects the request
-          leadForm.submit();
+          if (errorEl) errorEl.classList.add('show');
         }
       } catch (err) {
-        leadForm.submit();
+        if (errorEl) errorEl.classList.add('show');
       } finally {
         if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
       }

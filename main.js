@@ -95,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.lead-form').forEach((form) => {
     const submitBtn = form.querySelector('button[type="submit"]');
     const successEl = form.querySelector('.form-success');
+    const errorEl = form.querySelector('.form-error');
 
     const validateField = (field) => {
       const errorMsg = field.parentElement.querySelector('.field-error-msg');
@@ -126,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         form.querySelector('.field-invalid')?.focus();
         return;
       }
+      errorEl?.classList.add('hidden');
       const originalLabel = submitBtn ? submitBtn.textContent : '';
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
       try {
@@ -134,15 +136,15 @@ document.addEventListener('DOMContentLoaded', () => {
           body: new FormData(form),
           headers: { Accept: 'application/json' }
         });
-        const data = await res.json().catch(() => ({}));
-        if (res.ok && data.success !== false) {
+        const data = await res.json().catch(() => null);
+        if (res.ok && data && data.success === true) {
           form.reset();
           if (successEl) successEl.classList.remove('hidden');
         } else {
-          form.submit();
+          if (errorEl) errorEl.classList.remove('hidden');
         }
       } catch (err) {
-        form.submit();
+        if (errorEl) errorEl.classList.remove('hidden');
       } finally {
         if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
       }
