@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Devagya — Vastu & Signature Spaces | Vastu Consultation & Spatial Design</title>
-<meta name="description" content="Devagya is a Vastu consultation and spatial design practice, combining traditional Vastu principles with contemporary architecture and human-centred design for homes, offices and buildings.">
+<!-- CUSTOMIZE: refine title/description per final keyword research -->
+<title>Devagya Vastu | Scientific Vastu Consultant & Modern Vastu Architect</title>
+<meta name="description" content="Devagya Vastu blends traditional Vastu Shastra with sun-path analysis, ventilation design and environmental psychology — for luxury homeowners, corporate offices and real estate developers.">
 <link rel="canonical" href="https://devagyavastu.com/">
-<meta property="og:title" content="Devagya — Vastu & Signature Spaces">
-<meta property="og:description" content="Traditional Vastu thinking, contemporary spatial design and human-centred principles, brought together to create considered, functional spaces.">
+<meta property="og:title" content="Devagya Vastu — Spatial Design & Vastu Consultancy">
+<meta property="og:description" content="A 3-pillar methodology: Vastu Shastra, architectural physics, and environmental psychology.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://devagyavastu.com/">
 <meta property="og:image" content="https://devagyavastu.com/assets/logo-full.jpg">
@@ -16,553 +17,225 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      colors: { slate:{DEFAULT:'#1E2428', 2:'#2A3136'}, sand:{DEFAULT:'#B9976B', light:'#D8C3A0'}, cream:'#F7F4EE', stone:'#E8E2D5' },
+      fontFamily: { serif:['Fraunces','serif'], sans:['Manrope','sans-serif'] }
+    } }
+  }
+</script>
+<link rel="stylesheet" href="custom.css">
+<!-- CUSTOMIZE: confirm business details below before publishing -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "name": "Devagya Vastu & Signature Spaces",
+  "name": "Devagya Vastu",
   "url": "https://devagyavastu.com/",
   "image": "https://devagyavastu.com/assets/logo-full.jpg",
-  "description": "Vastu consultation and spatial design practice combining traditional Vastu principles with contemporary architecture and human-centred design.",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+91-94674-96725",
-    "email": "devagyavastu@gmail.com",
-    "contactType": "customer service"
-  }
+  "description": "Spatial design and Vastu consultancy combining traditional Vastu Shastra with architectural physics and environmental psychology.",
+  "contactPoint": { "@type": "ContactPoint", "telephone": "+91-94674-96725", "email": "devagyavastu@gmail.com", "contactType": "customer service" }
 }
 </script>
 </head>
-<body>
+<body class="bg-cream text-slate font-sans antialiased">
 
-<header>
-  <div class="nav">
-    <a href="#home" class="brand">
-      <span class="brand-icon"><img src="assets/logo-mark.png" alt="Devagya"></span>
-    </a>
-    <nav class="nav-links" id="navLinks" aria-label="Primary">
-      <a href="#services" data-nav="services">Services</a>
-      <a href="#approach" data-nav="approach">Approach</a>
-      <a href="case-studies.html">Projects</a>
-      <a href="insights.html">Insights</a>
-      <a href="#about" data-nav="about">About</a>
-      <a href="#contact" data-nav="contact">Contact</a>
-      <div class="nav-cta-group">
-        <a class="nav-icon-btn" href="https://wa.me/919467496725?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20your%20Vastu%20and%20architecture%20services." target="_blank" rel="noopener" aria-label="Message on WhatsApp">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.63 1.44 5.15L2 22l5.1-1.55a9.85 9.85 0 0 0 4.93 1.33h.01c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.06c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.95-.3-1.65-.6-2.9-1.25-4.8-4.16-4.94-4.35-.14-.19-1.18-1.57-1.18-2.99 0-1.42.74-2.11 1-2.4.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.81 2.01.88 2.16.07.15.12.32.02.5-.1.19-.15.3-.3.46-.14.16-.3.36-.43.48-.14.13-.29.28-.13.56.17.28.75 1.24 1.61 2.01 1.11.99 2.04 1.3 2.34 1.44.3.14.48.12.66-.07.19-.19.79-.91.99-1.22.2-.31.4-.26.66-.16.27.1 1.68.79 1.97.93.29.14.48.21.55.33.07.12.07.68-.17 1.34Z"/></svg>
-        </a>
-        <a class="nav-cta" href="#consult">Book a Consultation</a>
-      </div>
+<!-- HEADER -->
+<header class="sticky top-0 z-50 bg-cream/90 backdrop-blur border-b border-slate/10">
+  <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-3">
+    <a href="index.html" class="flex items-center"><img src="assets/logo-mark.png" alt="Devagya Vastu" class="h-10 w-10"></a>
+    <nav class="hidden md:flex items-center gap-7 text-sm text-slate/70">
+      <a href="about.html" class="hover:text-slate transition">About</a>
+      <a href="services.html" class="hover:text-slate transition">Services</a>
+      <a href="methodology.html" class="hover:text-slate transition">Methodology</a>
+      <a href="contact.html" class="hover:text-slate transition">Contact</a>
+      <a href="contact.html#consult" class="inline-flex items-center gap-2 bg-slate text-cream px-5 py-2.5 rounded-md text-sm font-bold hover:bg-slate-2 transition">Consult an Expert</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
+    <button id="navToggle" aria-label="Toggle menu" aria-expanded="false" class="md:hidden w-9 h-9 flex flex-col items-center justify-center gap-1.5">
+      <span class="block w-6 h-0.5 bg-slate"></span><span class="block w-6 h-0.5 bg-slate"></span><span class="block w-6 h-0.5 bg-slate"></span>
     </button>
   </div>
+  <!-- Mobile nav panel -->
+  <nav id="mobileNav" class="mobile-nav md:hidden fixed top-[57px] right-0 bottom-0 w-full bg-cream z-40 flex flex-col gap-6 p-8 overflow-y-auto">
+    <a href="about.html" class="text-lg">About</a>
+    <a href="services.html" class="text-lg">Services</a>
+    <a href="methodology.html" class="text-lg">Methodology</a>
+    <a href="contact.html" class="text-lg">Contact</a>
+    <a href="contact.html#consult" class="inline-flex items-center justify-center gap-2 bg-slate text-cream px-5 py-3 rounded-md text-base font-bold mt-2">Consult an Expert</a>
+  </nav>
 </header>
 
 <main>
   <!-- HERO -->
-  <section class="hero" id="home">
-    <svg class="hero-grid-svg" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <g stroke="#B29A6A" stroke-width="1" opacity="0.5">
-        <line x1="0" y1="80" x2="640" y2="80"/><line x1="0" y1="160" x2="640" y2="160"/>
-        <line x1="0" y1="240" x2="640" y2="240"/><line x1="0" y1="320" x2="640" y2="320"/>
-        <line x1="0" y1="400" x2="640" y2="400"/><line x1="0" y1="480" x2="640" y2="480"/>
-        <line x1="0" y1="560" x2="640" y2="560"/><line x1="80" y1="0" x2="80" y2="640"/>
-        <line x1="160" y1="0" x2="160" y2="640"/><line x1="240" y1="0" x2="240" y2="640"/>
-        <line x1="320" y1="0" x2="320" y2="640"/><line x1="400" y1="0" x2="400" y2="640"/>
-        <line x1="480" y1="0" x2="480" y2="640"/><line x1="560" y1="0" x2="560" y2="640"/>
-      </g>
-      <rect x="80" y="80" width="480" height="480" stroke="#B29A6A" stroke-width="1.2"/>
-    </svg>
-    <div class="wrap hero-inner">
-      <h1>Designing spaces that work with you.</h1>
-      <p>A space shapes more than how a room looks — it shapes how you move through your day, how much light and privacy you feel, and how easily you focus or unwind. Devagya brings traditional Vastu thinking together with contemporary spatial design and human-centred design principles, to create spaces that are intentional, functional and considered.</p>
-      <div class="hero-actions">
-        <a class="btn-primary" href="#consult">Book a Consultation</a>
-        <a class="link-quiet" href="#approach">Explore Our Approach</a>
+  <section class="relative overflow-hidden bg-cream">
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal">
+        <p class="text-sand font-bold text-sm mb-4 tracking-wide">Spatial Design &amp; Vastu Consultancy</p>
+        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.08] mb-6">Bad spatial flow has a cost. We design it out.</h1>
+        <p class="text-slate/70 text-lg leading-relaxed mb-8 max-w-md">Devagya Vastu combines traditional Vastu Shastra with sun-path analysis, ventilation design and environmental psychology — for homes, offices and developments built to be lived in well, not just looked at.</p>
+        <div class="flex flex-wrap items-center gap-6">
+          <a href="contact.html#consult" class="inline-flex items-center gap-2 bg-slate text-cream px-7 py-4 rounded-md font-bold hover:bg-slate-2 transition">Book a Spatial Strategy Session</a>
+          <a href="methodology.html" class="text-slate/70 border-b border-slate/20 hover:text-slate hover:border-sand transition pb-1">Explore Our Methodology</a>
+        </div>
+      </div>
+      <div class="reveal relative aspect-square">
+        <!-- CUSTOMIZE: replace with a real architectural/interior photo once available -->
+        <svg viewBox="0 0 400 400" class="w-full h-full" aria-hidden="true">
+          <rect x="30" y="30" width="340" height="340" fill="none" stroke="#B9976B" stroke-width="1" opacity="0.6"/>
+          <line x1="30" y1="200" x2="370" y2="200" stroke="#B9976B" stroke-width="0.6" opacity="0.5"/>
+          <line x1="200" y1="30" x2="200" y2="370" stroke="#B9976B" stroke-width="0.6" opacity="0.5"/>
+          <circle cx="200" cy="200" r="90" fill="none" stroke="#1E2428" stroke-width="0.6" opacity="0.4"/>
+          <rect x="120" y="120" width="160" height="160" fill="none" stroke="#1E2428" stroke-width="0.6" opacity="0.3"/>
+        </svg>
       </div>
     </div>
   </section>
 
-  <!-- BRAND STRIP -->
-  <section class="brand-strip">
-    <div class="wrap fade-up">
-      <img src="assets/logo-full.jpg" alt="Devagya — Vastu &amp; Signature Spaces emblem" width="150" height="150" loading="lazy">
-      <p class="brand-strip-tag">Old order. New proof. New form.</p>
-      <ul class="trust-list">
-        <li>Space in Balance</li><li>Energy in Flow</li><li>Design with Purpose</li><li>Life in Harmony</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- VASTU POSITIONING -->
-  <section id="vastu" class="on-stone">
-    <div class="wrap" style="max-width:720px;">
-      <div class="fade-up">
-        <p class="section-label">Vastu &amp; Modern Design</p>
-        <h2 style="font-family:var(--serif); font-weight:600; font-size:clamp(1.85rem,3.2vw,2.5rem); margin:0 0 22px; line-height:1.2;">Ancient principles. Contemporary understanding.</h2>
-        <p style="font-size:1.03rem; line-height:1.78; color:var(--ink-dim); margin:0 0 18px;">Vastu Shastra is a traditional framework for how a built space relates to direction, light, airflow and the people who use it. At Devagya, we treat it as exactly that — a framework to be studied alongside, not instead of, the practical realities of a site.</p>
-        <p style="font-size:1.03rem; line-height:1.78; color:var(--ink-dim); margin:0 0 18px;">In practice, our work draws on three distinct kinds of thinking: <strong>traditional Vastu principles</strong>; <strong>architectural and structural analysis</strong> — sun-path, soil, load, airflow; and current understanding from <strong>environmental and positive psychology</strong> about how people tend to experience comfort, privacy, focus and calm in a space. We keep these distinct rather than blending them into one claim, so you always know which kind of reasoning sits behind a recommendation.</p>
-        <p style="font-size:1.03rem; line-height:1.78; color:var(--ink-dim); margin:0;">We don't present Vastu — or design generally — as a guarantee of wealth, health or specific life outcomes, and we won't tell you it is. Where a traditional principle and a practical constraint pull in different directions, we say so, and work through it with you rather than picking one and staying quiet about the other.</p>
+  <!-- THE PROBLEM -->
+  <section class="bg-slate text-cream">
+    <div class="max-w-6xl mx-auto px-6 py-20">
+      <div class="reveal max-w-2xl mb-14">
+        <p class="text-sand-light font-bold text-sm mb-4">The Hidden Cost</p>
+        <h2 class="font-serif text-3xl md:text-4xl font-semibold mb-5 leading-tight">Bad spatial flow quietly costs you.</h2>
+        <p class="text-cream/70 text-lg leading-relaxed">A poorly oriented entrance, a room that never catches daylight, an office layout that fights how people actually move through it — these aren't just aesthetic problems. They show up as discomfort, friction and inefficiency that most people can feel but can't quite name.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-px bg-cream/10 border border-cream/10 reveal">
+        <div class="bg-slate-2 p-7"><h3 class="font-serif text-lg mb-2">For homeowners</h3><p class="text-cream/60 text-sm leading-relaxed">Rooms that feel "off" without a clear reason, or renovation decisions made without a spatial plan.</p></div>
+        <div class="bg-slate-2 p-7"><h3 class="font-serif text-lg mb-2">For corporate offices</h3><p class="text-cream/60 text-sm leading-relaxed">Layouts that work against focus, collaboration or how a workplace actually functions day to day.</p></div>
+        <div class="bg-slate-2 p-7"><h3 class="font-serif text-lg mb-2">For developers</h3><p class="text-cream/60 text-sm leading-relaxed">Floor plans finalised before spatial and directional factors are properly considered, costing time to fix later.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- PSYCHOLOGY-INFORMED DESIGN -->
-  <section class="on-white" id="human-experience">
-    <div class="wrap">
-      <div class="fade-up" style="max-width:640px; margin-bottom:44px;">
-        <p class="section-label">Human-Centred Design</p>
-        <h2 style="font-family:var(--serif); font-weight:600; font-size:clamp(1.85rem,3.2vw,2.5rem); margin:0 0 20px; line-height:1.2;">Designing for how a space is actually experienced.</h2>
-        <p style="font-size:1.02rem; line-height:1.75; color:var(--ink-dim); margin:0;">Beyond tradition and structure, we consider how everyday factors of an environment can support the way people feel and function in it. This isn't a claim that design alone creates wellbeing — it's a design lens we apply alongside everything else.</p>
+  <!-- 3-PILLAR FRAMEWORK -->
+  <section class="bg-cream">
+    <div class="max-w-6xl mx-auto px-6 py-20">
+      <div class="reveal max-w-2xl mb-14">
+        <p class="text-sand font-bold text-sm mb-4">Our Framework</p>
+        <h2 class="font-serif text-3xl md:text-4xl font-semibold mb-5 leading-tight">Three pillars, applied together.</h2>
+        <p class="text-slate/70 text-lg leading-relaxed">We don't treat these as competing systems. Each pillar checks and informs the others, so a recommendation only stands if it holds up from every angle. <a href="methodology.html" class="text-sand border-b border-sand/40 hover:border-sand">See the full methodology →</a></p>
       </div>
-      <div class="process-grid fade-up">
-        <div class="process-step">
-          <h3 style="font-size:1.05rem;">Comfort &amp; privacy</h3>
-          <p>How a room is enclosed and overlooked can encourage a sense of ease or exposure.</p>
+      <div class="grid md:grid-cols-3 gap-8 reveal">
+        <div class="border border-slate/10 p-8 rounded-lg">
+          <div class="w-11 h-11 mb-5 text-sand"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="24" r="18"/><path d="M24 10v6M24 32v6M10 24h6M32 24h6"/></svg></div>
+          <h3 class="font-serif text-xl mb-3">Vastu Shastra</h3>
+          <p class="text-slate/65 text-sm leading-relaxed">Traditional spatial principles covering direction, entry, and the placement of rooms and elements.</p>
         </div>
-        <div class="process-step">
-          <h3 style="font-size:1.05rem;">Focus &amp; restoration</h3>
-          <p>Quieter, less cluttered zones can support attention and a sense of mental rest.</p>
+        <div class="border border-slate/10 p-8 rounded-lg">
+          <div class="w-11 h-11 mb-5 text-sand"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M24 6v8M24 34v8M6 24h8M34 24h8"/><circle cx="24" cy="24" r="10"/></svg></div>
+          <h3 class="font-serif text-xl mb-3">Architectural Physics</h3>
+          <p class="text-slate/65 text-sm leading-relaxed">Sun-path analysis, cross-ventilation dynamics, and structural and material realities of the site.</p>
         </div>
-        <div class="process-step">
-          <h3 style="font-size:1.05rem;">Daylight &amp; thermal comfort</h3>
-          <p>How light and airflow move through a space can contribute to everyday comfort.</p>
-        </div>
-        <div class="process-step">
-          <h3 style="font-size:1.05rem;">Spatial clarity</h3>
-          <p>A layout that's easy to read can reduce the cognitive load of simply moving through it.</p>
-        </div>
-        <div class="process-step">
-          <h3 style="font-size:1.05rem;">Connection with nature</h3>
-          <p>Sightlines to greenery or sky can be designed around, where a site allows it.</p>
-        </div>
-        <div class="process-step">
-          <h3 style="font-size:1.05rem;">Social interaction</h3>
-          <p>The placement of shared spaces can encourage or discourage everyday interaction.</p>
+        <div class="border border-slate/10 p-8 rounded-lg">
+          <div class="w-11 h-11 mb-5 text-sand"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M24 8 40 24 24 40 8 24Z"/></svg></div>
+          <h3 class="font-serif text-xl mb-3">Environmental Psychology</h3>
+          <p class="text-slate/65 text-sm leading-relaxed">How daylight, privacy, clarity and layout can support comfort, focus and everyday wellbeing — described cautiously, never guaranteed.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROCESS (6 steps) -->
-  <section id="approach" class="on-dark">
-    <div class="wrap">
-      <div class="fade-up" style="max-width:600px; margin-bottom:48px;">
-        <p class="section-label">Our Process</p>
-        <h2 style="font-family:var(--serif); font-weight:600; font-size:clamp(1.85rem,3.3vw,2.5rem); margin:0; line-height:1.16;">A clear process, from first call to final delivery.</h2>
+  <!-- SERVICE TABS PREVIEW -->
+  <section class="bg-stone">
+    <div class="max-w-6xl mx-auto px-6 py-20">
+      <div class="reveal max-w-2xl mb-10">
+        <p class="text-sand font-bold text-sm mb-4">Who We Work With</p>
+        <h2 class="font-serif text-3xl md:text-4xl font-semibold leading-tight">Three segments, one method.</h2>
       </div>
-      <div class="process-grid fade-up">
-        <div class="process-step">
-          <p class="process-num">01</p><h3>Understand</h3>
-          <p>We start with the people, the purpose, and the space as it exists today.</p>
+      <div data-tabs class="reveal">
+        <div class="flex gap-2 overflow-x-auto no-scrollbar border-b border-slate/15 mb-8">
+          <button class="tab-btn px-5 py-3 text-sm font-semibold border-b-2 border-transparent" data-tab-target="tab-res" aria-selected="true">Residential</button>
+          <button class="tab-btn px-5 py-3 text-sm font-semibold border-b-2 border-transparent" data-tab-target="tab-corp" aria-selected="false">Corporate</button>
+          <button class="tab-btn px-5 py-3 text-sm font-semibold border-b-2 border-transparent" data-tab-target="tab-dev" aria-selected="false">Developers</button>
         </div>
-        <div class="process-step">
-          <p class="process-num">02</p><h3>Analyse</h3>
-          <p>We study spatial relationships, direction, structure, light and functional flow.</p>
+        <div id="tab-res" class="tab-panel active grid md:grid-cols-2 gap-8 items-center">
+          <div><h3 class="font-serif text-2xl mb-3">For luxury homebuilders</h3><p class="text-slate/70 leading-relaxed mb-4">A full Vastu and spatial review for a new build or renovation — entry, room placement and light, checked against both traditional principles and site physics.</p><a href="services.html" class="text-sand border-b border-sand/40">See residential services →</a></div>
+          <div class="bg-cream border border-slate/10 rounded-lg p-6 text-sm text-slate/60"><!-- CUSTOMIZE: add real project photo once available --> Illustrative placeholder — replace with a real project image.</div>
         </div>
-        <div class="process-step">
-          <p class="process-num">03</p><h3>Interpret</h3>
-          <p>We translate classical Vastu principles into specific insight, checked against sun-path, soil and structural data.</p>
+        <div id="tab-corp" class="tab-panel grid md:grid-cols-2 gap-8 items-center">
+          <div><h3 class="font-serif text-2xl mb-3">For corporate workplaces</h3><p class="text-slate/70 leading-relaxed mb-4">Office layouts assessed for flow, light and zoning — balancing Vastu guidance with how a team actually works day to day.</p><a href="services.html" class="text-sand border-b border-sand/40">See corporate services →</a></div>
+          <div class="bg-cream border border-slate/10 rounded-lg p-6 text-sm text-slate/60"><!-- CUSTOMIZE: add real project photo once available --> Illustrative placeholder — replace with a real project image.</div>
         </div>
-        <div class="process-step">
-          <p class="process-num">04</p><h3>Design</h3>
-          <p>We develop layouts, elevations and material choices that reflect what we've found.</p>
-        </div>
-        <div class="process-step">
-          <p class="process-num">05</p><h3>Refine</h3>
-          <p>We work through your feedback and any real-world constraints until the plan holds up.</p>
-        </div>
-        <div class="process-step">
-          <p class="process-num">06</p><h3>Deliver</h3>
-          <p>You receive a clear, practical plan you can act on — with our reasoning included, not just conclusions.</p>
+        <div id="tab-dev" class="tab-panel grid md:grid-cols-2 gap-8 items-center">
+          <div><h3 class="font-serif text-2xl mb-3">For real estate developers</h3><p class="text-slate/70 leading-relaxed mb-4">Floor-plan and multi-unit review at the planning stage, so spatial and directional factors are considered before layouts are locked in.</p><a href="services.html" class="text-sand border-b border-sand/40">See developer services →</a></div>
+          <div class="bg-cream border border-slate/10 rounded-lg p-6 text-sm text-slate/60"><!-- CUSTOMIZE: add real project photo once available --> Illustrative placeholder — replace with a real project image.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section id="services">
-    <div class="wrap">
-      <div class="fade-up" style="margin-bottom:44px;">
-        <p class="section-label">Services</p>
-        <h2 style="font-family:var(--serif); font-weight:600; font-size:clamp(1.85rem,3.3vw,2.5rem); margin:0; line-height:1.16;">Four ways to work with us.</h2>
-      </div>
-      <div class="service-grid fade-up">
-
-        <div class="service-card">
-          <svg class="sc-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="1.6"/>
-            <path d="M24 10v6M24 32v6M10 24h6M32 24h6" stroke="currentColor" stroke-width="1.6"/>
-            <path d="M24 24 30 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-            <circle cx="24" cy="24" r="2" fill="currentColor"/>
-          </svg>
-          <h3>Vastu Consultation</h3>
-          <p class="sc-lede">A full reading of your plot or existing structure, checked against sun-path, soil and structural data.</p>
-          <dl>
-            <div><dt>Best for</dt><dd>Land before construction, or a home/office already built.</dd></div>
-            <div><dt>You'll receive</dt><dd>A written assessment with clear, practical corrections you can implement.</dd></div>
-          </dl>
-          <a class="link-quiet sc-cta" href="#consult">Request this service</a>
-        </div>
-
-        <div class="service-card">
-          <svg class="sc-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M8 40V20L24 8l16 12v20" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-            <path d="M18 40V26h12v14" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-          </svg>
-          <h3>Architecture &amp; Spatial Planning</h3>
-          <p class="sc-lede">Full architectural and spatial planning for homes, offices and buildings, independent of Vastu review.</p>
-          <dl>
-            <div><dt>Best for</dt><dd>Anyone needing layout, structural and material planning from the ground up.</dd></div>
-            <div><dt>You'll receive</dt><dd>Layouts, elevations and material recommendations grounded in site analysis.</dd></div>
-          </dl>
-          <a class="link-quiet sc-cta" href="#consult">Request this service</a>
-        </div>
-
-        <div class="service-card">
-          <svg class="sc-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x="10" y="10" width="28" height="28" stroke="currentColor" stroke-width="1.6"/>
-            <path d="M18 20h12M18 28h12" stroke="currentColor" stroke-width="1.4"/>
-          </svg>
-          <h3>Vastu + Spatial Design</h3>
-          <p class="sc-lede">Our most complete offering — Vastu principles and architectural design resolved together from the first sketch.</p>
-          <dl>
-            <div><dt>Best for</dt><dd>Clients who want both disciplines applied from day one, not layered on afterward.</dd></div>
-            <div><dt>You'll receive</dt><dd>A single integrated plan, with the reasoning behind every major decision.</dd></div>
-          </dl>
-          <a class="link-quiet sc-cta" href="#consult">Request this service</a>
-        </div>
-
-        <div class="service-card">
-          <svg class="sc-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M24 8 40 24 24 40 8 24Z" stroke="currentColor" stroke-width="1.6"/>
-          </svg>
-          <h3>Signature Spaces</h3>
-          <p class="sc-lede">Spaces designed around identity, purpose and atmosphere — for a home, an office, or a full building.</p>
-          <dl>
-            <div><dt>Best for</dt><dd>Projects where the space needs to feel distinct, not generic — at any scale.</dd></div>
-            <div><dt>You'll receive</dt><dd>A design direction built around who the space is actually for.</dd></div>
-          </dl>
-          <a class="link-quiet sc-cta" href="#consult">Request this service</a>
-        </div>
-
+  <!-- HOW IT WORKS -->
+  <section class="bg-slate text-cream">
+    <div class="max-w-6xl mx-auto px-6 py-20">
+      <div class="reveal max-w-xl mb-12"><p class="text-sand-light font-bold text-sm mb-4">How It Works</p><h2 class="font-serif text-3xl md:text-4xl font-semibold leading-tight">A clear process, start to finish.</h2></div>
+      <div class="grid md:grid-cols-3 gap-px bg-cream/10 border border-cream/10 reveal">
+        <div class="bg-slate-2 p-7"><p class="text-sand-light font-serif text-sm mb-3">01</p><h3 class="font-serif text-lg mb-2">Understand &amp; Analyse</h3><p class="text-cream/60 text-sm leading-relaxed">We study the site or plan — direction, structure, light, and how people use the space.</p></div>
+        <div class="bg-slate-2 p-7"><p class="text-sand-light font-serif text-sm mb-3">02</p><h3 class="font-serif text-lg mb-2">Interpret &amp; Design</h3><p class="text-cream/60 text-sm leading-relaxed">We apply all three pillars together and develop a concrete, buildable plan.</p></div>
+        <div class="bg-slate-2 p-7"><p class="text-sand-light font-serif text-sm mb-3">03</p><h3 class="font-serif text-lg mb-2">Refine &amp; Deliver</h3><p class="text-cream/60 text-sm leading-relaxed">We work through your feedback and hand over a plan with the reasoning included.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- SIGNATURE SPACES DETAIL -->
-  <section class="on-white" id="signature-spaces">
-    <div class="wrap">
-      <div class="fade-up" style="margin-bottom:12px;">
-        <p class="section-label">Signature Spaces</p>
-        <h2 style="font-family:var(--serif); font-weight:600; font-size:clamp(1.85rem,3.4vw,2.6rem); margin:0 0 40px; line-height:1.16;">Spaces that carry identity, not just floor area.</h2>
+  <!-- TRUST / SOCIAL PROOF (honest placeholders) -->
+  <section class="bg-cream">
+    <div class="max-w-6xl mx-auto px-6 py-20">
+      <div class="reveal max-w-2xl mb-10"><p class="text-sand font-bold text-sm mb-4">Case Studies</p><h2 class="font-serif text-3xl md:text-4xl font-semibold leading-tight">Project results, documented honestly.</h2></div>
+      <!-- CUSTOMIZE: replace this entire block with real, verifiable case studies and metrics once available. Do not publish invented numbers. -->
+      <div class="reveal border border-dashed border-slate/25 rounded-lg p-10 text-center bg-stone/40">
+        <h3 class="font-serif text-xl mb-3">Case studies are in progress</h3>
+        <p class="text-slate/60 max-w-md mx-auto mb-6">We'd rather show real, verified project outcomes than placeholder statistics. This section will be published as current work concludes.</p>
+        <a href="contact.html#consult" class="inline-flex items-center gap-2 border border-slate/20 px-6 py-3 rounded-md font-semibold hover:border-sand transition">Discuss a project directly</a>
       </div>
-      <div class="signature-block">
-        <div class="signature-visual fade-up">
-          <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x="40" y="40" width="320" height="180" fill="none" stroke="#B29A6A" stroke-width="1"/>
-            <rect x="40" y="240" width="150" height="220" fill="none" stroke="#B29A6A" stroke-width="1"/>
-            <rect x="210" y="240" width="150" height="220" fill="none" stroke="#171A1D" stroke-width="0.6"/>
-            <line x1="40" y1="130" x2="360" y2="130" stroke="#171A1D" stroke-width="0.5"/>
-          </svg>
-        </div>
-        <div class="signature-copy fade-up">
-          <p class="section-label">Identity First</p>
-          <h2>Identity first. Layout second.</h2>
-          <p>Before a single wall is drawn, we ask what a space is meant to feel like, who moves through it, and what it needs to do — for the family that lives there, or the company that works from it.</p>
-          <p>Vastu principles and structural planning are then applied to that answer, not the other way around. The proportion, the light, the sequence of rooms — all of it follows from the identity of the space, not a template.</p>
-          <p style="font-weight:600;">Applies to a private home, a company's workspace, or a full building — single floors and multi-unit projects included.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="on-stone">
-    <div class="wrap about-grid">
-      <div class="fade-up">
-        <p class="section-label">About</p>
-        <h2>Three disciplines.<br>One practice.</h2>
-      </div>
-      <div class="about-copy fade-up">
-        <p>For generations, Vastu Shastra has guided how a home should meet the sun, how a threshold should be placed, how a room should hold the people living in it. Every project at Devagya starts there.</p>
-        <p>We test that reading against measurable data: sun-path and daylight study, soil and drainage behaviour, wind and ventilation, structural load. Where tradition and measurement agree, we build with confidence. Where they don't, we work out why before a single wall goes up.</p>
-        <p>Only then do we design the building itself — structure, material, proportion, light — the way any serious architecture practice would, for a client building in the present.</p>
-        <p>We work with individuals building their first home, companies planning their next office, and developers laying out a floor or an entire building. The scale changes. The method doesn't.</p>
-        <p class="pull">Old order. New proof. New form.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHAT HAPPENS NEXT (uncertainty reducer) -->
-  <section class="on-white">
-    <div class="wrap">
-      <div class="fade-up" style="max-width:600px; margin-bottom:40px;">
-        <p class="section-label">Before You Reach Out</p>
-        <h2 style="font-family:var(--serif); font-weight:600; font-size:clamp(1.85rem,3.3vw,2.5rem); margin:0; line-height:1.16;">What happens after you contact us.</h2>
-      </div>
-      <div class="next-steps fade-up">
-        <div class="next-step">
-          <p class="ns-num">01</p>
-          <h4>We read your submission</h4>
-          <p>We look at what you've shared — property type, location, and what you're trying to solve — before we reply.</p>
-        </div>
-        <div class="next-step">
-          <p class="ns-num">02</p>
-          <h4>We schedule a call</h4>
-          <p>A short conversation, online or by phone, to understand your space and confirm the right service.</p>
-        </div>
-        <div class="next-step">
-          <p class="ns-num">03</p>
-          <h4>You get a clear next step</h4>
-          <p>Either a scoped consultation plan, or an honest note that we're not the right fit for your project.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ PREVIEW -->
-  <section class="on-stone" id="faq-preview">
-    <div class="wrap" style="max-width:720px;">
-      <div class="fade-up" style="margin-bottom:8px;">
-        <p class="section-label">Frequently Asked</p>
-        <h2 style="font-family:var(--serif); font-weight:600; font-size:clamp(1.85rem,3.3vw,2.5rem); margin:0 0 36px; line-height:1.16;">A few common questions.</h2>
-      </div>
-      <div class="faq-list fade-up">
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">Do you guarantee specific outcomes from Vastu?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
-          <div class="faq-a"><p>No. We don't promise wealth, health or specific life outcomes from Vastu. We offer a thoughtful integration of traditional spatial principles with practical, measurable design — you can read more on how we frame this above.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">Can consultations happen online?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
-          <div class="faq-a"><p>Yes. We work with clients by video call and email wherever they're based, and can also work in person where that's practical. The consultation form lets you choose your preferred format.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">What do I need to prepare before a consultation?<svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
-          <div class="faq-a"><p>A floor plan or site layout if you have one, and a rough sense of what you're trying to solve. If you don't have formal drawings yet, that's fine — we'll work with what you have.</p></div>
-        </div>
-      </div>
-      <p style="margin-top:32px;"><a class="link-quiet" href="faq.html">See all frequently asked questions</a></p>
-    </div>
-  </section>
-
-  <!-- INSIGHTS TEASER + NEWSLETTER -->
-  <section class="on-white" id="insights-teaser">
-    <div class="wrap">
-      <div class="fade-up" style="margin-bottom:36px;">
-        <p class="section-label">Insights</p>
-        <h2 style="font-family:var(--serif); font-weight:600; font-size:clamp(1.85rem,3.3vw,2.5rem); margin:0 0 14px; line-height:1.16;">Notes on Vastu &amp; spatial design.</h2>
-        <p style="max-width:520px; font-size:1rem; line-height:1.68; color:var(--ink-dim);">We're building a library of short, practical notes. Sign up below to be notified when the first pieces publish.</p>
-      </div>
-      <p class="fade-up" style="margin-bottom:48px;"><a class="link-quiet" href="insights.html">Browse Insights</a></p>
-
-      <div class="signup-panel">
-        <div class="signup-copy fade-up">
-          <p class="section-label">Stay Updated</p>
-          <h2>Get notified when we publish.</h2>
-          <p>Leave your details and we'll let you know when new Insights go up, and share the occasional note on Vastu and spatial design directly. No spam, and you can ask to be removed at any time.</p>
-        </div>
-        <form class="signup-form fade-up" id="newsletterForm" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="06802d3b-83fc-4107-9cf8-57fff3706002">
-          <input type="hidden" name="subject" value="New Insights sign-up — Devagya">
-          <input type="hidden" name="from_name" value="Devagya Website">
-          <div class="form-success" id="newsletterSuccess">Thanks — you're on the list. We'll be in touch.</div>
-          <div class="field">
-            <label for="n-name">Full name</label>
-            <input type="text" id="n-name" name="name" required>
-          </div>
-          <div class="field-row">
-            <div class="field">
-              <label for="n-email">Email</label>
-              <input type="email" id="n-email" name="email" required>
-            </div>
-            <div class="field">
-              <label for="n-phone">Phone</label>
-              <input type="tel" id="n-phone" name="phone" required>
-            </div>
-          </div>
-          <p class="consent">By signing up you agree to be contacted by Devagya via email or phone regarding Vastu and spatial design updates. See our <a class="link-quiet" href="#privacy">Privacy Policy</a>.</p>
-          <button class="btn-primary" type="submit" style="width:100%; justify-content:center;">Sign Up</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="on-stone">
-    <div class="wrap">
-      <div class="fade-up" style="margin-bottom:12px;">
-        <p class="section-label">Contact</p>
-        <h2 style="font-family:var(--serif); font-weight:600; font-size:clamp(2rem,4vw,2.7rem); margin:0 0 18px; line-height:1.16;">Let's understand your space.</h2>
-        <p style="font-size:1.03rem; line-height:1.68; color:var(--ink-dim); max-width:480px;">Tell us about your residential, commercial or spatial requirement — we'll get back to you directly.</p>
-      </div>
-      <div class="contact-methods fade-up" style="max-width:520px; margin-top:32px;">
-        <a class="contact-method" href="https://wa.me/919467496725?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20your%20Vastu%20and%20architecture%20services." target="_blank" rel="noopener">
-          <svg class="cm-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.63 1.44 5.15L2 22l5.1-1.55a9.85 9.85 0 0 0 4.93 1.33h.01c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.06c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.95-.3-1.65-.6-2.9-1.25-4.8-4.16-4.94-4.35-.14-.19-1.18-1.57-1.18-2.99 0-1.42.74-2.11 1-2.4.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.81 2.01.88 2.16.07.15.12.32.02.5-.1.19-.15.3-.3.46-.14.16-.3.36-.43.48-.14.13-.29.28-.13.56.17.28.75 1.24 1.61 2.01 1.11.99 2.04 1.3 2.34 1.44.3.14.48.12.66-.07.19-.19.79-.91.99-1.22.2-.31.4-.26.66-.16.27.1 1.68.79 1.97.93.29.14.48.21.55.33.07.12.07.68-.17 1.34Z"/></svg>
-          <div><div class="cm-label">WhatsApp</div><div class="cm-value">+91 94674 96725</div></div>
-        </a>
-        <a class="contact-method" href="mailto:devagyavastu@gmail.com">
-          <svg class="cm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-          <div><div class="cm-label">Email</div><div class="cm-value">devagyavastu@gmail.com</div></div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONSULTATION FORM -->
-  <section class="on-white" id="consult">
-    <div class="wrap signup-panel">
-      <div class="signup-copy fade-up">
-        <p class="section-label">Book a Consultation</p>
-        <h2>Share a few details.</h2>
-        <p>Fill this in and we'll reach out to schedule your consultation. This also adds you to our client list so we can follow up — you can opt out any time. Only the first three fields are required; the rest just help us prepare.</p>
-      </div>
-      <form class="signup-form fade-up" id="leadForm" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="06802d3b-83fc-4107-9cf8-57fff3706002">
-        <input type="hidden" name="subject" value="New Consultation Request — Devagya">
-        <input type="hidden" name="from_name" value="Devagya Website">
-        <div class="form-success" id="leadSuccess">Thanks — we've received your request and will be in touch shortly.</div>
-
-        <div class="field-group">
-          <p class="field-group-label">Your Details</p>
-          <div class="field">
-            <label for="c-name">Full name</label>
-            <input type="text" id="c-name" name="name" required>
-          </div>
-          <div class="field-row">
-            <div class="field">
-              <label for="c-email">Email</label>
-              <input type="email" id="c-email" name="email" required>
-            </div>
-            <div class="field">
-              <label for="c-phone">Phone / WhatsApp</label>
-              <input type="tel" id="c-phone" name="phone" required>
-            </div>
-          </div>
-          <div class="field">
-            <label for="c-country">Country</label>
-            <select id="c-country" name="country">
-              <option value="">Select (optional)</option>
-              <option>India</option><option>UAE</option><option>USA</option>
-              <option>UK</option><option>Canada</option><option>Australia</option>
-              <option>Other</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="field-group">
-          <p class="field-group-label">Your Project</p>
-          <div class="field-row">
-            <div class="field">
-              <label for="c-property">Property type</label>
-              <select id="c-property" name="property_type">
-                <option value="">Select (optional)</option>
-                <option>Residential</option><option>Commercial</option><option>Other</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="c-status">New or existing</label>
-              <select id="c-status" name="property_status">
-                <option value="">Select (optional)</option>
-                <option>New / Under construction</option><option>Existing property</option>
-              </select>
-            </div>
-          </div>
-          <div class="field-row">
-            <div class="field">
-              <label for="c-service">Service required</label>
-              <select id="c-service" name="service_required">
-                <option value="">Select (optional)</option>
-                <option>Vastu Consultation</option>
-                <option>Architecture &amp; Spatial Planning</option>
-                <option>Vastu + Spatial Design</option>
-                <option>Signature Spaces</option>
-                <option>Not sure yet</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="c-consult-type">Preferred consultation</label>
-              <select id="c-consult-type" name="consultation_type">
-                <option value="">Select (optional)</option>
-                <option>Online video call</option><option>Phone call</option><option>In person (India)</option>
-              </select>
-            </div>
-          </div>
-          <div class="field">
-            <label for="c-message">Brief requirement (optional)</label>
-            <textarea id="c-message" name="message" rows="3" placeholder="A short description of your space and what you'd like help with"></textarea>
-          </div>
-        </div>
-
-        <p class="consent">By submitting, you agree to be contacted by Devagya via phone or email regarding your consultation, and to receive occasional updates. See our <a class="link-quiet" href="#privacy">Privacy Policy</a>.</p>
-        <button class="btn-primary" type="submit" style="width:100%; justify-content:center;">Request a Consultation</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- PRIVACY (condensed) -->
-  <section class="on-stone" id="privacy">
-    <div class="wrap prose fade-up">
-      <p class="section-label">Privacy &amp; Terms</p>
-      <h2 style="margin-top:0;">How we handle your information.</h2>
-      <p>When you use the forms on this site, we collect the name, email, phone number, country and any project details you provide, to respond to your enquiry and, where you've opted in, send occasional updates. We do not sell or rent your information to third parties. Submissions are delivered directly to Devagya's inbox through a third-party form-processing service.</p>
-      <p>You can ask to be removed from any list, or ask what information we hold, at any time by emailing <a class="link-quiet" href="mailto:devagyavastu@gmail.com">devagyavastu@gmail.com</a>. Content on this site is informational and not a substitute for a formal, scoped consultation.</p>
     </div>
   </section>
 
   <!-- FINAL CTA -->
-  <section class="cta-band on-dark">
-    <div class="wrap fade-up">
-      <h2>Let's understand your space.</h2>
-      <p>Tell us about your residential, commercial or spatial requirement — we'll get back to you directly.</p>
-      <div class="hero-actions">
-        <a class="btn-primary" href="#consult" style="background:var(--brass); color:var(--ink);">Book a Consultation</a>
-        <a class="btn-outline" href="https://wa.me/919467496725?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20your%20Vastu%20and%20architecture%20services." target="_blank" rel="noopener">WhatsApp Us</a>
+  <section class="bg-stone">
+    <div class="max-w-4xl mx-auto px-6 py-20 text-center reveal">
+      <h2 class="font-serif text-3xl md:text-4xl font-semibold mb-5">Ready to fix the flow of your space?</h2>
+      <p class="text-slate/70 text-lg mb-10 max-w-lg mx-auto">Tell us about your property and project stage — we'll get back to you directly.</p>
+      <div class="flex flex-wrap justify-center gap-6">
+        <a href="contact.html#consult" class="inline-flex items-center gap-2 bg-slate text-cream px-7 py-4 rounded-md font-bold hover:bg-slate-2 transition">Book a Spatial Strategy Session</a>
+        <a href="https://wa.me/919467496725?text=Hi%20Devagya%20Vastu%2C%20I%20would%20like%20to%20book%20a%20consultation%20for%20my%20property." target="_blank" rel="noopener" class="inline-flex items-center gap-2 border border-slate/20 px-7 py-4 rounded-md font-semibold hover:border-sand transition">WhatsApp Us</a>
       </div>
     </div>
   </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <span class="brand-main">Devagya</span>
-        <p class="footer-tag">Vastu &amp; Signature Spaces. A spatial design consultancy grounded in traditional Vastu principles and contemporary architecture.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Navigation</h4>
-        <a href="#services">Services</a>
-        <a href="#approach">Approach</a>
-        <a href="case-studies.html">Projects</a>
-        <a href="insights.html">Insights</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <a href="#privacy">Privacy Policy &amp; Terms</a>
-        <a href="faq.html">FAQ</a>
-      </div>
+<!-- FOOTER -->
+<footer class="bg-slate text-cream/70 border-t border-cream/10">
+  <div class="max-w-6xl mx-auto px-6 py-14 grid md:grid-cols-3 gap-10">
+    <div><img src="assets/logo-mark.png" alt="Devagya Vastu" class="h-10 w-10 mb-4"><p class="text-sm max-w-xs">Spatial design and Vastu consultancy for individuals, corporate workplaces and developers.</p></div>
+    <div><h4 class="text-cream text-sm font-bold mb-4">Navigate</h4>
+      <a href="about.html" class="block text-sm mb-2 hover:text-cream">About</a>
+      <a href="services.html" class="block text-sm mb-2 hover:text-cream">Services</a>
+      <a href="methodology.html" class="block text-sm mb-2 hover:text-cream">Methodology</a>
+      <a href="contact.html" class="block text-sm mb-2 hover:text-cream">Contact</a>
     </div>
-    <div class="footer-bottom">
-      <span>© <span id="year"></span> Devagya Vastu &amp; Signature Spaces</span>
-      <span>devagyavastu@gmail.com</span>
+    <div><h4 class="text-cream text-sm font-bold mb-4">Contact</h4>
+      <a href="mailto:devagyavastu@gmail.com" class="block text-sm mb-2 hover:text-cream">devagyavastu@gmail.com</a>
+      <a href="https://wa.me/919467496725" target="_blank" rel="noopener" class="block text-sm mb-2 hover:text-cream">+91 94674 96725</a>
     </div>
+  </div>
+  <div class="max-w-6xl mx-auto px-6 py-6 border-t border-cream/10 text-xs flex flex-wrap justify-between gap-2">
+    <span>© <span id="year"></span> Devagya Vastu</span>
+    <span>Informational content only — not a substitute for a scoped consultation.</span>
   </div>
 </footer>
 
-<a class="float-wa" id="floatWa" href="https://wa.me/919467496725?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20your%20Vastu%20and%20architecture%20services." target="_blank" rel="noopener" aria-label="Message on WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.63 1.44 5.15L2 22l5.1-1.55a9.85 9.85 0 0 0 4.93 1.33h.01c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.06c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.95-.3-1.65-.6-2.9-1.25-4.8-4.16-4.94-4.35-.14-.19-1.18-1.57-1.18-2.99 0-1.42.74-2.11 1-2.4.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.81 2.01.88 2.16.07.15.12.32.02.5-.1.19-.15.3-.3.46-.14.16-.3.36-.43.48-.14.13-.29.28-.13.56.17.28.75 1.24 1.61 2.01 1.11.99 2.04 1.3 2.34 1.44.3.14.48.12.66-.07.19-.19.79-.91.99-1.22.2-.31.4-.26.66-.16.27.1 1.68.79 1.97.93.29.14.48.21.55.33.07.12.07.68-.17 1.34Z"/></svg>
+<!-- Floating WhatsApp -->
+<a id="floatWa" href="https://wa.me/919467496725?text=Hi%20Devagya%20Vastu%2C%20I%20would%20like%20to%20book%20a%20consultation%20for%20my%20property." target="_blank" rel="noopener" aria-label="Message on WhatsApp"
+   class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] text-[#0b1a10] flex items-center justify-center shadow-lg transition-opacity">
+  <span class="wa-pulse-ring"></span>
+  <svg viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7 relative z-10" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.63 1.44 5.15L2 22l5.1-1.55a9.85 9.85 0 0 0 4.93 1.33h.01c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.06c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.95-.3-1.65-.6-2.9-1.25-4.8-4.16-4.94-4.35-.14-.19-1.18-1.57-1.18-2.99 0-1.42.74-2.11 1-2.4.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.81 2.01.88 2.16.07.15.12.32.02.5-.1.19-.15.3-.3.46-.14.16-.3.36-.43.48-.14.13-.29.28-.13.56.17.28.75 1.24 1.61 2.01 1.11.99 2.04 1.3 2.34 1.44.3.14.48.12.66-.07.19-.19.79-.91.99-1.22.2-.31.4-.26.66-.16.27.1 1.68.79 1.97.93.29.14.48.21.55.33.07.12.07.68-.17 1.34Z"/></svg>
 </a>
-<button class="back-to-top" id="backToTop" aria-label="Back to top">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+<button id="backToTop" aria-label="Back to top" class="fixed bottom-6 right-24 z-50 w-10 h-10 rounded-full bg-cream border border-slate/15 flex items-center justify-center shadow transition-opacity">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E2428" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
-<script src="script.js"></script>
+<script src="main.js"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
