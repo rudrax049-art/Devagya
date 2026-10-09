@@ -1,6 +1,6 @@
 const contactLinks = {
-  whatsapp: 'https://wa.me/',
-  phone: 'tel:YOUR_PHONE_NUMBER',
+  whatsapp: 'https://wa.me/919467496725',
+  phone: 'tel:+919467496725',
   email: 'mailto:devagyavastu@gmail.com'
 };
 
@@ -53,11 +53,11 @@ const footerMarkup = `
       <p>Spatial planning shaped by classical principles, site conditions and contemporary architectural practice.</p>
       <div class="footer-contact">
         <a href="${contactLinks.whatsapp}">WhatsApp</a>
-        <a href="${contactLinks.phone}">Voice call</a>
+        <a href="${contactLinks.phone}">+91 94674 96725</a>
         <a href="${contactLinks.email}">Email</a>
       </div>
     </div>
-    <div class="footer-bottom"><span>© <span data-current-year></span> Devagya Vastu</span><span>Design guidance is project-specific and does not replace engineering or code review.</span></div>
+    <div class="footer-bottom"><span>© <span data-current-year></span> Devagya Vastu</span><span>Thoughtful spatial guidance, developed in collaboration with your architect and project team.</span></div>
   </footer>`;
 
 const mountPoint = document.querySelector('[data-site-header]');

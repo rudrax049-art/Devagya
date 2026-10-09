@@ -35,7 +35,7 @@ function showEvent(day, event) {
   modalTitle.textContent = event.title;
   modalDetails.textContent = `${formattedDate}. Suggested discussion window: ${event.time}. This sample is not confirmed availability; request a consultation to check current scheduling and the local time zone.`;
   const message = encodeURIComponent(`Hello Devagya, I would like to discuss ${event.title.toLowerCase()} on ${formattedDate}. Please confirm availability and the relevant local time zone.`);
-  whatsappDateLink.href = `https://wa.me/?text=${message}`;
+  whatsappDateLink.href = `https://wa.me/919467496725?text=${message}`;
   calendarModal.hidden = false;
   closeCalendarModal.focus();
 }
