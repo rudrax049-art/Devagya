@@ -3,6 +3,8 @@ const dropZone = document.getElementById('dropZone');
 const uploadList = document.getElementById('uploadList');
 const intakeForm = document.getElementById('projectIntakeForm');
 const intakeMessage = document.getElementById('intakeMessage');
+const blueprintNames = document.getElementById('blueprintNames');
+const intakeSubmitButton = intakeForm && intakeForm.querySelector('button[type="submit"]');
 const maximumFileSize = 10 * 1024 * 1024;
 const acceptedFileTypes = ['application/pdf', 'image/png', 'image/jpeg'];
 
@@ -26,6 +28,7 @@ function validateFiles(fileList) {
 
 function renderFileNames(validFiles, rejectedFiles) {
   if (!uploadList) return;
+  if (blueprintNames) blueprintNames.value = validFiles.map((file) => file.name).join(', ');
   uploadList.replaceChildren();
   validFiles.forEach((file) => {
     const item = document.createElement('li');
@@ -64,25 +67,27 @@ if (dropZone) {
 }
 
 if (intakeForm) {
-  intakeForm.addEventListener('submit', (event) => {
+  intakeForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (!intakeForm.reportValidity()) return;
-    const formData = new FormData(intakeForm);
-    const selectedNames = Array.from(fileInput.files).map((file) => file.name);
-    const bodyLines = [
-      `Name: ${formData.get('name')}`,
-      `Email: ${formData.get('email')}`,
-      `Phone / WhatsApp: ${formData.get('phone')}`,
-      `Project location: ${formData.get('location')}`,
-      `Project scope: ${formData.get('scope')}`,
-      `Site status: ${formData.get('site_status')}`,
-      `Functional frustrations:\n${formData.get('frustrations')}`,
-      `Marketing updates opt-in: ${formData.get('updates_opt_in') === 'yes' ? 'Yes' : 'No'}`,
-      `Selected plan files (attach manually): ${selectedNames.length ? selectedNames.join(', ') : 'None'}`
-    ];
-    const subject = encodeURIComponent(`Project enquiry — ${formData.get('scope')}`);
-    const body = encodeURIComponent(bodyLines.join('\n\n'));
-    intakeMessage.textContent = 'Your email application should open with the enquiry details. Attach the selected plans before sending; this website does not upload files.';
-    window.location.href = `mailto:devagyavastu@gmail.com?subject=${subject}&body=${body}`;
+    intakeMessage.classList.remove('is-success', 'is-error');
+    intakeMessage.textContent = '';
+    intakeSubmitButton.disabled = true;
+    const originalLabel = intakeSubmitButton.textContent;
+    intakeSubmitButton.textContent = 'Sending enquiry...';
+    try {
+      await window.devagyaForms.submit(intakeForm);
+      intakeForm.reset();
+      if (uploadList) uploadList.replaceChildren();
+      if (blueprintNames) blueprintNames.value = '';
+      intakeMessage.classList.add('is-success');
+      intakeMessage.textContent = 'Your enquiry was received. We will be in touch; please attach any plans when you reply.';
+    } catch (error) {
+      intakeMessage.classList.add('is-error');
+      intakeMessage.textContent = 'We could not confirm delivery. Please try again or contact us directly by email or WhatsApp.';
+    } finally {
+      intakeSubmitButton.disabled = false;
+      intakeSubmitButton.textContent = originalLabel;
+    }
   });
 }

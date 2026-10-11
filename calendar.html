@@ -3,7 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="View sample consultation windows for project planning milestones with Devagya Vastu.">
+  <meta name="description" content="Request a spatial design consultation with Devagya Vastu for a date that suits your project. Availability is confirmed directly, not shown as live.">
+  <meta property="og:title" content="Book a Spatial Design Consultation | Devagya Vastu">
+  <meta property="og:description" content="Choose a preferred date to discuss your project. Calendar dates are requests only; confirm availability with Devagya Vastu.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://devagyavastu.com/calendar.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Book a Spatial Design Consultation | Devagya Vastu">
+  <meta name="twitter:description" content="Choose a preferred date to discuss your project. Calendar dates are requests only; confirm availability with Devagya Vastu.">
   <meta name="theme-color" content="#f8fafc">
   <title>Project Planning Calendar | Devagya Vastu</title>
   <link rel="canonical" href="https://devagyavastu.com/calendar.html">
@@ -12,17 +19,27 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={theme:{extend:{colors:{navy:"#0f172a",bone:"#f8fafc",brass:"#b45309"},fontFamily:{sans:["DM Sans","Helvetica Neue","Arial","sans-serif"],serif:["Playfair Display","Georgia","serif"]}}}};</script>
   <link rel="stylesheet" href="site.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://devagyavastu.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Project calendar", "item": "https://devagyavastu.com/calendar.html"}
+      ]
+    }
+  </script>
 </head>
 <body>
   <div data-site-header></div>
   <main id="main-content">
-    <section class="page-hero"><div class="container"><p class="eyebrow">Planning calendar</p><h1 class="display">A practical timeline for your next milestone.</h1><p class="lede">Browse illustrative consultation windows for project milestones such as Bhumi Pujan (groundbreaking) and renovation launch. Date labels support planning conversations; all dates are illustrative and do not predict project outcomes. Confirm local conditions and availability directly with your project team.</p></div></section>
+    <section class="page-hero"><div class="container"><p class="eyebrow">Consultation scheduling</p><h1 class="display">Request a Vastu spatial design consultation.</h1><p class="lede">Select a preferred date for a spatial design consultation. This calendar does not show live availability or select construction dates; all requests are confirmed directly with our team.</p></div></section>
     <section class="section" style="padding-top:12px">
       <div class="container">
         <div class="tool-shell">
           <div class="calendar-toolbar"><h2 id="monthTitle" aria-live="polite"></h2><div class="calendar-nav"><button type="button" id="previousMonth" aria-label="Previous month">←</button><button type="button" id="nextMonth" aria-label="Next month">→</button></div></div>
           <div class="calendar-grid" id="calendarGrid" role="grid" aria-labelledby="monthTitle"></div>
-          <div class="calendar-legend"><span>● Bhumi Pujan / groundbreaking planning</span><span>● Renovation launch planning</span><span>Sample windows only; request current availability</span></div>
+          <div class="calendar-legend"><span>Select a future date to request a consultation</span><span>Dates are preferences, not confirmed availability</span></div>
         </div>
       </div>
     </section>
@@ -30,11 +47,11 @@
   <div class="calendar-modal" id="calendarModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
     <div class="modal-card">
       <button class="modal-close" type="button" id="closeCalendarModal" aria-label="Close date details">×</button>
-      <p class="eyebrow">Planning window · verify locally</p>
-      <h2 id="modalTitle">Project milestone</h2>
+      <p class="eyebrow">Consultation request</p>
+      <h2 id="modalTitle">Preferred date</h2>
       <p id="modalDetails"></p>
-      <p><strong>Local zone guidance:</strong> Confirm time zone, site access, permits, contractor availability, weather and any local ceremonial requirements with the relevant professionals. Dates and windows shown are illustrative planning prompts only.</p>
-      <a class="button" id="whatsappDateLink" href="https://wa.me/919467496725">Secure consultation for this date via WhatsApp <span aria-hidden="true">↗</span></a>
+      <p><strong>Time zone:</strong> Include your city or time zone and preferred time when you contact us. Our team will confirm actual availability; selecting a date does not reserve an appointment.</p>
+      <a class="button" id="whatsappDateLink" href="https://wa.me/919467496725">Request this date via WhatsApp <span aria-hidden="true">↗</span></a>
     </div>
   </div>
   <div data-site-footer></div>

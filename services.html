@@ -7,7 +7,12 @@
 <meta name="description" content="Devagya Vastu's services: Vastu consultation, spatial analysis and architectural planning for luxury homes, corporate offices and real estate developments.">
 <link rel="canonical" href="https://devagyavastu.com/services.html">
 <meta property="og:title" content="Services — Devagya Vastu">
+<meta property="og:description" content="Architectural spatial planning, Vastu consultation and interior design for residential, workplace and development projects.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://devagyavastu.com/services.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Services — Devagya Vastu">
+<meta name="twitter:description" content="Architectural spatial planning, Vastu consultation and interior design for residential, workplace and development projects.">
 <link rel="icon" href="favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,13 +26,23 @@
 </script>
 <link rel="stylesheet" href="custom.css">
 <link rel="stylesheet" href="site.css">
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://devagyavastu.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://devagyavastu.com/services.html"}
+    ]
+  }
+</script>
 <script src="components/navigation.js" defer></script>
 </head>
 <body class="bg-cream text-slate font-sans antialiased">
 
 <header class="sticky top-0 z-50 bg-cream/90 backdrop-blur border-b border-slate/10">
   <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-3">
-    <a href="index.html" class="flex items-center"><img src="assets/logo-mark.png" alt="Devagya Vastu" class="h-10 w-10"></a>
+    <a href="index.html" class="flex items-center"><img src="assets/logo-mark.png" alt="Devagya Vastu" width="40" height="40" class="h-10 w-10"></a>
     <nav class="hidden md:flex items-center gap-7 text-sm text-slate/70">
       <a href="about.html" class="hover:text-slate transition">About</a>
       <a href="services.html" class="text-slate font-semibold">Services</a>
@@ -52,7 +67,7 @@
   <section class="bg-cream border-b border-slate/10">
     <div class="max-w-4xl mx-auto px-6 py-16 reveal">
       <p class="text-sand font-bold text-sm mb-4">Services</p>
-      <h1 class="font-serif text-4xl md:text-5xl font-semibold mb-5 leading-tight">One method, three segments.</h1>
+      <h1 class="font-serif text-4xl md:text-5xl font-semibold mb-5 leading-tight">Architectural Vastu and spatial design services.</h1>
       <p class="text-slate/70 text-lg leading-relaxed max-w-2xl">Individuals building a home. Companies planning a workplace. Developers laying out a project at scale. The method stays the same — what changes is the scope.</p>
     </div>
   </section>
@@ -61,7 +76,7 @@
   <section id="residential" class="bg-cream">
     <div class="max-w-5xl mx-auto px-6 py-16 reveal">
       <p class="text-sand font-bold text-sm mb-3">For Individuals</p>
-      <h2 class="font-serif text-3xl font-semibold mb-8">Residential Vastu &amp; Spatial Design</h2>
+      <h2 class="font-serif text-3xl font-semibold mb-8">Architectural spatial planning &amp; Vastu for homes</h2>
       <div class="grid md:grid-cols-[1.3fr_1fr] gap-10 items-start">
         <div class="space-y-4 text-slate/75 leading-relaxed">
           <p><strong class="text-slate">What it is:</strong> A Vastu and spatial review for a new build, under-construction home, or existing property — covering entry orientation, room placement and daylight.</p>
@@ -88,7 +103,7 @@
   <section id="corporate" class="bg-stone">
     <div class="max-w-5xl mx-auto px-6 py-16 reveal">
       <p class="text-sand font-bold text-sm mb-3">For Companies</p>
-      <h2 class="font-serif text-3xl font-semibold mb-8">Corporate &amp; Workplace Vastu</h2>
+      <h2 class="font-serif text-3xl font-semibold mb-8">Vastu for offices and workplaces</h2>
       <div class="grid md:grid-cols-[1.3fr_1fr] gap-10 items-start">
         <div class="space-y-4 text-slate/75 leading-relaxed">
           <p><strong class="text-slate">What it is:</strong> A review of an office or workplace layout, balancing Vastu guidance with how a team actually works.</p>
@@ -142,6 +157,23 @@
     </div>
   </section>
 
+  <section id="interior-design" class="bg-stone">
+    <div class="max-w-5xl mx-auto px-6 py-16 reveal">
+      <p class="text-sand font-bold text-sm mb-3">Interior design consultation</p>
+      <h2 class="font-serif text-3xl font-semibold mb-6">Vastu interior design, considered with the architecture.</h2>
+      <div class="grid md:grid-cols-[1.3fr_1fr] gap-10 items-start">
+        <div class="space-y-4 text-slate/75 leading-relaxed">
+          <p>Our Vastu interior design review considers room proportions, materials, lighting, furniture placement and layout flow alongside the architectural plan and your functional brief.</p>
+          <p>For residential interior planning, we discuss practical options with your architect or interior designer. Final material specifications, electrical design and construction documents remain with the appointed project professionals.</p>
+          <a href="contact.html#intake" class="inline-flex items-center gap-2 bg-slate text-cream px-6 py-3 rounded-md font-bold hover:bg-slate-2 transition mt-2">Request an interior design consultation</a>
+        </div>
+        <div class="bg-cream border border-slate/10 rounded-lg p-8">
+          <p class="text-slate/75 leading-relaxed">Spatial and interior design consultancy connects orientation, circulation, daylight, proportion and material choices without promising outcomes beyond the scope of the design review.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- SIGNATURE SPACES -->
   <section id="signature" class="bg-slate text-cream">
     <div class="max-w-5xl mx-auto px-6 py-16 reveal">
@@ -165,7 +197,7 @@
 
 <footer class="bg-slate text-cream/70 border-t border-cream/10">
   <div class="max-w-6xl mx-auto px-6 py-14 grid md:grid-cols-3 gap-10">
-    <div><img src="assets/logo-mark.png" alt="Devagya Vastu" class="h-10 w-10 mb-4"><p class="text-sm max-w-xs">Spatial design and Vastu consultancy for individuals, corporate workplaces and developers.</p></div>
+    <div><img src="assets/logo-mark.png" alt="Devagya Vastu" width="40" height="40" class="h-10 w-10 mb-4"><p class="text-sm max-w-xs">Spatial design and Vastu consultancy for individuals, corporate workplaces and developers.</p></div>
     <div><h4 class="text-cream text-sm font-bold mb-4">Navigate</h4>
       <a href="about.html" class="block text-sm mb-2 hover:text-cream">About</a>
       <a href="services.html" class="block text-sm mb-2 hover:text-cream">Services</a>

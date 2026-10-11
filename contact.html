@@ -3,7 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Tell Devagya Vastu about your residential, workplace or development project and request a spatial design consultation.">
+  <meta name="description" content="Request architectural spatial planning, Vastu and interior design consultation for homes, workplaces and developments with Devagya Vastu.">
+  <meta property="og:title" content="Project Intake | Devagya Vastu">
+  <meta property="og:description" content="Request architectural spatial planning, Vastu and interior design consultation for homes, workplaces and developments with Devagya Vastu.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://devagyavastu.com/contact.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Project Intake | Devagya Vastu">
+  <meta name="twitter:description" content="Request architectural spatial planning, Vastu and interior design consultation for homes, workplaces and developments with Devagya Vastu.">
   <meta name="theme-color" content="#f8fafc">
   <title>Project Intake | Devagya Vastu</title>
   <link rel="canonical" href="https://devagyavastu.com/contact.html">
@@ -12,26 +19,41 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={theme:{extend:{colors:{navy:"#0f172a",bone:"#f8fafc",brass:"#b45309"},fontFamily:{sans:["DM Sans","Helvetica Neue","Arial","sans-serif"],serif:["Playfair Display","Georgia","serif"]}}}};</script>
   <link rel="stylesheet" href="site.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://devagyavastu.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Contact", "item": "https://devagyavastu.com/contact.html"}
+      ]
+    }
+  </script>
 </head>
 <body>
   <div data-site-header></div>
   <main id="main-content">
-    <section class="page-hero"><div class="container"><p class="eyebrow">Enterprise onboarding</p><h1 class="display">Tell us what your space needs to do.</h1><p class="lede">Share the project essentials and where you are in the process. We’ll use this information to understand scope and identify the right next conversation.</p></div></section>
+    <section class="page-hero"><div class="container"><p class="eyebrow">Enterprise onboarding</p><h1 class="display">Start an online spatial design consultation.</h1><p class="lede">Share the project essentials and where you are in the process. We’ll use this information to understand scope and identify the right next conversation.</p></div></section>
     <section class="section" id="intake" style="padding-top:10px">
       <div class="container intake-grid">
-        <form class="intake-form" id="projectIntakeForm">
+        <form class="intake-form" id="projectIntakeForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="06802d3b-83fc-4107-9cf8-57fff3706002">
+          <input type="hidden" name="subject" value="New project enquiry - Devagya Vastu">
+          <input type="hidden" name="from_name" value="Devagya Website">
+          <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
           <div class="field"><label for="contactName">Full name *</label><input id="contactName" name="name" autocomplete="name" required></div>
           <div class="field"><label for="contactEmail">Email address *</label><input id="contactEmail" name="email" type="email" autocomplete="email" required></div>
           <div class="field"><label for="contactPhone">Phone / WhatsApp *</label><input id="contactPhone" name="phone" type="tel" autocomplete="tel" required></div>
           <div class="field"><label for="projectLocation">Project location *</label><input id="projectLocation" name="location" autocomplete="address-level2" placeholder="City, country" required></div>
           <div class="field"><label for="projectScope">Project scope *</label><select id="projectScope" name="scope" required><option value="">Choose a scope</option><option>Residential Custom Home</option><option>Office</option><option>Commercial Development</option></select></div>
           <div class="field"><label for="siteStatus">Site layout status *</label><select id="siteStatus" name="site_status" required><option value="">Choose the current status</option><option>Existing Structure</option><option>Vacant Land</option></select></div>
-          <div class="field full"><label for="blueprints">Architectural plans or sketches</label><label class="drop-zone" id="dropZone" for="blueprints"><strong>Drop plans here, or browse files</strong><span>PDF, PNG or JPG · up to 10 MB each. Files remain on this device; attach them to the email that opens.</span><input id="blueprints" name="blueprints" type="file" accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg" multiple><ul class="upload-list" id="uploadList" aria-live="polite"></ul></label></div>
+          <input id="blueprintNames" type="hidden" name="plan_file_names">
+          <div class="field full"><label for="blueprints">Architectural plans or sketches</label><label class="drop-zone" id="dropZone" for="blueprints"><strong>Drop plans here, or browse files</strong><span>PDF, PNG or JPG · up to 10 MB each. Files stay on this device; attach them separately after submitting your enquiry.</span><input id="blueprints" type="file" accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg" multiple><ul class="upload-list" id="uploadList" aria-live="polite"></ul></label></div>
           <div class="field full"><label for="frustrations">What is not working in the space? *</label><textarea id="frustrations" name="frustrations" required placeholder="Describe the functional, circulation, daylight or layout questions you would like us to consider."></textarea></div>
           <div class="field full"><label style="display:flex;align-items:flex-start;gap:9px;font-weight:500"><input style="width:17px;min-height:17px;margin:1px 0 0;flex:0 0 auto" type="checkbox" id="updatesOptIn" name="updates_opt_in" value="yes"><span>I would also like occasional updates about spatial design (optional).</span></label></div>
-          <p class="field full form-message" id="intakeMessage" role="status"></p>
-          <button class="button" type="submit">Prepare project enquiry <span aria-hidden="true">↗</span></button>
-          <p class="field full" style="margin:0;color:var(--muted);font-size:.67rem;line-height:1.6">This static website prepares an email in your email application; it does not upload plans or submit data to a server. Please review the message and attach any files manually before sending.</p>
+          <p class="field full form-message" id="intakeMessage" role="status" aria-live="polite"></p>
+          <button class="button" type="submit">Send project enquiry <span aria-hidden="true">↗</span></button>
+          <p class="field full" style="margin:0;color:var(--muted);font-size:.67rem;line-height:1.6">Your enquiry details are sent to Web3Forms for delivery to Devagya Vastu. Plan files are not uploaded; attach them separately when we reply. The optional updates preference is separate from this project enquiry.</p>
         </form>
         <aside>
           <p class="eyebrow">Direct channels</p><h2 class="section-title" style="font-size:2rem">Speak with our team.</h2>
@@ -46,6 +68,7 @@
   </main>
   <div data-site-footer></div>
   <script src="components/navigation.js" defer></script>
+  <script src="components/web3forms.js" defer></script>
   <script src="components/contact.js" defer></script>
 </body>
 </html>

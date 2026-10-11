@@ -24,9 +24,13 @@ const headerMarkup = `
       <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation"><span></span><span></span></button>
       <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
         <a href="approach.html">Approach</a>
+          <a href="services.html">Services</a>
           <div class="nav-tools">
-            <button class="nav-tools-toggle" id="toolsToggle" type="button" aria-expanded="false" aria-controls="toolsMenu">Spatial tools <span aria-hidden="true">⌄</span></button>
+            <button class="nav-tools-toggle" id="toolsToggle" type="button" aria-expanded="false" aria-controls="toolsMenu">Explore <span aria-hidden="true">⌄</span></button>
             <div class="nav-dropdown" id="toolsMenu" hidden>
+              <a href="about.html">About Devagya <small>Our story and working philosophy</small></a>
+              <a href="methodology.html">Methodology <small>Traditional principles in architectural context</small></a>
+              <a href="approach.html">Spatial approach <small>Explore the 45-zone framework</small></a>
               <a href="audit-hub.html">Digital spatial dial <small>Explore directional sectors</small></a>
               <a href="audit-hub.html#panel-audit">Structural audit <small>Answer four planning questions</small></a>
             </div>
@@ -50,7 +54,15 @@ const footerMarkup = `
         <img src="assets/logo-mark.png" alt="" width="42" height="42">
         <span><strong>DEVAGYA</strong><small>VASTU &amp; SIGNATURE SPACES</small></span>
       </a>
-      <p>Spatial planning shaped by classical principles, site conditions and contemporary architectural practice.</p>
+      <div>
+        <p>Spatial planning shaped by classical principles, site conditions and contemporary architectural practice.</p>
+        <nav class="footer-links" aria-label="Explore Devagya">
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="methodology.html">Methodology</a>
+          <a href="approach.html">Approach</a>
+        </nav>
+      </div>
       <div class="footer-contact">
         <a href="${contactLinks.whatsapp}">WhatsApp</a>
         <a href="${contactLinks.phone}">+91 94674 96725</a>
@@ -77,6 +89,8 @@ if (footerPoint) {
   const legacyFooter = document.querySelector('body > footer');
   if (legacyFooter) legacyFooter.outerHTML = footerMarkup;
 }
+
+document.querySelectorAll('#floatWa, #backToTop').forEach((element) => element.remove());
 
 const mainContent = document.getElementById('main-content') || document.querySelector('main');
 if (mainContent && !mainContent.id) mainContent.id = 'main-content';
@@ -107,6 +121,7 @@ if (menuToggle && primaryNav) {
     primaryNav.classList.toggle('is-open', open);
     primaryNav.inert = mobileNavQuery.matches && !open;
     document.body.classList.toggle('menu-open', open);
+    document.documentElement.classList.toggle('menu-open', open);
   };
 
   if (mobileNavQuery.matches) primaryNav.inert = true;
