@@ -146,12 +146,13 @@ if (location.hash === '#panel-audit') {
 
 const auditLeadForm = document.getElementById('auditLeadForm');
 if (auditLeadForm) {
-  auditLeadForm.addEventListener('submit', (event) => {
+  auditLeadForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     const name = document.getElementById('auditName');
     const email = document.getElementById('auditEmail');
     const phone = document.getElementById('auditPhone');
     const message = document.getElementById('auditFormMessage');
+    const submitButton = auditLeadForm.querySelector('button[type="submit"]');
     if (!auditTriggered || !name.value.trim() || !email.validity.valid || !phone.value.trim()) {
       message.textContent = 'Enter your name, a valid email and a phone number to continue.';
       if (!name.value.trim()) name.focus();
@@ -162,17 +163,48 @@ if (auditLeadForm) {
     const total = auditQuestions.reduce((sum, question) => sum + question.options[answers[question.key]].score, 0);
     const entranceScore = auditQuestions[0].options[answers.entrance].score;
     const kitchenScore = auditQuestions[1].options[answers.kitchen].score;
-    document.getElementById('scoreResult').textContent = `${total} / 100 · planning snapshot`;
-    document.getElementById('winResult').textContent = entranceScore >= 18
+    const snapshot = total >= 84
+      ? 'Several planning foundations are already documented.'
+      : total >= 70
+        ? 'A few details may benefit from a coordinated review.'
+        : 'Several planning decisions remain open for discussion.';
+    const entranceNote = entranceScore >= 18
       ? 'An entrance location is already known. Confirm its orientation with a site plan and check door swing, approach and accessible clearance.'
       : 'Your entrance is still flexible. Test several entry positions against circulation, access, daylight and structural constraints before fixing the plan.';
-    document.getElementById('riskResult').textContent = kitchenScore < 25
+    const kitchenNote = kitchenScore < 25
       ? 'Kitchen ventilation and exhaust routing need a coordinated review before the layout is finalized.'
       : 'Confirm that kitchen exhaust, make-up air and fire-safety provisions are coordinated with the mechanical design.';
-    lockedResults.classList.remove('is-locked');
-    resultsContent.setAttribute('aria-hidden', 'false');
-    leadGate.hidden = true;
+    const responseFields = {
+      auditSummary: snapshot,
+      entranceResponse: auditQuestions[0].options[answers.entrance].text,
+      kitchenResponse: auditQuestions[1].options[answers.kitchen].text,
+      suiteResponse: auditQuestions[2].options[answers.suite].text,
+      siteResponse: auditQuestions[3].options[answers.site].text
+    };
+    Object.entries(responseFields).forEach(([id, value]) => {
+      document.getElementById(id).value = value;
+    });
+    message.classList.remove('is-success', 'is-error');
     message.textContent = '';
-    resultsContent.focus();
+    submitButton.disabled = true;
+    const originalLabel = submitButton.textContent;
+    submitButton.textContent = 'Sending details...';
+    try {
+      await window.devagyaForms.submit(auditLeadForm);
+      document.getElementById('scoreResult').textContent = snapshot;
+      document.getElementById('winResult').textContent = entranceNote;
+      document.getElementById('riskResult').textContent = kitchenNote;
+      lockedResults.classList.remove('is-locked');
+      resultsContent.setAttribute('aria-hidden', 'false');
+      leadGate.hidden = true;
+      message.textContent = '';
+      resultsContent.focus();
+    } catch (error) {
+      message.classList.add('is-error');
+      message.textContent = 'We could not confirm delivery. Please try again or contact us directly by email or WhatsApp.';
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = originalLabel;
+    }
   });
 }

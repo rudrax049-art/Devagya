@@ -4,6 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Explore an interactive directional dial and a preliminary spatial planning questionnaire from Devagya Vastu.">
+  <meta property="og:title" content="Spatial Toolsuite | Devagya Vastu">
+  <meta property="og:description" content="Explore a traditional Vastu directional reference and a practical, qualitative spatial planning self-assessment.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://devagyavastu.com/audit-hub.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Spatial Toolsuite | Devagya Vastu">
+  <meta name="twitter:description" content="Explore a traditional Vastu directional reference and a practical, qualitative spatial planning self-assessment.">
   <meta name="theme-color" content="#f8fafc">
   <title>Spatial Toolsuite | Devagya Vastu</title>
   <link rel="canonical" href="https://devagyavastu.com/audit-hub.html">
@@ -12,11 +19,21 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={theme:{extend:{colors:{navy:"#0f172a",bone:"#f8fafc",brass:"#b45309"},fontFamily:{sans:["DM Sans","Helvetica Neue","Arial","sans-serif"],serif:["Playfair Display","Georgia","serif"]}}}};</script>
   <link rel="stylesheet" href="site.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://devagyavastu.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Spatial tools", "item": "https://devagyavastu.com/audit-hub.html"}
+      ]
+    }
+  </script>
 </head>
 <body>
   <div data-site-header></div>
   <main id="main-content">
-    <section class="page-hero"><div class="container"><p class="eyebrow">Interactive workspace</p><h1 class="display">A clearer read on your plan.</h1><p class="lede">Use the directional dial as an educational reference, then complete a short questionnaire for a preliminary layout review. This is not a technical survey or engineering assessment.</p></div></section>
+    <section class="page-hero"><div class="container"><p class="eyebrow">Interactive workspace</p><h1 class="display">Explore Vastu compass and spatial planning tools.</h1><p class="lede">Use the directional dial as an educational reference, then complete a short questionnaire for a preliminary layout review. This is not a technical survey or engineering assessment.</p></div></section>
     <section class="section" style="padding-top:12px">
       <div class="container tool-shell">
         <div class="tab-list" role="tablist" aria-label="Spatial tools">
@@ -45,23 +62,32 @@
           <div class="quiz-question" id="quizQuestion"></div>
           <div class="locked-results is-locked" id="lockedResults">
             <div class="results-content" id="resultsContent" aria-hidden="true" tabindex="-1" aria-live="polite">
-              <article class="result-card"><span>Preliminary rating</span><p id="scoreResult">Pending your responses</p></article>
+              <article class="result-card"><span>Qualitative planning snapshot</span><p id="scoreResult">Pending your responses</p></article>
               <article class="result-card"><span>Potential opportunity</span><p id="winResult">Complete the questionnaire to see a planning observation.</p></article>
               <article class="result-card"><span>Item to verify</span><p id="riskResult">A remote review cannot verify site conditions.</p></article>
             </div>
             <div class="lead-gate" id="leadGate" hidden>
               <h3>Unlock your preliminary review</h3>
-              <p>Share your contact details to reveal a simple questionnaire-based score and two planning prompts. This is indicative guidance, not a professional assessment. Details stay in this browser session; this static demo does not transmit or store them.</p>
-              <form class="lead-form" id="auditLeadForm" novalidate>
+              <p>Share your contact details to receive a qualitative questionnaire-based snapshot and two planning prompts. This is indicative guidance, not a professional assessment. Your details and responses will be sent to Web3Forms for delivery to Devagya Vastu.</p>
+              <form class="lead-form" id="auditLeadForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+                <input type="hidden" name="access_key" value="06802d3b-83fc-4107-9cf8-57fff3706002">
+                <input type="hidden" name="subject" value="New spatial self-assessment enquiry - Devagya Vastu">
+                <input type="hidden" name="from_name" value="Devagya Website">
+                <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
+                <input type="hidden" id="auditSummary" name="qualitative_snapshot">
+                <input type="hidden" id="entranceResponse" name="entrance_response">
+                <input type="hidden" id="kitchenResponse" name="kitchen_response">
+                <input type="hidden" id="suiteResponse" name="suite_response">
+                <input type="hidden" id="siteResponse" name="site_response">
                 <div class="field"><label for="auditName">Full name</label><input id="auditName" name="name" autocomplete="name" required></div>
                 <div class="field"><label for="auditEmail">Email address</label><input id="auditEmail" type="email" name="email" autocomplete="email" required></div>
                 <div class="field full"><label for="auditPhone">Phone number</label><input id="auditPhone" type="tel" name="phone" autocomplete="tel" required></div>
-                <p class="form-message field full" id="auditFormMessage" role="alert"></p>
+                <p class="form-message field full" id="auditFormMessage" role="alert" aria-live="assertive"></p>
                 <button class="button field full" type="submit">Show preliminary review</button>
               </form>
             </div>
           </div>
-          <p class="lede" style="font-size:.75rem">The score is an educational heuristic based on your selected answers and does not certify Vastu compliance, code compliance, safety or performance.</p>
+          <p class="lede" style="font-size:.75rem">This qualitative snapshot is a conversation starter based on your selected answers. It does not certify Vastu compliance, code compliance, safety or performance.</p>
         </section>
       </div>
     </section>
@@ -69,5 +95,6 @@
   <div data-site-footer></div>
   <script src="components/navigation.js" defer></script>
   <script src="components/audit.js" defer></script>
+  <script src="components/web3forms.js" defer></script>
 </body>
 </html>

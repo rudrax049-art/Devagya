@@ -14,27 +14,16 @@ let lastFocusedElement = null;
 function getPlanningEvents(year, month) {
   const firstDay = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const events = {};
-  const today = new Date();
-  for (let day = 1; day <= daysInMonth; day += 1) {
-    const date = new Date(year, month, day);
-    const daysAhead = Math.round((date - new Date(today.getFullYear(), today.getMonth(), today.getDate())) / 86400000);
-    if (daysAhead >= 3 && date.getDay() !== 0 && date.getDay() !== 6 && day % 5 === 1) {
-      events[day] = { title: 'Bhumi Pujan / groundbreaking planning', time: '10:00–12:00 local time (indicative)' };
-    } else if (daysAhead >= 3 && date.getDay() !== 0 && date.getDay() !== 6 && day % 7 === 3) {
-      events[day] = { title: 'Renovations launch planning', time: '14:00–16:00 local time (indicative)' };
-    }
-  }
-  return { firstDay, daysInMonth, events };
+  return { firstDay, daysInMonth };
 }
 
-function showEvent(day, event) {
+function showEvent(day) {
   const date = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth(), day);
   const formattedDate = new Intl.DateTimeFormat(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).format(date);
   lastFocusedElement = document.activeElement;
-  modalTitle.textContent = event.title;
-  modalDetails.textContent = `${formattedDate}. Suggested discussion window: ${event.time}. This sample is not confirmed availability; request a consultation to check current scheduling and the local time zone.`;
-  const message = encodeURIComponent(`Hello Devagya, I would like to discuss ${event.title.toLowerCase()} on ${formattedDate}. Please confirm availability and the relevant local time zone.`);
+  modalTitle.textContent = formattedDate;
+  modalDetails.textContent = 'This is your preferred consultation date, not a confirmed appointment. Please share your time zone and preferred time so our team can check actual availability.';
+  const message = encodeURIComponent(`Hello Devagya, I would like to request a spatial design consultation on ${formattedDate}. My time zone and preferred time are:`);
   whatsappDateLink.href = `https://wa.me/919467496725?text=${message}`;
   calendarModal.hidden = false;
   closeCalendarModal.focus();
@@ -44,7 +33,7 @@ function renderCalendar() {
   if (!calendarGrid || !monthTitle) return;
   const year = visibleMonth.getFullYear();
   const month = visibleMonth.getMonth();
-  const { firstDay, daysInMonth, events } = getPlanningEvents(year, month);
+  const { firstDay, daysInMonth } = getPlanningEvents(year, month);
   monthTitle.textContent = new Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(visibleMonth);
   calendarGrid.innerHTML = '';
   ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach((dayName) => {
@@ -63,21 +52,20 @@ function renderCalendar() {
   const today = new Date();
   for (let day = 1; day <= daysInMonth; day += 1) {
     const dayDate = new Date(year, month, day);
-    const event = events[day];
     const dayButton = document.createElement('button');
     dayButton.type = 'button';
     dayButton.className = 'calendar-day';
     dayButton.setAttribute('role', 'gridcell');
     dayButton.textContent = String(day);
-    if (dayDate < new Date(today.getFullYear(), today.getMonth(), today.getDate()) || !event) {
+    if (dayDate < new Date(today.getFullYear(), today.getMonth(), today.getDate())) {
       dayButton.disabled = true;
     } else {
-      dayButton.setAttribute('aria-label', `${dayDate.toLocaleDateString()}, ${event.title}`);
+      dayButton.setAttribute('aria-label', `Request a consultation on ${dayDate.toLocaleDateString()}`);
       const eventLabel = document.createElement('span');
       eventLabel.className = 'calendar-event';
-      eventLabel.textContent = event.title.includes('Bhumi') ? 'Groundbreaking' : 'Renovation';
+      eventLabel.textContent = 'Consultation request';
       dayButton.appendChild(eventLabel);
-      dayButton.addEventListener('click', () => showEvent(day, event));
+      dayButton.addEventListener('click', () => showEvent(day));
     }
     calendarGrid.appendChild(dayButton);
   }
