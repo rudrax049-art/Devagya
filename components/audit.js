@@ -93,7 +93,7 @@ function renderQuestion() {
     const selected = answers[question.key] === index;
     return `<button class="quiz-option" type="button" data-option="${index}" aria-pressed="${selected}">${option.text}</button>`;
   }).join('');
-  quizQuestion.innerHTML = `<p class="eyebrow">Question ${currentQuestion + 1} of ${auditQuestions.length}</p><h2>${question.title}</h2><div class="quiz-options">${optionsMarkup}</div><p class="quiz-error" id="quizError" aria-live="polite"></p><div class="quiz-controls"><button class="button button-secondary" id="quizPrevious" type="button" ${currentQuestion === 0 ? 'disabled' : ''}>Previous</button><button class="button" id="quizNext" type="button">${currentQuestion === auditQuestions.length - 1 ? 'Calculate structural rating' : 'Continue'}</button></div>`;
+  quizQuestion.innerHTML = `<p class="eyebrow">Question ${currentQuestion + 1} of ${auditQuestions.length}</p><h2>${question.title}</h2><div class="quiz-options">${optionsMarkup}</div><p class="quiz-error" id="quizError" aria-live="polite"></p><div class="quiz-controls"><button class="button button-secondary" id="quizPrevious" type="button" ${currentQuestion === 0 ? 'disabled' : ''}>Previous</button><button class="button" id="quizNext" type="button">${currentQuestion === auditQuestions.length - 1 ? 'Show planning snapshot' : 'Continue'}</button></div>`;
   quizQuestion.querySelectorAll('.quiz-option').forEach((optionButton) => {
     optionButton.addEventListener('click', () => {
       answers[question.key] = Number(optionButton.dataset.option);
