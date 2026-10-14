@@ -1,3 +1,6 @@
+---
+permalink: /
+---
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,16 +14,21 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Devagya Vastu | Architectural Spatial Planning &amp; Interior Design">
   <meta name="twitter:description" content="An architectural spatial-design practice integrating Vastu principles, site conditions and interior design consultation for contemporary spaces.">
-  <meta name="theme-color" content="#f8fafc">
+  <meta name="theme-color" content="#f7f6f2">
   <title>Devagya Vastu &amp; Signature Spaces | Spatial Design</title>
   <link rel="canonical" href="https://devagyavastu.com/">
-  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    if (window.location.pathname === '/index.html') {
+      window.history.replaceState(null, '', `/${window.location.search}${window.location.hash}`);
+    }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config={theme:{extend:{colors:{navy:"#0f172a",bone:"#f8fafc",brass:"#b45309"},fontFamily:{sans:["DM Sans","Helvetica Neue","Arial","sans-serif"],serif:["Playfair Display","Georgia","serif"]}}}};</script>
-  <link rel="stylesheet" href="site.css">
+  <script>tailwind.config={theme:{extend:{colors:{navy:"#111111",bone:"#f7f6f2",brass:"#755817"},fontFamily:{sans:["DM Sans","Helvetica Neue","Arial","sans-serif"],serif:["Playfair Display","Georgia","serif"]}}}};</script>
+  <link rel="stylesheet" href="/site.css">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -33,73 +41,98 @@
     }
   </script>
 </head>
-<body>
+<body class="home-page">
   <div data-site-header></div>
   <main id="main-content">
-    <section class="hero">
-      <div class="container hero-content">
-        <p class="eyebrow">Devagya Vastu &amp; Signature Spaces</p>
-        <h1 class="display">Balancing Classical Spatial Principles with Practical Contemporary Architecture.</h1>
-        <p class="lede">A thoughtful spatial design practice bringing orientation, circulation, daylight and the classical 45-zone grid into one considered architectural process.</p>
-        <div class="hero-actions">
-          <a class="button" href="audit-hub.html">Launch Virtual Spatial Audit <span aria-hidden="true">↗</span></a>
-          <a class="button button-secondary" href="approach.html">Explore our approach</a>
+    <section class="hero home-hero">
+      <div class="container home-hero-grid">
+        <div class="home-hero-copy">
+          <p class="eyebrow">Devagya Vastu <span></span> Spatial design, considered</p>
+          <h1 class="display">A better way to think about <em>space.</em></h1>
+          <p class="lede">Architecture-led spatial planning shaped by orientation, daylight and the way people live. Classical Vastu principles are one input, considered alongside the realities of your site and design.</p>
+          <div class="hero-actions">
+            <a class="button home-primary-button" href="/contact/#intake">Discuss your project <span aria-hidden="true">↗</span></a>
+            <a class="home-text-link" href="#spatial-tools">Explore spatial tools <span aria-hidden="true">↓</span></a>
+          </div>
+          <p class="home-hero-note"><span aria-hidden="true"></span> Thoughtful guidance for homes, interiors and workplaces</p>
+        </div>
+        <div class="home-plan-visual" role="img" aria-label="Abstract architectural floor plan with a gold directional marker">
+          <span class="plan-label plan-label-top">SPATIAL STUDY <b>01 / 03</b></span>
+          <svg class="plan-drawing" viewBox="0 0 520 520" fill="none" aria-hidden="true">
+            <path d="M86 82h348v356H86z" />
+            <path d="M86 214h148v-132m0 132v224m0-224h200M86 330h148m148-116v224M234 330h200M318 214v116m-84-132h84m-84 132h84" />
+            <path d="M86 156h38m-38 0v58m348-108v62m0 0h-58M148 438v-36m0 0h86m112 36v-46m0 0h86" />
+            <path class="plan-accent" d="M260 80v38m0-38-11 14m11-14 11 14" />
+            <circle class="plan-accent" cx="260" cy="258" r="43" />
+            <path class="plan-accent" d="M260 232v52m-26-26h52M100 96h34m252 330h34" />
+          </svg>
+          <span class="plan-compass" aria-hidden="true">N</span>
+          <span class="plan-label plan-label-bottom">ORIENTATION <b>LIGHT · FLOW · USE</b></span>
         </div>
       </div>
-      <span class="hero-index" aria-hidden="true">SPATIAL INTELLIGENCE — 01 / 05</span>
     </section>
 
-    <section class="section" aria-labelledby="trust-title">
+    <section class="section home-tools-section" id="spatial-tools" aria-labelledby="tools-title">
       <div class="container">
-        <div class="section-header">
-          <div><p class="eyebrow">Designed for complex spaces</p><h2 class="section-title" id="trust-title">A clear process.<br>Grounded decisions.</h2></div>
-          <p class="lede">For private residences, workplaces and development teams seeking a coherent spatial strategy across borders, disciplines and project stages.</p>
+        <div class="section-header home-tools-heading">
+          <div><p class="eyebrow">Explore the toolkit</p><h2 class="section-title" id="tools-title">Useful tools.<br>Clearer next steps.</h2></div>
+          <p class="lede">Explore a direction, review a floor plan or compare layout approaches. Each tool is a practical starting point for a more informed design conversation.</p>
         </div>
-        <div class="trust-grid">
-          <article class="trust-card">
-            <h3>As featured in</h3>
-            <p>Publication and media features will be listed here when independently verified.</p>
-            <div class="press-placeholders" aria-label="Publication placeholders"><span>MEDIA FEATURE</span><span>DESIGN JOURNAL</span><span>ARCHITECTURE PRESS</span></div>
-          </article>
-          <article class="trust-card disclaimer">
-            <strong>Designed around your project</strong>
-            <p>We bring classical spatial principles together with your layout, orientation, daylight and everyday needs—then develop clear, practical recommendations in collaboration with your architect and project team.</p>
-          </article>
-          <article class="trust-card">
-            <h3>Client feedback</h3>
-            <p>A live Google Business review feed will appear here after its listing is connected. We do not display unverified ratings or testimonials.</p>
-            <div class="review-widget" role="status"><span class="google-mark" aria-hidden="true">G</span><span>Google Business review widget placeholder<br>Live rating pending verified connection</span></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="workflow-title">
-      <div class="container">
-        <div class="section-header">
-          <div><p class="eyebrow">Remote onboarding</p><h2 class="section-title" id="workflow-title">From first plan to<br>technical direction.</h2></div>
-          <p class="lede">A documented, collaborative process gives each recommendation context—what is observed, why it matters and what can realistically change, including how interior planning can support layout flow, daylight and daily use.</p>
-        </div>
-        <div class="workflow">
-          <article class="workflow-step"><span class="step-no">01 / INTAKE</span><h3>Document upload</h3><p>Share the floor plan, site drawing, location and the questions your project needs to answer.</p></article>
-          <article class="workflow-step"><span class="step-no">02 / MAPPING</span><h3>Spatial mapping</h3><p>We align the plan to its orientation, circulation, access points and existing site conditions.</p></article>
-          <article class="workflow-step"><span class="step-no">03 / REVIEW</span><h3>Element alignments</h3><p>We review room use, openings and functional adjacencies alongside the 45-zone framework.</p></article>
-          <article class="workflow-step"><span class="step-no">04 / DELIVERY</span><h3>Technical blueprint</h3><p>Receive a clear set of observations and practical options for the next design or build stage.</p></article>
+        <div class="home-tool-grid">
+          <a class="home-tool-card" href="/audit-hub/#panel-dial">
+            <span class="home-tool-number">01 / ORIENTATION</span>
+            <span class="home-tool-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="9"/><path d="M24 5v9m0 20v9M5 24h9m20 0h9m-19-5 5 10-10-5 5-5Z"/></svg></span>
+            <h3>Directional reference</h3>
+            <p>Explore traditional directional zones and practical considerations for openings and circulation.</p>
+            <span class="home-tool-link">Open the direction dial <b aria-hidden="true">↗</b></span>
+          </a>
+          <a class="home-tool-card" href="/audit-hub/#panel-audit">
+            <span class="home-tool-number">02 / SELF-ASSESSMENT</span>
+            <span class="home-tool-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M15 9h18a4 4 0 0 1 4 4v27H11V13a4 4 0 0 1 4-4Z"/><path d="M19 9V6h10v3m-11 11 4 4 9-9M17 32h14"/></svg></span>
+            <h3>Plan-readiness check</h3>
+            <p>Answer a few questions to identify which layout details may need a closer conversation.</p>
+            <span class="home-tool-link">Start a quick review <b aria-hidden="true">↗</b></span>
+          </a>
+          <a class="home-tool-card" href="/approach/#layout-study">
+            <span class="home-tool-number">03 / LAYOUT STUDY</span>
+            <span class="home-tool-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M8 9h32v30H8zM24 9v30M8 24h16m0-8h16m-16 16h16"/><path d="M18 9v7m12 8h-6m12 8h-6"/></svg></span>
+            <h3>Before &amp; after layouts</h3>
+            <p>Compare a schematic plan and see how circulation, openings and room relationships can shift.</p>
+            <span class="home-tool-link">View the layout study <b aria-hidden="true">↗</b></span>
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="interior-title">
+    <section class="home-process" aria-labelledby="process-title">
+      <div class="container home-process-inner">
+        <div class="home-process-intro">
+          <p class="eyebrow">A considered process</p>
+          <h2 class="section-title" id="process-title">From first plan<br>to practical direction.</h2>
+          <p class="lede">Every recommendation is grounded in the project brief, site conditions and the decisions still open to you.</p>
+          <a class="home-text-link" href="/approach/">How we work <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="home-process-list">
+          <article><span>01</span><div><h3>Share the brief</h3><p>Tell us what you are planning and share the drawings you have.</p></div></article>
+          <article><span>02</span><div><h3>Read the space</h3><p>Review orientation, movement, light and how each room needs to work.</p></div></article>
+          <article><span>03</span><div><h3>Plan the next move</h3><p>Receive practical observations for your next design conversation.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section home-interior-section" aria-labelledby="interior-title">
       <div class="container method-grid">
         <div>
           <p class="eyebrow">Interior design consultation</p>
           <h2 class="section-title" id="interior-title">Interiors shaped around how you live.</h2>
           <p class="lede">Our spatial and interior design consultancy considers proportion, materials, light and circulation alongside traditional Vastu preferences. Recommendations stay grounded in your brief, site conditions and the wider architectural plan.</p>
-          <a class="button button-secondary" href="services.html#interior-design">Explore interior planning <span aria-hidden="true">↗</span></a>
+          <a class="button button-secondary" href="/services/#interior-design">Explore interior planning <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="diagram-card">
+        <div class="home-interior-note">
+          <span class="home-interior-mark" aria-hidden="true">D.</span>
           <p class="eyebrow">A connected design process</p>
           <p class="lede">Architectural spatial planning sets the relationships between rooms; interior design consultation develops the material, lighting and furniture choices that make those spaces work in daily use.</p>
+          <a href="/services/#interior-design">Explore interior design <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>
@@ -108,12 +141,12 @@
       <div class="container">
         <div class="cta-panel">
           <h2 class="section-title">Make the next design decision with clarity.</h2>
-          <a class="button" href="contact.html#intake">Discuss your project <span aria-hidden="true">↗</span></a>
+          <a class="button" href="/contact/#intake">Discuss your project <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>
   </main>
   <div data-site-footer></div>
-  <script src="components/navigation.js" defer></script>
+  <script src="/components/navigation.js" defer></script>
 </body>
 </html>

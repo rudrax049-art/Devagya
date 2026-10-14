@@ -17,27 +17,27 @@ const headerMarkup = `
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header" id="siteHeader">
     <div class="site-header-inner">
-      <a class="brand-lockup" href="index.html" aria-label="Devagya Vastu home">
-        <img src="assets/logo-mark.png" alt="" width="42" height="42">
+      <a class="brand-lockup" href="/" aria-label="Devagya Vastu home">
+        <img src="/assets/logo-mark.png" alt="" width="42" height="42">
         <span><strong>DEVAGYA</strong><small>VASTU &amp; SIGNATURE SPACES</small></span>
       </a>
       <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation"><span></span><span></span></button>
       <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
-        <a href="approach.html">Approach</a>
-          <a href="services.html">Services</a>
+        <a href="/approach/">Approach</a>
+          <a href="/services/">Services</a>
           <div class="nav-tools">
             <button class="nav-tools-toggle" id="toolsToggle" type="button" aria-expanded="false" aria-controls="toolsMenu">Explore <span aria-hidden="true">⌄</span></button>
             <div class="nav-dropdown" id="toolsMenu" hidden>
-              <a href="about.html">About Devagya <small>Our story and working philosophy</small></a>
-              <a href="methodology.html">Methodology <small>Traditional principles in architectural context</small></a>
-              <a href="approach.html">Spatial approach <small>Explore the 45-zone framework</small></a>
-              <a href="audit-hub.html">Digital spatial dial <small>Explore directional sectors</small></a>
-              <a href="audit-hub.html#panel-audit">Structural audit <small>Answer four planning questions</small></a>
+              <a href="/about/">About Devagya <small>Our story and working philosophy</small></a>
+              <a href="/methodology/">Methodology <small>Traditional principles in architectural context</small></a>
+              <a href="/approach/">Spatial approach <small>Explore the 45-zone framework</small></a>
+              <a href="/audit-hub/">Digital spatial dial <small>Explore directional sectors</small></a>
+              <a href="/audit-hub/#panel-audit">Plan-readiness check <small>Review four layout considerations</small></a>
             </div>
           </div>
-        <a href="calendar.html">Project calendar</a>
-        <a href="contact.html">Contact</a>
-        <a class="nav-cta" href="contact.html#intake">Start a project <span aria-hidden="true">↗</span></a>
+        <a href="/calendar/">Project calendar</a>
+        <a href="/contact/">Contact</a>
+        <a class="nav-cta" href="/contact/#intake">Start a project <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
@@ -50,17 +50,17 @@ const headerMarkup = `
 const footerMarkup = `
   <footer class="site-footer">
     <div class="footer-main">
-      <a class="brand-lockup footer-brand" href="index.html" aria-label="Devagya Vastu home">
-        <img src="assets/logo-mark.png" alt="" width="42" height="42">
+      <a class="brand-lockup footer-brand" href="/" aria-label="Devagya Vastu home">
+        <img src="/assets/logo-mark.png" alt="" width="42" height="42">
         <span><strong>DEVAGYA</strong><small>VASTU &amp; SIGNATURE SPACES</small></span>
       </a>
       <div>
         <p>Spatial planning shaped by classical principles, site conditions and contemporary architectural practice.</p>
         <nav class="footer-links" aria-label="Explore Devagya">
-          <a href="about.html">About</a>
-          <a href="services.html">Services</a>
-          <a href="methodology.html">Methodology</a>
-          <a href="approach.html">Approach</a>
+          <a href="/about/">About</a>
+          <a href="/services/">Services</a>
+          <a href="/methodology/">Methodology</a>
+          <a href="/approach/">Approach</a>
         </nav>
       </div>
       <div class="footer-contact">

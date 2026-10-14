@@ -5,11 +5,11 @@
 
 :root{
   --ink:#171A1D;
-  --ivory:#F7F4EE;
+  --ivory:#F7F6F2;
   --stone:#E8E3D9;
   --sage:#687568;
-  --forest:#26382F;
-  --brass:#B29A6A;
+  --forest:#111111;
+  --brass:#755817;
   --white:#FFFFFF;
 
   --ink-dim:rgba(23,26,29,0.66);
@@ -87,7 +87,7 @@ header.scrolled .brand-icon{width:36px; height:36px;}
 section{padding:96px 0;}
 .section-label{font-size:0.86rem; color:var(--brass); font-weight:700; margin:0 0 16px; letter-spacing:0.01em;}
 .on-dark{background:var(--forest); color:var(--ivory);}
-.on-dark .section-label{color:#CDBA92;}
+.on-dark .section-label{color:#D2B46E;}
 .on-white{background:var(--white);}
 .on-stone{background:var(--stone);}
 .page-hero{padding:72px 0 56px; border-bottom:1px solid var(--hairline);}
