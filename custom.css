@@ -11,7 +11,7 @@ body{font-family:var(--font-sans);}
 
 /* Focus states (WCAG) */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
-  outline:2px solid #755817; outline-offset:3px; border-radius:2px;
+  outline:2px solid #C8A456; outline-offset:3px; border-radius:2px;
 }
 
 /* Scroll-reveal */
@@ -47,7 +47,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 /* Service tabs */
 .tab-panel{display:none;}
 .tab-panel.active{display:block;}
-.tab-btn[aria-selected="true"]{border-color:#755817; color:#111111; background:#F7F6F2;}
+.tab-btn[aria-selected="true"]{border-color:#C8A456; color:#0A0A0A; background:#FFFFFF;}
 
 /* Form field focus/validation */
 .field-invalid{border-color:#C0524A !important;}
