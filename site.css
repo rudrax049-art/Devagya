@@ -1,13 +1,13 @@
 :root {
   color-scheme: light;
-  --navy: #111111;
-  --navy-soft: #292929;
-  --bone: #f7f6f2;
-  --paper: #ffffff;
-  --brass: #755817;
-  --brass-light: #d2b46e;
-  --muted: #686762;
-  --line: #e4e1d9;
+  --navy: #0A0A0A;
+  --navy-soft: #1a1a1a;
+  --bone: #FFFFFF;
+  --paper: #FFFFFF;
+  --brass: #C8A456;
+  --brass-light: #d9c186;
+  --muted: #5b5b5b;
+  --line: #eae4d8;
   --green: #12805c;
   --red: #bd3c3c;
   --sans: "DM Sans", "Helvetica Neue", Arial, sans-serif;

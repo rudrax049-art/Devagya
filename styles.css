@@ -4,12 +4,12 @@
    ========================================================= */
 
 :root{
-  --ink:#171A1D;
-  --ivory:#F7F6F2;
-  --stone:#E8E3D9;
+  --ink:#0A0A0A;
+  --ivory:#FFFFFF;
+  --stone:#F3F1EC;
   --sage:#687568;
-  --forest:#111111;
-  --brass:#755817;
+  --forest:#0A0A0A;
+  --brass:#C8A456;
   --white:#FFFFFF;
 
   --ink-dim:rgba(23,26,29,0.66);
