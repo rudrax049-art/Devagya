@@ -1,0 +1,17 @@
+{
+  "name": "Devagya Vastu",
+  "short_name": "Devagya",
+  "description": "Traditional spatial planning considered alongside contemporary architecture.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0A0A0A",
+  "icons": [
+    {
+      "src": "assets/logo-mark.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}

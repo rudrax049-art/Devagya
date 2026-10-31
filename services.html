@@ -18,7 +18,8 @@ redirect_from:
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Services — Devagya Vastu">
 <meta name="twitter:description" content="Architectural spatial planning, Vastu consultation and interior design for residential, workplace and development projects.">
-<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -29,8 +30,8 @@ redirect_from:
     fontFamily: { serif:['Fraunces','serif'], sans:['Manrope','sans-serif'] }
   } } }
 </script>
-<link rel="stylesheet" href="/custom.css">
-<link rel="stylesheet" href="/site.css">
+<link rel="stylesheet" href="../custom.css">
+<link rel="stylesheet" href="../site.css">
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -41,30 +42,43 @@ redirect_from:
     ]
   }
 </script>
-<script src="/components/navigation.js" defer></script>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {"@type":"Service","name":"Vastu consultation for homes","serviceType":"Traditional Vastu consultation","description":"A planning review for a new build, under-construction home or existing property, considering traditional Vastu principles alongside available site and architectural information.","provider":{"@type":"Organization","name":"Devagya Vastu","url":"https://devagyavastu.com/"}},
+      {"@type":"Service","name":"Vastu for offices and workplaces","serviceType":"Workplace spatial review","description":"A review of workplace layout, circulation, room use and available daylight alongside traditional spatial considerations and project constraints.","provider":{"@type":"Organization","name":"Devagya Vastu","url":"https://devagyavastu.com/"}},
+      {"@type":"Service","name":"Developer and multi-unit planning","serviceType":"Development spatial planning","description":"Planning-stage review of building orientation, unit layouts, shared spaces and available site or structural information.","provider":{"@type":"Organization","name":"Devagya Vastu","url":"https://devagyavastu.com/"}},
+      {"@type":"Service","name":"Vastu interior design consultation","serviceType":"Interior design consultation","description":"Consultation on proportion, materials, lighting, furniture placement and layout flow alongside traditional Vastu preferences and the architectural plan.","provider":{"@type":"Organization","name":"Devagya Vastu","url":"https://devagyavastu.com/"}},
+      {"@type":"Service","name":"Signature Spaces","serviceType":"Spatial design consultation","description":"Spatial design consultation for a space shaped around a particular identity or purpose, scoped in relation to the project brief.","provider":{"@type":"Organization","name":"Devagya Vastu","url":"https://devagyavastu.com/"}}
+    ]
+  }
+</script>
+<script src="../components/navigation.js" defer></script>
 </head>
 <body class="bg-cream text-slate font-sans antialiased">
+<noscript><nav class="noscript-nav" aria-label="Main pages"><a href="../index.html">Home</a><a href="../methodology/">Methodology</a><a href="../projects/">Projects</a><a href="../insights/">Insights</a><a href="../tools/">Planning tools</a><a href="../book/">Book</a><a href="../contact/">Contact</a><a href="../about/">About</a><a href="../faq/">FAQ</a><a href="../privacy/">Privacy</a></nav></noscript>
 
 <header class="sticky top-0 z-50 bg-cream/90 backdrop-blur border-b border-slate/10">
   <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-3">
-    <a href="/" class="flex items-center"><img src="/assets/logo-mark.png" alt="Devagya Vastu" width="40" height="40" class="h-10 w-10"></a>
+    <a href="../" class="flex items-center"><img src="../assets/logo-mark.png" alt="Devagya Vastu" width="40" height="40" class="h-10 w-10"></a>
     <nav class="hidden md:flex items-center gap-7 text-sm text-slate/70">
-      <a href="/about/" class="hover:text-slate transition">About</a>
-      <a href="/services/" class="text-slate font-semibold">Services</a>
-      <a href="/methodology/" class="hover:text-slate transition">Methodology</a>
-      <a href="/contact/" class="hover:text-slate transition">Contact</a>
-      <a href="/contact/#intake" class="inline-flex items-center gap-2 bg-slate text-cream px-5 py-2.5 rounded-md text-sm font-bold hover:bg-slate-2 transition">Consult an Expert</a>
+      <a href="../about/" class="hover:text-slate transition">About</a>
+      <a href="../services/" class="text-slate font-semibold">Services</a>
+      <a href="../methodology/" class="hover:text-slate transition">Methodology</a>
+      <a href="../contact/" class="hover:text-slate transition">Contact</a>
+      <a href="../contact/#intake" class="inline-flex items-center gap-2 bg-slate text-cream px-5 py-2.5 rounded-md text-sm font-bold hover:bg-slate-2 transition">Consult an Expert</a>
     </nav>
     <button id="navToggle" aria-label="Toggle menu" aria-expanded="false" class="md:hidden w-9 h-9 flex flex-col items-center justify-center gap-1.5">
       <span class="block w-6 h-0.5 bg-slate"></span><span class="block w-6 h-0.5 bg-slate"></span><span class="block w-6 h-0.5 bg-slate"></span>
     </button>
   </div>
   <nav id="mobileNav" class="mobile-nav md:hidden fixed top-[57px] right-0 bottom-0 w-full bg-cream z-40 flex flex-col gap-6 p-8 overflow-y-auto">
-    <a href="/about/" class="text-lg">About</a>
-    <a href="/services/" class="text-lg">Services</a>
-    <a href="/methodology/" class="text-lg">Methodology</a>
-    <a href="/contact/" class="text-lg">Contact</a>
-    <a href="/contact/#intake" class="inline-flex items-center justify-center gap-2 bg-slate text-cream px-5 py-3 rounded-md text-base font-bold mt-2">Consult an Expert</a>
+    <a href="../about/" class="text-lg">About</a>
+    <a href="../services/" class="text-lg">Services</a>
+    <a href="../methodology/" class="text-lg">Methodology</a>
+    <a href="../contact/" class="text-lg">Contact</a>
+    <a href="../contact/#intake" class="inline-flex items-center justify-center gap-2 bg-slate text-cream px-5 py-3 rounded-md text-base font-bold mt-2">Consult an Expert</a>
   </nav>
 </header>
 
@@ -73,7 +87,7 @@ redirect_from:
     <div class="max-w-4xl mx-auto px-6 py-16 reveal">
       <p class="text-sand font-bold text-sm mb-4">Services</p>
       <h1 class="font-serif text-4xl md:text-5xl font-semibold mb-5 leading-tight">Architectural Vastu and spatial design services.</h1>
-      <p class="text-slate/70 text-lg leading-relaxed max-w-2xl">Individuals building a home. Companies planning a workplace. Developers laying out a project at scale. The method stays the same — what changes is the scope.</p>
+      <p class="text-slate/70 text-lg leading-relaxed max-w-2xl">Devagya Vastu provides traditional Vastu consultation and architectural spatial planning for homes, workplaces and developments. Interior design consultation considers proportion, light, materials and circulation alongside the architectural plan.</p>
     </div>
   </section>
 
@@ -88,7 +102,7 @@ redirect_from:
           <p><strong class="text-slate">What's examined:</strong> Plot direction and entry, room-by-room placement, sun-path and natural light, and structural layout where plans are available.</p>
           <p><strong class="text-slate">What you receive:</strong> A written assessment with clear, practical recommendations you can hand to your architect or contractor.</p>
           <p><strong class="text-slate">How tradition and modern design integrate:</strong> Vastu placement principles are checked against real sun-path and airflow data for your specific site — not applied as generic rules.</p>
-          <a href="/contact/#intake" class="inline-flex items-center gap-2 bg-slate text-cream px-6 py-3 rounded-md font-bold hover:bg-slate-2 transition mt-2">Request this service</a>
+          <a href="../contact/#intake" class="inline-flex items-center gap-2 bg-slate text-cream px-6 py-3 rounded-md font-bold hover:bg-slate-2 transition mt-2">Request this service</a>
         </div>
         <!-- CUSTOMIZE: swap this illustration for a real project photo once available -->
         <div class="bg-stone/40 border border-slate/10 rounded-lg p-8 aspect-[4/3] flex items-center justify-center">
@@ -115,7 +129,7 @@ redirect_from:
           <p><strong class="text-slate">What's examined:</strong> Entry and reception placement, desk and seating zones, meeting-room location, and daylight/airflow across the floor.</p>
           <p><strong class="text-slate">What you receive:</strong> A layout review with specific, implementable adjustments — not a rebuild of your entire floor plan unless that's what's needed.</p>
           <p><strong class="text-slate">How tradition and modern design integrate:</strong> Directional principles are weighed against practical workplace function — collaboration zones, focus areas, and circulation.</p>
-          <a href="/contact/#intake" class="inline-flex items-center gap-2 bg-slate text-cream px-6 py-3 rounded-md font-bold hover:bg-slate-2 transition mt-2">Request this service</a>
+          <a href="../contact/#intake" class="inline-flex items-center gap-2 bg-slate text-cream px-6 py-3 rounded-md font-bold hover:bg-slate-2 transition mt-2">Request this service</a>
         </div>
         <!-- CUSTOMIZE: swap this illustration for a real project photo once available -->
         <div class="bg-cream border border-slate/10 rounded-lg p-8 aspect-[4/3] flex items-center justify-center">
@@ -144,7 +158,7 @@ redirect_from:
           <p><strong class="text-slate">What's examined:</strong> Building orientation, unit-by-unit entry and room placement, and shared spaces across a floor or across multiple floors.</p>
           <p><strong class="text-slate">What you receive:</strong> A planning-stage report flagging adjustments while they're still inexpensive to make, backed by site and structural analysis.</p>
           <p><strong class="text-slate">How tradition and modern design integrate:</strong> Traditional principles are applied at the scale of a building or project, not just a single unit, alongside real structural and site constraints.</p>
-          <a href="/contact/#intake" class="inline-flex items-center gap-2 bg-slate text-cream px-6 py-3 rounded-md font-bold hover:bg-slate-2 transition mt-2">Request this service</a>
+          <a href="../contact/#intake" class="inline-flex items-center gap-2 bg-slate text-cream px-6 py-3 rounded-md font-bold hover:bg-slate-2 transition mt-2">Request this service</a>
         </div>
         <!-- CUSTOMIZE: swap this illustration for a real project photo once available -->
         <div class="bg-stone/40 border border-slate/10 rounded-lg p-8 aspect-[4/3] flex items-center justify-center">
@@ -170,7 +184,7 @@ redirect_from:
         <div class="space-y-4 text-slate/75 leading-relaxed">
           <p>Our Vastu interior design review considers room proportions, materials, lighting, furniture placement and layout flow alongside the architectural plan and your functional brief.</p>
           <p>For residential interior planning, we discuss practical options with your architect or interior designer. Final material specifications, electrical design and construction documents remain with the appointed project professionals.</p>
-          <a href="/contact/#intake" class="inline-flex items-center gap-2 bg-slate text-cream px-6 py-3 rounded-md font-bold hover:bg-slate-2 transition mt-2">Request an interior design consultation</a>
+          <a href="../contact/#intake" class="inline-flex items-center gap-2 bg-slate text-cream px-6 py-3 rounded-md font-bold hover:bg-slate-2 transition mt-2">Request an interior design consultation</a>
         </div>
         <div class="bg-cream border border-slate/10 rounded-lg p-8">
           <p class="text-slate/75 leading-relaxed">Spatial and interior design consultancy connects orientation, circulation, daylight, proportion and material choices without promising outcomes beyond the scope of the design review.</p>
@@ -187,7 +201,7 @@ redirect_from:
       <div class="grid md:grid-cols-[1.3fr_1fr] gap-10 items-start">
         <div class="space-y-4 text-cream/75 leading-relaxed">
           <p>A space designed around a specific identity or purpose, rather than a generic layout — for a home, an office, or a development's shared spaces. This sits on top of any of the three services above, for clients who want the space to feel distinct.</p>
-          <a href="/contact/#intake" class="inline-flex items-center gap-2 border border-cream/25 px-6 py-3 rounded-md font-semibold hover:border-sand transition mt-2">Ask about Signature Spaces</a>
+          <a href="../contact/#intake" class="inline-flex items-center gap-2 border border-cream/25 px-6 py-3 rounded-md font-semibold hover:border-sand transition mt-2">Ask about Signature Spaces</a>
         </div>
         <div class="bg-slate-2 border border-cream/10 rounded-lg p-8 aspect-[4/3] flex items-center justify-center">
           <svg viewBox="0 0 200 160" class="w-full h-full" aria-hidden="true">
@@ -202,12 +216,12 @@ redirect_from:
 
 <footer class="bg-slate text-cream/70 border-t border-cream/10">
   <div class="max-w-6xl mx-auto px-6 py-14 grid md:grid-cols-3 gap-10">
-    <div><img src="/assets/logo-mark.png" alt="Devagya Vastu" width="40" height="40" class="h-10 w-10 mb-4"><p class="text-sm max-w-xs">Spatial design and Vastu consultancy for individuals, corporate workplaces and developers.</p></div>
+    <div><img src="../assets/logo-mark.png" alt="Devagya Vastu" width="40" height="40" class="h-10 w-10 mb-4"><p class="text-sm max-w-xs">Spatial design and Vastu consultancy for individuals, corporate workplaces and developers.</p></div>
     <div><h4 class="text-cream text-sm font-bold mb-4">Navigate</h4>
-      <a href="/about/" class="block text-sm mb-2 hover:text-cream">About</a>
-      <a href="/services/" class="block text-sm mb-2 hover:text-cream">Services</a>
-      <a href="/methodology/" class="block text-sm mb-2 hover:text-cream">Methodology</a>
-      <a href="/contact/" class="block text-sm mb-2 hover:text-cream">Contact</a>
+      <a href="../about/" class="block text-sm mb-2 hover:text-cream">About</a>
+      <a href="../services/" class="block text-sm mb-2 hover:text-cream">Services</a>
+      <a href="../methodology/" class="block text-sm mb-2 hover:text-cream">Methodology</a>
+      <a href="../contact/" class="block text-sm mb-2 hover:text-cream">Contact</a>
     </div>
     <div><h4 class="text-cream text-sm font-bold mb-4">Contact</h4>
       <a href="mailto:devagyavastu@gmail.com" class="block text-sm mb-2 hover:text-cream">devagyavastu@gmail.com</a>
@@ -229,7 +243,7 @@ redirect_from:
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
-<script src="/main.js"></script>
+<script src="../main.js"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

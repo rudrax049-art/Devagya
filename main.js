@@ -56,7 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!btn || !panel) return;
     btn.addEventListener('click', () => {
       const isOpen = item.classList.contains('open');
-      item.closest('[data-accordion]')?.querySelectorAll('.acc-item.open').forEach((openItem) => {
+      const accordion = item.closest('[data-accordion]');
+      if (accordion) accordion.querySelectorAll('.acc-item.open').forEach((openItem) => {
         if (openItem !== item) {
           openItem.classList.remove('open');
           openItem.querySelector('.acc-panel').style.maxHeight = null;
@@ -88,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     window.addEventListener('scroll', toggleFloaters, { passive: true });
     toggleFloaters();
-    backToTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    if (backToTop) backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 
   /* Lead form: inline validation + Web3Forms submit with success state */
@@ -124,10 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!validateField(field)) valid = false;
       });
       if (!valid) {
-        form.querySelector('.field-invalid')?.focus();
+        const invalidField = form.querySelector('.field-invalid');
+        if (invalidField) invalidField.focus();
         return;
       }
-      errorEl?.classList.add('hidden');
+      if (errorEl) errorEl.classList.add('hidden');
       const originalLabel = submitBtn ? submitBtn.textContent : '';
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
       try {

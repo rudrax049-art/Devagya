@@ -1,0 +1,60 @@
+---
+permalink: /book/
+redirect_from:
+  - /book.html
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book a Vastu Consultation Online | Devagya Vastu</title>
+  <meta name="description" content="Request an online Vastu consultation in India or elsewhere. Share preferred dates and meeting mode; Devagya Vastu confirms actual availability directly.">
+  <link rel="canonical" href="https://devagyavastu.com/book/">
+  <meta property="og:title" content="Book a Vastu Consultation Online | Devagya Vastu">
+  <meta property="og:description" content="Request a consultation and share preferred dates. Availability is confirmed directly; no live slots are shown.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://devagyavastu.com/book/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Book a Vastu Consultation Online | Devagya Vastu">
+  <meta name="twitter:description" content="Request a consultation and share preferred dates. Availability is confirmed directly; no live slots are shown.">
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="stylesheet" href="../site.css">
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://devagyavastu.com/"},{"@type":"ListItem","position":2,"name":"Book a consultation","item":"https://devagyavastu.com/book/"}]}
+  </script>
+  <script src="../components/navigation.js" defer></script>
+  <script src="../components/web3forms.js" defer></script>
+  <script src="../components/planning-tools.js" defer></script>
+</head>
+<body>
+  <div data-site-header></div>
+  <noscript><nav class="noscript-nav" aria-label="Main pages"><a href="../index.html">Home</a><a href="../services/">Services</a><a href="../methodology/">Methodology</a><a href="../projects/">Projects</a><a href="../tools/">Planning tools</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a></nav></noscript>
+  <main id="main-content">
+    <section class="page-hero"><div class="container"><p class="eyebrow">Consultation request</p><h1 class="display">Request an online Vastu consultation.</h1><p class="page-answer">Devagya Vastu offers traditional spatial consultation alongside architectural and interior-design considerations for homes, workplaces and developments. Share a preferred date range and meeting mode; this form is a request, not a confirmed appointment.</p></div></section>
+    <section class="section" style="padding-top:16px"><div class="container">
+      <form class="planning-tool scheduler-form" id="schedulerForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="06802d3b-83fc-4107-9cf8-57fff3706002">
+        <input type="hidden" name="subject" value="Consultation request - Devagya Vastu">
+        <input type="hidden" name="from_name" value="Devagya Website">
+        <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
+        <label>Name <input name="name" autocomplete="name" required></label>
+        <label>Email <input type="email" name="email" autocomplete="email" required></label>
+        <label>Preferred date from <input type="date" name="preferred_date_from" data-date-min required></label>
+        <label>Preferred date to <input type="date" name="preferred_date_to" data-date-min required></label>
+        <label>Preferred mode
+          <select name="preferred_mode" required><option value="">Choose one</option><option>Online video call</option><option>Phone</option><option>In person, if practical</option></select>
+        </label>
+        <label>City / time zone <input name="time_zone" autocomplete="address-level2" placeholder="City and country" required></label>
+        <label class="full">What would you like to discuss? <textarea name="request_notes" rows="4" required></textarea></label>
+        <p class="quiet-disclaimer full">The preferred dates are requests only. No live availability is displayed, and submitting this form does not reserve a time.</p>
+        <p class="tool-status full" id="schedulerStatus" role="status" aria-live="polite"></p>
+        <button class="button full" type="submit">Send consultation request</button>
+      </form>
+      <div class="quiet-disclaimer" style="margin-top:24px"><!-- CUSTOMIZE: add a third-party scheduler only after the owner supplies and approves its URL. --><strong>Optional scheduler embed:</strong> No third-party booking URL has been supplied. Until one is provided, consultation timing is coordinated directly after an enquiry.</div>
+    </div></section>
+  </main>
+  <div data-site-footer></div>
+</body>
+</html>
