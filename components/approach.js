@@ -9,25 +9,3 @@ if (nodeGrid) {
     nodeGrid.appendChild(node);
   }
 }
-
-const beforeButton = document.getElementById('beforeButton');
-const afterButton = document.getElementById('afterButton');
-const floorPlan = document.getElementById('floorPlan');
-const planCaption = document.getElementById('planCaption');
-
-function setPlanView(showOptimizedPlan) {
-  if (!floorPlan || !beforeButton || !afterButton || !planCaption) return;
-  floorPlan.classList.toggle('is-after', showOptimizedPlan);
-  floorPlan.classList.toggle('is-before', !showOptimizedPlan);
-  floorPlan.setAttribute('aria-label', showOptimizedPlan
-    ? 'After plan illustration with a clearer entry sequence and circulation'
-    : 'Before plan illustration with constrained entrance circulation');
-  beforeButton.setAttribute('aria-pressed', String(!showOptimizedPlan));
-  afterButton.setAttribute('aria-pressed', String(showOptimizedPlan));
-  planCaption.textContent = showOptimizedPlan
-    ? 'After: a light-touch boundary and furniture adjustment creates a clearer arrival zone and less interrupted route through the shared space.'
-    : 'Before: the entry opens directly into a busy circulation path, creating a tight turn and reducing clear arrival space.';
-}
-
-if (beforeButton) beforeButton.addEventListener('click', () => setPlanView(false));
-if (afterButton) afterButton.addEventListener('click', () => setPlanView(true));
