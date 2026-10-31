@@ -1,7 +1,8 @@
 const contactLinks = {
   whatsapp: 'https://wa.me/919467496725',
   phone: 'tel:+919467496725',
-  email: 'mailto:devagyavastu@gmail.com'
+  email: 'mailto:devagyavastu@gmail.com',
+  instagram: 'https://www.instagram.com/devagyavastu/'
 };
 const isRootHostedPage = (document.body && document.body.dataset.rootPage === 'true') || window.location.pathname === '/' || window.location.pathname === '/index.html';
 const relativeRoot = isRootHostedPage ? './' : '../';
@@ -65,7 +66,7 @@ const headerMarkup = `
         <div class="nav-tools">
           <button class="nav-tools-toggle" id="toolsToggle" type="button" aria-expanded="false" aria-controls="toolsMenu">Explore <span aria-hidden="true">⌄</span></button>
           <div class="nav-dropdown" id="toolsMenu" hidden>
-            <a href="${sitePage('projects')}">Projects <small>Case-study framework and work in progress</small></a>
+            <a href="${sitePage('projects')}">Projects <small>Project stories, shared with permission</small></a>
             <a href="${sitePage('insights')}">Insights <small>Notes on Vastu and spatial design</small></a>
             <a href="${sitePage('tools')}">Planning tools <small>Practical, non-certified planning aids</small></a>
             <a href="${sitePage('about')}">About Devagya <small>Our philosophy and approach</small></a>
@@ -109,6 +110,7 @@ const footerMarkup = `
         <a href="${contactLinks.whatsapp}" aria-label="WhatsApp Devagya Vastu">WhatsApp</a>
         <a href="${contactLinks.phone}">+91 94674 96725</a>
         <a href="${contactLinks.email}">devagyavastu@gmail.com</a>
+        <a href="${contactLinks.instagram}" target="_blank" rel="noopener noreferrer" aria-label="Instagram @devagyavastu">@devagyavastu on Instagram</a>
       </div>
     </div>
     <div class="footer-bottom"><span>© <span data-current-year></span> Devagya Vastu</span><span>Traditional spatial guidance considered alongside architecture; no guaranteed outcomes are promised.</span></div>
