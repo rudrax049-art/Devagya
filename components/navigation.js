@@ -75,7 +75,15 @@ const headerMarkup = `
         </div>
         <a href="${sitePage('book')}">Book</a>
         <a href="${sitePage('contact')}">Contact</a>
-        <button class="language-toggle" type="button" data-language-toggle aria-label="Switch language to Hindi">हिन्दी</button>
+        <label class="language-picker">
+          <select class="language-toggle" data-language-select aria-label="Select language" disabled>
+            <option value="en">English</option>
+            <option value="hi">हिन्दी</option>
+            <option value="es">Español</option>
+            <option value="de">Deutsch</option>
+            <option value="fr">Français</option>
+          </select>
+        </label>
         <a class="nav-cta" href="${sitePage('book')}">Request a consultation <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
@@ -433,8 +441,6 @@ const hindiTranslations = {
   'Email address': 'ईमेल पता',
   'Request the guide': 'मार्गदर्शिका का अनुरोध करें',
   '09 / Language': '09 / भाषा',
-  'Choose English or हिन्दी.': 'अंग्रेज़ी या हिन्दी चुनें।',
-  'The language control translates navigation, key page text and interactive controls, and saves your choice on this device. Some detailed content may remain in English; Hindi search indexing requires dedicated Hindi pages with appropriate `hreflang` metadata.': 'वेबसाइट का भाषा विकल्प नेविगेशन, मुख्य पेज सामग्री और इंटरैक्टिव नियंत्रणों को हिंदी में दिखाता है तथा आपकी पसंद इस डिवाइस पर सेव करता है। कुछ विस्तृत सामग्री अंग्रेज़ी में रह सकती है; हिंदी खोज परिणामों के लिए अलग हिंदी पेज और उपयुक्त hreflang जानकारी आवश्यक है।',
   'Traditional guidance may consider entry direction and its relationship to the plan. Treat these as discussion prompts, not universal placement rules.': 'पारंपरिक मार्गदर्शन में प्रवेश की दिशा और योजना से उसके संबंध पर विचार किया जा सकता है। इसे चर्चा के संकेत मानें, सार्वभौमिक स्थान-नियम नहीं।',
   'Review clear access, door swing, weather protection, daylight, privacy and an unobstructed route into the home.': 'सुगम पहुँच, दरवाज़े के खुलने की दिशा, मौसम से सुरक्षा, प्राकृतिक रोशनी, निजता और घर तक बिना रुकावट के रास्ते की समीक्षा करें।',
   'Consider how the room relates to the wider directional framework and the intended use of shared space.': 'कमरे का व्यापक दिशात्मक ढाँचे और साझा स्थान के प्रस्तावित उपयोग से संबंध देखें।',
@@ -542,6 +548,8 @@ const hindiTranslations = {
   '0 of 10 items checked. Check any details you already have.': '10 में से 0 जानकारी चुनी गई। जो विवरण उपलब्ध हैं, उन्हें चुनें।',
   'Switch language to English': 'अंग्रेज़ी में बदलें',
   'Switch language to Hindi': 'हिंदी में बदलें',
+  'Choose your language.': 'अपनी भाषा चुनें।',
+  'English, Spanish, German and French are fully localized across page text, metadata and interactive controls. Hindi is available for the key content and controls covered by its existing translation. Your choice is saved on this device; each page updates immediately.': 'अंग्रेज़ी, स्पैनिश, जर्मन और फ़्रेंच में पेज का पाठ, मेटाडेटा और इंटरैक्टिव नियंत्रण पूरी तरह स्थानीयकृत हैं। हिंदी में पहले से अनूदित मुख्य सामग्री और नियंत्रण उपलब्ध हैं। आपकी पसंद इस डिवाइस पर सेव होती है और हर पेज तुरंत अपडेट होता है।',
   'Devagya Vastu | Architectural Vastu & Interior Design': 'देवग्या वास्तु | वास्तु और इंटीरियर डिज़ाइन',
   'About Devagya Vastu | Our Story & Philosophy': 'देवग्या वास्तु | हमारी कहानी और विचार',
   'Services | Vastu for Residential, Corporate & Developer Projects': 'सेवाएँ | आवासीय, व्यावसायिक और विकास परियोजनाओं के लिए वास्तु',
@@ -630,62 +638,136 @@ const hindiTranslations = {
   'Consultation request': 'परामर्श अनुरोध',
   'Select a room in the schematic plan. Traditional Vastu considerations are shown separately from architectural and interior-design questions. The diagram is illustrative, not a recommended layout.': 'योजनाबद्ध नक्शे में एक कमरा चुनें। पारंपरिक वास्तु विचारों को वास्तुकला और इंटीरियर से जुड़े प्रश्नों से अलग दिखाया गया है। यह चित्र केवल उदाहरण है, सुझाया गया लेआउट नहीं।'
 };
-const englishTranslations = Object.keys(hindiTranslations).reduce((translations, english) => {
-  translations[hindiTranslations[english]] = english;
-  return translations;
-}, {});
-const normalizedHindiTranslations = Object.keys(hindiTranslations).reduce((translations, english) => {
-  translations[english.toLowerCase()] = hindiTranslations[english];
-  return translations;
-}, {});
-const normalizedEnglishTranslations = Object.keys(englishTranslations).reduce((translations, hindi) => {
-  translations[hindi.toLowerCase()] = englishTranslations[hindi];
-  return translations;
-}, {});
+const languageNames = { en: 'English', hi: 'हिन्दी', es: 'Español', de: 'Deutsch', fr: 'Français' };
+const languageLabels = { en: 'Select language', hi: 'भाषा चुनें', es: 'Seleccionar idioma', de: 'Sprache auswählen', fr: 'Choisir la langue' };
+const localeTranslations = { hi: hindiTranslations };
+const sourcePhrases = {};
+const reversePhrases = {};
+const translatedPhrases = {};
+const normalizePhrase = (phrase) => phrase.replace(/\s+/g, ' ').trim();
+const addTranslationMap = (locale, translations) => {
+  localeTranslations[locale] = translations;
+  sourcePhrases[locale] = {};
+  reversePhrases[locale] = {};
+  translatedPhrases[locale] = {};
+  Object.keys(translations).forEach((source) => {
+    const normalizedSource = normalizePhrase(source);
+    const normalizedTarget = normalizePhrase(translations[source]);
+    const sourceKey = normalizedSource.toLowerCase();
+    const targetKey = normalizedTarget.toLowerCase();
+    sourcePhrases[locale][normalizedSource] = normalizedSource;
+    reversePhrases[locale][normalizedTarget] = normalizedSource;
+    translatedPhrases[locale][normalizedSource] = translations[source];
+    if (!sourcePhrases[locale][sourceKey]) sourcePhrases[locale][sourceKey] = normalizedSource;
+    if (!reversePhrases[locale][targetKey]) reversePhrases[locale][targetKey] = normalizedSource;
+    if (!translatedPhrases[locale][sourceKey]) translatedPhrases[locale][sourceKey] = translations[source];
+  });
+};
+addTranslationMap('hi', hindiTranslations);
+const findEnglishSource = (value) => {
+  const phrase = normalizePhrase(value);
+  const key = phrase.toLowerCase();
+  const locales = Object.keys(localeTranslations);
+  for (const locale of locales) {
+    if (sourcePhrases[locale][phrase]) return sourcePhrases[locale][phrase];
+  }
+  for (const locale of locales) {
+    if (reversePhrases[locale][phrase]) return reversePhrases[locale][phrase];
+  }
+  for (const locale of locales) {
+    if (sourcePhrases[locale][key]) return sourcePhrases[locale][key];
+  }
+  for (const locale of locales) {
+    if (reversePhrases[locale][key]) return reversePhrases[locale][key];
+  }
+  return null;
+};
+const installLocaleData = (data) => {
+  ['es', 'de', 'fr'].forEach((locale) => {
+    if (!data[locale] || typeof data[locale] !== 'object') throw new Error(`Missing ${locale} translation data.`);
+    addTranslationMap(locale, data[locale]);
+  });
+};
 const translateText = (value, nextLanguage) => {
-  if (value.includes('\n')) return value.split('\n').map((line) => translateText(line, nextLanguage)).join('\n');
-  const checklistCount = value.match(/^(\d+) of (\d+) items checked\.(.*)$/);
+  const phrase = normalizePhrase(value);
+  if (value.includes('\n') && !Object.keys(localeTranslations).some((locale) => {
+    const key = sourcePhrases[locale] && sourcePhrases[locale][phrase.toLowerCase()];
+    return key && key === phrase;
+  })) return value.split('\n').map((line) => translateText(line, nextLanguage)).join('\n');
+  const checklistCount = phrase.match(/^(\d+) of (\d+) items checked\.(.*)$/);
   if (checklistCount) {
-    return nextLanguage === 'hi'
-      ? `${checklistCount[2]} में से ${checklistCount[1]} जानकारी चुनी गई।${checklistCount[3] ? ` ${translateText(checklistCount[3].trim(), nextLanguage)}` : ''}`
-      : `${checklistCount[1]} of ${checklistCount[2]} items checked.${checklistCount[3] ? ` ${translateText(checklistCount[3].trim(), nextLanguage)}` : ''}`;
+    const checked = checklistCount[1];
+    const total = checklistCount[2];
+    let summary = `${checked} of ${total} items checked.`;
+    if (nextLanguage === 'hi') summary = `${total} में से ${checked} जानकारी चुनी गई।`;
+    if (nextLanguage === 'es') summary = `${checked} de ${total} elementos marcados.`;
+    if (nextLanguage === 'de') summary = `${checked} von ${total} Elementen abgehakt.`;
+    if (nextLanguage === 'fr') summary = `${checked} élément${checked === '1' ? '' : 's'} sur ${total} coché${checked === '1' ? '' : 's'}.`;
+    return `${summary}${checklistCount[3] ? ` ${translateText(checklistCount[3].trim(), nextLanguage)}` : ''}`;
   }
-  const hindiChecklistCount = value.match(/^(\d+) में से (\d+) जानकारी चुनी गई।(.*)$/);
-  if (hindiChecklistCount) {
-    return nextLanguage === 'en'
-      ? `${hindiChecklistCount[2]} of ${hindiChecklistCount[1]} items checked.${hindiChecklistCount[3] ? ` ${translateText(hindiChecklistCount[3].trim(), nextLanguage)}` : ''}`
-      : value;
-  }
-  const comparisonValue = value.match(/^(\d+)% adjusted plan visible$/);
+  const comparisonValue = phrase.match(/^(\d+)% adjusted plan visible$/);
   if (comparisonValue) {
-    return nextLanguage === 'hi'
-      ? `${comparisonValue[1]}% समायोजित योजना दिखाई दे रही है`
-      : `${comparisonValue[1]}% adjusted plan visible`;
+    const percentage = comparisonValue[1];
+    if (nextLanguage === 'hi') return `${percentage}% समायोजित योजना दिखाई दे रही है`;
+    if (nextLanguage === 'es') return `${percentage}% del plano ajustado visible`;
+    if (nextLanguage === 'de') return `${percentage}% des angepassten Plans sichtbar`;
+    if (nextLanguage === 'fr') return `${percentage} % du plan ajusté visible`;
+    return `${percentage}% adjusted plan visible`;
   }
-  const hindiComparisonValue = value.match(/^(\d+)% समायोजित योजना दिखाई दे रही है$/);
-  if (hindiComparisonValue) {
-    return nextLanguage === 'en' ? `${hindiComparisonValue[1]}% adjusted plan visible` : value;
+  const gridReference = phrase.match(/^Classical 45-zone grid reference (\d+)$/);
+  if (gridReference) {
+    const labels = {
+      en: `Classical 45-zone grid reference ${gridReference[1]}`,
+      hi: `पारंपरिक 45-क्षेत्र ग्रिड संदर्भ ${gridReference[1]}`,
+      es: `Referencia de cuadrícula clásica de 45 zonas ${gridReference[1]}`,
+      de: `Klassische 45-Zonen-Rasterreferenz ${gridReference[1]}`,
+      fr: `Référence de grille classique à 45 zones ${gridReference[1]}`
+    };
+    return labels[nextLanguage];
   }
-  const serviceResult = value.match(/^(Vastu consultation|Architecture and spatial planning|Vastu \+ spatial design|Interior design consultation) may be a useful starting point for (a home|a workplace|a development|an interior scope)\. (.*) The exact scope depends on project stage, available drawings and responsibilities of your appointed design professionals\.$/);
+  const rejectedFile = phrase.match(/^(.+) was not added\. Use a PDF, PNG or JPG under 10 MB\.$/);
+  if (rejectedFile) {
+    const messages = {
+      en: `${rejectedFile[1]} was not added. Use a PDF, PNG or JPG under 10 MB.`,
+      hi: `${rejectedFile[1]} नहीं जोड़ी गई। 10 MB से कम की PDF, PNG या JPG फ़ाइल चुनें।`,
+      es: `No se añadió ${rejectedFile[1]}. Usa un PDF, PNG o JPG de menos de 10 MB.`,
+      de: `${rejectedFile[1]} wurde nicht hinzugefügt. Verwenden Sie eine PDF-, PNG- oder JPG-Datei unter 10 MB.`,
+      fr: `${rejectedFile[1]} n’a pas été ajouté. Utilisez un PDF, PNG ou JPG de moins de 10 Mo.`
+    };
+    return messages[nextLanguage];
+  }
+  const serviceResult = phrase.match(/^(Vastu consultation|Architecture and spatial planning|Vastu \+ spatial design|Interior design consultation) may be a useful starting point for (a home|a workplace|a development|an interior scope)\. (.*) The exact scope depends on project stage, available drawings and responsibilities of your appointed design professionals\.$/);
   if (serviceResult) {
     const translatedService = translateText(serviceResult[1], nextLanguage);
     const translatedProperty = translateText(serviceResult[2], nextLanguage);
     const translatedExplanation = translateText(serviceResult[3], nextLanguage);
-    return nextLanguage === 'hi'
-      ? `${translatedProperty} के लिए ${translatedService} एक उपयोगी शुरुआत हो सकती है। ${translatedExplanation} ${translateText('The exact scope depends on project stage, available drawings and responsibilities of your appointed design professionals.', nextLanguage)}`
-      : `${translatedService} may be a useful starting point for ${translatedProperty}. ${translatedExplanation} ${translateText('The exact scope depends on project stage, available drawings and responsibilities of your appointed design professionals.', nextLanguage)}`;
+    const scopeNote = translateText('The exact scope depends on project stage, available drawings and responsibilities of your appointed design professionals.', nextLanguage);
+    if (nextLanguage === 'hi') return `${translatedProperty} के लिए ${translatedService} एक उपयोगी शुरुआत हो सकती है। ${translatedExplanation} ${scopeNote}`;
+    if (nextLanguage === 'es') {
+      const serviceLabels = {
+        'Vastu consultation': 'La consulta Vastu',
+        'Architecture and spatial planning': 'La arquitectura y la planificación espacial',
+        'Vastu + spatial design': 'El diseño espacial Vastu',
+        'Interior design consultation': 'La consulta de diseño de interiores'
+      };
+      return `${serviceLabels[serviceResult[1]]} puede ser un buen punto de partida para ${translatedProperty}. ${translatedExplanation} ${scopeNote}`;
+    }
+    if (nextLanguage === 'de') return `${translatedService} kann ein sinnvoller Ausgangspunkt für ${translatedProperty} sein. ${translatedExplanation} ${scopeNote}`;
+    if (nextLanguage === 'fr') {
+      const serviceLabels = {
+        'Vastu consultation': 'Une consultation Vastu',
+        'Architecture and spatial planning': 'La planification architecturale et spatiale',
+        'Vastu + spatial design': 'La conception spatiale Vastu',
+        'Interior design consultation': 'Une consultation en décoration intérieure'
+      };
+      return `${serviceLabels[serviceResult[1]]} peut constituer un bon point de départ pour ${translatedProperty}. ${translatedExplanation} ${scopeNote}`;
+    }
+    return `${serviceResult[1]} may be a useful starting point for ${serviceResult[2]}. ${serviceResult[3]} The exact scope depends on project stage, available drawings and responsibilities of your appointed design professionals.`;
   }
-  const hindiServiceResult = value.match(/^(एक घर|एक कार्यस्थल|एक विकास परियोजना|एक इंटीरियर परियोजना) के लिए (वास्तु परामर्श|वास्तुकला और स्थानिक योजना|वास्तु \+ स्थानिक डिज़ाइन|इंटीरियर डिज़ाइन परामर्श) एक उपयोगी शुरुआत हो सकती है। (.*) सटीक कार्य-क्षेत्र परियोजना के चरण, उपलब्ध नक्शों और नियुक्त डिज़ाइन विशेषज्ञों की ज़िम्मेदारियों पर निर्भर करता है।$/);
-  if (hindiServiceResult && nextLanguage === 'en') {
-    const propertyName = translateText(hindiServiceResult[1], nextLanguage);
-    const serviceName = translateText(hindiServiceResult[2], nextLanguage);
-    const explanation = translateText(hindiServiceResult[3], nextLanguage);
-    return `${serviceName} may be a useful starting point for ${propertyName}. ${explanation} The exact scope depends on project stage, available drawings and responsibilities of your appointed design professionals.`;
-  }
-  const labelSeparator = value.indexOf(': ');
+  const labelSeparator = phrase.indexOf(': ');
   if (labelSeparator > 0) {
-    const label = value.slice(0, labelSeparator);
-    const fieldValue = value.slice(labelSeparator + 2);
+    const label = phrase.slice(0, labelSeparator);
+    const fieldValue = phrase.slice(labelSeparator + 2);
     if (label === 'Constraints / questions' && fieldValue === 'Not provided' && nextLanguage === 'hi') {
       return 'सीमाएँ / प्रश्न: नहीं दिए गए';
     }
@@ -697,76 +779,140 @@ const translateText = (value, nextLanguage) => {
       return `${translatedLabel}: ${translateText(fieldValue, nextLanguage)}`;
     }
   }
-  if (nextLanguage === 'hi') return hindiTranslations[value] || normalizedHindiTranslations[value.toLowerCase()] || value;
-  return englishTranslations[value] || normalizedEnglishTranslations[value.toLowerCase()] || value;
+  const source = findEnglishSource(phrase);
+  if (!source) return value;
+  if (nextLanguage === 'en') return source;
+  const translation = translatedPhrases[nextLanguage] && (translatedPhrases[nextLanguage][source] || translatedPhrases[nextLanguage][source.toLowerCase()]);
+  return translation || value;
 };
 const translateTextNode = (textNode, nextLanguage) => {
-  const original = textNode.nodeValue;
-  const trimmed = original.trim();
-  const translated = translateText(trimmed, nextLanguage);
-  if (translated === trimmed) return;
-  const leadingWhitespace = (original.match(/^\s*/) || [''])[0];
-  const trailingWhitespace = (original.match(/\s*$/) || [''])[0];
-  textNode.nodeValue = `${leadingWhitespace}${translated}${trailingWhitespace}`;
+  const current = textNode.nodeValue;
+  let record = textNodeSources.get(textNode);
+  if (!record) record = { source: current, translated: current };
+  else if (current !== record.translated) record.source = current;
+  const leadingWhitespace = (record.source.match(/^\s*/) || [''])[0];
+  const trailingWhitespace = (record.source.match(/\s*$/) || [''])[0];
+  const translated = `${leadingWhitespace}${translateText(record.source.trim(), nextLanguage)}${trailingWhitespace}`;
+  if (translated !== current) textNode.nodeValue = translated;
+  record.translated = translated;
+  textNodeSources.set(textNode, record);
 };
-const languageButtons = document.querySelectorAll('[data-language-toggle]');
-let language = window.devagyaStorage.get('devagya-language') === 'hi' ? 'hi' : 'en';
+const textNodeSources = new WeakMap();
+const attributeSources = new WeakMap();
+const languageSelects = document.querySelectorAll('[data-language-select]');
+const supportedLanguages = ['en', 'hi', 'es', 'de', 'fr'];
+const savedLanguage = window.devagyaStorage.get('devagya-language');
+let language = supportedLanguages.includes(savedLanguage) ? savedLanguage : 'en';
+let localeDataReady = false;
+const translateAttribute = (element, attribute, nextLanguage) => {
+  let attributes = attributeSources.get(element);
+  if (!attributes) {
+    attributes = {};
+    attributeSources.set(element, attributes);
+  }
+  const current = element.getAttribute(attribute);
+  let record = attributes[attribute];
+  if (!record) record = { source: current, translated: current };
+  else if (current !== record.translated) record.source = current;
+  const translated = translateText(record.source, nextLanguage);
+  if (translated !== current) element.setAttribute(attribute, translated);
+  record.translated = translated;
+  attributes[attribute] = record;
+};
 const setLanguage = (nextLanguage) => {
+  if (!localeDataReady && nextLanguage !== 'en' && nextLanguage !== 'hi') nextLanguage = 'en';
   language = nextLanguage;
   document.documentElement.lang = language;
   const textNodes = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   let textNode;
   while ((textNode = textNodes.nextNode())) translateTextNode(textNode, language);
-  document.title = translateText(document.title, language);
-  document.querySelectorAll('[title], [placeholder], [aria-label], [aria-valuetext]').forEach((element) => {
-    ['title', 'placeholder', 'aria-label', 'aria-valuetext'].forEach((attribute) => {
-      if (!element.hasAttribute(attribute) || element.hasAttribute('data-language-toggle')) return;
-      const currentValue = element.getAttribute(attribute);
-      element.setAttribute(attribute, translateText(currentValue, language));
+  const titlePhrase = findEnglishSource(document.title);
+  document.title = titlePhrase
+    ? (language === 'en' ? titlePhrase : translatedPhrases[language][titlePhrase] || document.title)
+    : translateText(document.title, language);
+  document.querySelectorAll('[title], [placeholder], [aria-label], [aria-valuetext], [alt], meta[content]').forEach((element) => {
+    ['title', 'placeholder', 'aria-label', 'aria-valuetext', 'alt', 'content'].forEach((attribute) => {
+      if (!element.hasAttribute(attribute) || element.hasAttribute('data-language-select')) return;
+      translateAttribute(element, attribute, language);
     });
   });
-  languageButtons.forEach((button) => {
-    button.textContent = language === 'hi' ? 'English' : 'हिन्दी';
-    const label = language === 'hi' ? 'Switch language to English' : 'Switch language to Hindi';
-    button.setAttribute('aria-label', translateText(label, language));
+  languageSelects.forEach((select) => {
+    select.value = language;
+    select.setAttribute('aria-label', languageLabels[language]);
   });
   document.dispatchEvent(new CustomEvent('devagya:languagechange', { detail: { language } }));
 };
-languageButtons.forEach((button) => button.addEventListener('click', () => {
-  const nextLanguage = language === 'en' ? 'hi' : 'en';
-  window.devagyaStorage.set('devagya-language', nextLanguage);
-  setLanguage(nextLanguage);
-}));
-setLanguage(language);
-
-const languageObserver = new MutationObserver((mutations) => {
-  mutations.forEach((mutation) => {
-    if (mutation.type === 'characterData') {
-      translateTextNode(mutation.target, language);
-    } else if (mutation.type === 'attributes') {
-      const currentValue = mutation.target.getAttribute(mutation.attributeName);
-      const translated = translateText(currentValue, language);
-      if (translated !== currentValue) mutation.target.setAttribute(mutation.attributeName, translated);
-    } else {
-      mutation.addedNodes.forEach((node) => {
-        if (node.nodeType === Node.TEXT_NODE) {
-          translateTextNode(node, language);
-        } else if (node.nodeType === Node.ELEMENT_NODE) {
-          const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
-          let addedText;
-          while ((addedText = walker.nextNode())) translateTextNode(addedText, language);
-        }
-      });
-    }
+const startLanguageSwitcher = () => {
+  localeDataReady = true;
+  languageSelects.forEach((select) => {
+    select.disabled = false;
+    select.addEventListener('change', () => {
+      window.devagyaStorage.set('devagya-language', select.value);
+      setLanguage(select.value);
+    });
   });
-});
-languageObserver.observe(document.body, {
-  attributes: true,
-  attributeFilter: ['aria-label', 'aria-valuetext', 'placeholder', 'title'],
-  childList: true,
-  characterData: true,
-  subtree: true
-});
+  setLanguage(language);
+  window.devagyaI18n = Object.freeze({
+    get language() { return language; },
+    translate: (text, targetLanguage = language) => translateText(text, targetLanguage),
+    languageNames: Object.freeze(Object.assign({}, languageNames))
+  });
+  const languageObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'characterData') {
+        translateTextNode(mutation.target, language);
+      } else if (mutation.type === 'attributes') {
+        translateAttribute(mutation.target, mutation.attributeName, language);
+      } else {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            translateTextNode(node, language);
+          } else if (node.nodeType === Node.ELEMENT_NODE) {
+            const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+            let addedText;
+            while ((addedText = walker.nextNode())) translateTextNode(addedText, language);
+            if (node.matches('[title], [placeholder], [aria-label], [aria-valuetext], [alt], meta[content]')) {
+              ['title', 'placeholder', 'aria-label', 'aria-valuetext', 'alt', 'content'].forEach((attribute) => {
+                if (node.hasAttribute(attribute)) translateAttribute(node, attribute, language);
+              });
+            }
+            node.querySelectorAll('[title], [placeholder], [aria-label], [aria-valuetext], [alt], meta[content]').forEach((element) => {
+              ['title', 'placeholder', 'aria-label', 'aria-valuetext', 'alt', 'content'].forEach((attribute) => {
+                if (element.hasAttribute(attribute)) translateAttribute(element, attribute, language);
+              });
+            });
+          }
+        });
+      }
+    });
+  });
+  languageObserver.observe(document.body, {
+    attributes: true,
+    attributeFilter: ['alt', 'aria-label', 'aria-valuetext', 'content', 'placeholder', 'title'],
+    childList: true,
+    characterData: true,
+    subtree: true
+  });
+};
+fetch(siteAsset('components/language-data.json'), { cache: 'no-cache' })
+  .then((response) => {
+    if (!response.ok) throw new Error(`Language data request failed with status ${response.status}.`);
+    return response.json();
+  })
+  .then((data) => {
+    installLocaleData(data);
+    startLanguageSwitcher();
+  })
+  .catch((error) => {
+    console.error('Additional language data could not be loaded; English and Hindi remain available.', error);
+    languageSelects.forEach((select) => {
+      select.querySelectorAll('option').forEach((option) => {
+        if (option.value !== 'en' && option.value !== 'hi') option.remove();
+      });
+    });
+    language = language === 'hi' ? 'hi' : 'en';
+    startLanguageSwitcher();
+  });
 
 if (document.body) {
   window.requestAnimationFrame(() => document.body.classList.add('is-ready'));

@@ -1,9 +1,10 @@
-const CACHE_NAME = 'devagya-tools-v2';
+const CACHE_NAME = 'devagya-tools-v4';
 const CORE_ASSETS = [
   './',
   './tools/',
   './site.css',
   './components/navigation.js',
+  './components/language-data.json',
   './components/planning-tools.js',
   './components/web3forms.js'
 ];

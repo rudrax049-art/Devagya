@@ -13,7 +13,7 @@ let lastFocusedElement = null;
 let selectedDate = null;
 
 function getCalendarLocale() {
-  return document.documentElement.lang === 'hi' ? 'hi-IN' : 'en-IN';
+  return ({ en: 'en-IN', hi: 'hi-IN', es: 'es-ES', de: 'de-DE', fr: 'fr-FR' })[document.documentElement.lang] || 'en-IN';
 }
 
 function getPlanningEvents(year, month) {
@@ -25,9 +25,14 @@ function getPlanningEvents(year, month) {
 function updateSelectedDate() {
   if (!selectedDate) return;
   const formattedDate = new Intl.DateTimeFormat(getCalendarLocale(), { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).format(selectedDate);
-  const messageText = document.documentElement.lang === 'hi'
-    ? `नमस्ते देवग्या, मैं ${formattedDate} को स्थानिक डिज़ाइन परामर्श का अनुरोध करना चाहता/चाहती हूँ। मेरा समय क्षेत्र और पसंदीदा समय है:`
-    : `Hello Devagya, I would like to request a spatial design consultation on ${formattedDate}. My time zone and preferred time are:`;
+  const language = document.documentElement.lang;
+  const messageText = {
+    en: `Hello Devagya, I would like to request a spatial design consultation on ${formattedDate}. My time zone and preferred time are:`,
+    hi: `नमस्ते देवग्या, मैं ${formattedDate} को स्थानिक डिज़ाइन परामर्श का अनुरोध करना चाहता/चाहती हूँ। मेरा समय क्षेत्र और पसंदीदा समय है:`,
+    es: `Hola, Devagya. Quisiera solicitar una consulta de diseño espacial para el ${formattedDate}. Mi zona horaria y el horario que prefiero son:`,
+    de: `Hallo Devagya, ich möchte am ${formattedDate} eine Beratung zur Raumgestaltung anfragen. Meine Zeitzone und bevorzugte Uhrzeit sind:`,
+    fr: `Bonjour, Devagya. Je souhaiterais demander une consultation en aménagement de l’espace le ${formattedDate}. Mon fuseau horaire et l’heure qui me conviendrait sont :`
+  }[language] || `Hello Devagya, I would like to request a spatial design consultation on ${formattedDate}. My time zone and preferred time are:`;
   modalTitle.textContent = formattedDate;
   modalDetails.textContent = 'This is your preferred consultation date, not a confirmed appointment. Please share your time zone and preferred time so our team can check actual availability.';
   whatsappDateLink.href = `https://wa.me/919467496725?text=${encodeURIComponent(messageText)}`;
@@ -78,7 +83,9 @@ function renderCalendar() {
     if (dayDate < new Date(today.getFullYear(), today.getMonth(), today.getDate())) {
       dayButton.disabled = true;
     } else {
-      const requestLabel = document.documentElement.lang === 'hi' ? 'परामर्श का अनुरोध करें' : 'Request a consultation';
+      const requestLabel = window.devagyaI18n
+        ? window.devagyaI18n.translate('Request a consultation')
+        : (document.documentElement.lang === 'hi' ? 'परामर्श का अनुरोध करें' : 'Request a consultation');
       const formattedDay = new Intl.DateTimeFormat(locale).format(dayDate);
       dayButton.setAttribute('aria-label', `${requestLabel} ${formattedDay}`);
       const eventLabel = document.createElement('span');
