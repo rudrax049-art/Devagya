@@ -243,6 +243,10 @@ if (briefForm) {
     briefStatus.textContent = 'Sending your project brief...';
     try {
       await window.devagyaForms.submit(briefForm);
+      briefForm.reset();
+      activeStep = 0;
+      renderStep();
+      updateSummary(false);
       briefStatus.textContent = 'Your project brief was sent. We will follow up using the email you provided.';
       siteStorage.remove(draftKey);
     } catch (error) {
