@@ -10,6 +10,11 @@ const whatsappDateLink = document.getElementById('whatsappDateLink');
 let visibleMonth = new Date();
 visibleMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth(), 1);
 let lastFocusedElement = null;
+let selectedDate = null;
+
+function getCalendarLocale() {
+  return document.documentElement.lang === 'hi' ? 'hi-IN' : 'en-IN';
+}
 
 function getPlanningEvents(year, month) {
   const firstDay = new Date(year, month, 1);
@@ -17,14 +22,21 @@ function getPlanningEvents(year, month) {
   return { firstDay, daysInMonth };
 }
 
-function showEvent(day) {
-  const date = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth(), day);
-  const formattedDate = new Intl.DateTimeFormat(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).format(date);
-  lastFocusedElement = document.activeElement;
+function updateSelectedDate() {
+  if (!selectedDate) return;
+  const formattedDate = new Intl.DateTimeFormat(getCalendarLocale(), { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).format(selectedDate);
+  const messageText = document.documentElement.lang === 'hi'
+    ? `नमस्ते देवग्या, मैं ${formattedDate} को स्थानिक डिज़ाइन परामर्श का अनुरोध करना चाहता/चाहती हूँ। मेरा समय क्षेत्र और पसंदीदा समय है:`
+    : `Hello Devagya, I would like to request a spatial design consultation on ${formattedDate}. My time zone and preferred time are:`;
   modalTitle.textContent = formattedDate;
   modalDetails.textContent = 'This is your preferred consultation date, not a confirmed appointment. Please share your time zone and preferred time so our team can check actual availability.';
-  const message = encodeURIComponent(`Hello Devagya, I would like to request a spatial design consultation on ${formattedDate}. My time zone and preferred time are:`);
-  whatsappDateLink.href = `https://wa.me/919467496725?text=${message}`;
+  whatsappDateLink.href = `https://wa.me/919467496725?text=${encodeURIComponent(messageText)}`;
+}
+
+function showEvent(day) {
+  selectedDate = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth(), day);
+  lastFocusedElement = document.activeElement;
+  updateSelectedDate();
   calendarModal.hidden = false;
   closeCalendarModal.focus();
 }
@@ -34,9 +46,15 @@ function renderCalendar() {
   const year = visibleMonth.getFullYear();
   const month = visibleMonth.getMonth();
   const { firstDay, daysInMonth } = getPlanningEvents(year, month);
-  monthTitle.textContent = new Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(visibleMonth);
+  const locale = getCalendarLocale();
+  monthTitle.textContent = new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' }).format(visibleMonth);
   calendarGrid.innerHTML = '';
-  ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach((dayName) => {
+  const weekStart = new Date(2024, 0, 7);
+  Array.from({ length: 7 }, (_, offset) => {
+    const weekday = new Date(weekStart);
+    weekday.setDate(weekStart.getDate() + offset);
+    return new Intl.DateTimeFormat(locale, { weekday: 'short' }).format(weekday);
+  }).forEach((dayName) => {
     const weekday = document.createElement('div');
     weekday.className = 'calendar-weekday';
     weekday.setAttribute('role', 'columnheader');
@@ -60,7 +78,9 @@ function renderCalendar() {
     if (dayDate < new Date(today.getFullYear(), today.getMonth(), today.getDate())) {
       dayButton.disabled = true;
     } else {
-      dayButton.setAttribute('aria-label', `Request a consultation on ${dayDate.toLocaleDateString()}`);
+      const requestLabel = document.documentElement.lang === 'hi' ? 'परामर्श का अनुरोध करें' : 'Request a consultation';
+      const formattedDay = new Intl.DateTimeFormat(locale).format(dayDate);
+      dayButton.setAttribute('aria-label', `${requestLabel} ${formattedDay}`);
       const eventLabel = document.createElement('span');
       eventLabel.className = 'calendar-event';
       eventLabel.textContent = 'Consultation request';
@@ -70,6 +90,17 @@ function renderCalendar() {
     calendarGrid.appendChild(dayButton);
   }
 }
+document.addEventListener('devagya:languagechange', () => {
+  const focusedDay = lastFocusedElement && lastFocusedElement.classList.contains('calendar-day')
+    ? Number.parseInt(lastFocusedElement.textContent, 10)
+    : null;
+  renderCalendar();
+  if (focusedDay) {
+    lastFocusedElement = Array.from(calendarGrid.querySelectorAll('.calendar-day'))
+      .find((button) => Number.parseInt(button.textContent, 10) === focusedDay) || lastFocusedElement;
+  }
+  if (calendarModal && !calendarModal.hidden) updateSelectedDate();
+});
 
 if (previousMonth) {
   previousMonth.addEventListener('click', () => {
@@ -87,6 +118,7 @@ function hideCalendarModal() {
   if (!calendarModal) return;
   calendarModal.hidden = true;
   if (lastFocusedElement) lastFocusedElement.focus();
+  selectedDate = null;
 }
 if (closeCalendarModal) closeCalendarModal.addEventListener('click', hideCalendarModal);
 if (calendarModal) {
