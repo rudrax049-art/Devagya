@@ -132,13 +132,15 @@ if (readinessItems.length) {
 const comparisonRange = document.getElementById('comparisonRange');
 const comparisonFrame = document.getElementById('comparisonFrame');
 if (comparisonRange && comparisonFrame) {
-  const setComparison = () => {
+  const renderComparison = () => {
     comparisonFrame.style.setProperty('--comparison', `${comparisonRange.value}%`);
     comparisonRange.setAttribute('aria-valuetext', `${comparisonRange.value}% adjusted plan visible`);
-    trackToolCompletion('plan-comparison');
   };
-  comparisonRange.addEventListener('input', setComparison);
-  setComparison();
+  comparisonRange.addEventListener('input', () => {
+    renderComparison();
+    trackToolCompletion('plan-comparison');
+  });
+  renderComparison();
 }
 
 const briefForm = document.getElementById('projectBriefForm');
