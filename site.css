@@ -66,8 +66,10 @@ img, svg { max-width: 100%; }
 .nav-cta span { color: var(--brass-light); font-size: 1rem; }
 .nav-cta { min-height: 46px; background: var(--gold); color: var(--black); }
 .nav-cta span { color: var(--black); }
-.language-toggle { min-width: 48px; min-height: 46px; padding: 0 10px; border: 1px solid var(--line); background: transparent; color: var(--black); font-size: .75rem; font-weight: 700; cursor: pointer; }
+.language-picker { display: inline-flex; align-items: center; }
+.language-toggle { min-width: 116px; min-height: 46px; padding: 0 10px; border: 1px solid var(--line); background: transparent; color: var(--black); font-size: .75rem; font-weight: 700; cursor: pointer; }
 .language-toggle:hover { border-color: var(--gold); }
+.language-toggle:disabled { opacity: .65; cursor: wait; }
 .reading-progress { position: fixed; z-index: 120; inset: 0 0 auto; height: 3px; pointer-events: none; }
 .reading-progress span { display: block; width: 0; height: 100%; background: var(--gold); transform-origin: left; }
 .is-ready [data-load-reveal] { animation: content-reveal .45s ease both; }
