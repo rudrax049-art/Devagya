@@ -56,7 +56,7 @@ const headerMarkup = `
   <header class="site-header" id="siteHeader">
     <div class="site-header-inner">
       <a class="brand-lockup" href="${sitePage('')}" aria-label="Devagya Vastu home">
-        <img src="${siteAsset('assets/logo-mark.png')}" alt="" width="42" height="42">
+        <img src="${siteAsset('assets/logo-mark-128.png')}" alt="" width="42" height="42">
         <span><strong>DEVAGYA</strong><small>VASTU &amp; SIGNATURE SPACES</small></span>
       </a>
       <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation"><span></span><span></span></button>
@@ -98,7 +98,7 @@ const footerMarkup = `
   <footer class="site-footer">
     <div class="footer-main">
       <a class="brand-lockup footer-brand" href="${sitePage('')}" aria-label="Devagya Vastu home">
-        <img src="${siteAsset('assets/logo-mark.png')}" alt="" width="42" height="42">
+        <img src="${siteAsset('assets/logo-mark-128.png')}" alt="" width="42" height="42">
         <span><strong>DEVAGYA</strong><small>VASTU &amp; SIGNATURE SPACES</small></span>
       </a>
       <div>
@@ -119,6 +119,7 @@ const footerMarkup = `
         <a href="${contactLinks.phone}">+91 94674 96725</a>
         <a href="${contactLinks.email}">devagyavastu@gmail.com</a>
         <a href="${contactLinks.instagram}" target="_blank" rel="noopener noreferrer" aria-label="Instagram @devagyavastu">@devagyavastu on Instagram</a>
+        <address class="footer-address"><span>1549 Ground Floor, Uttam Nagar, Hisar, Haryana 125001, India</span><span>Visits by appointment</span></address>
       </div>
     </div>
     <div class="footer-bottom"><span>© <span data-current-year></span> Devagya Vastu</span><span>Traditional spatial guidance considered alongside architecture; no guaranteed outcomes are promised.</span></div>
@@ -690,6 +691,16 @@ const installLocaleData = (data) => {
 };
 const translateText = (value, nextLanguage) => {
   const phrase = normalizePhrase(value);
+  if (phrase === 'Visits by appointment') {
+    const labels = {
+      en: 'Visits by appointment',
+      hi: 'पूर्व नियुक्ति से मुलाक़ात',
+      es: 'Visitas con cita previa',
+      de: 'Besuche nach Vereinbarung',
+      fr: 'Visites sur rendez-vous'
+    };
+    return labels[nextLanguage] || phrase;
+  }
   if (value.includes('\n') && !Object.keys(localeTranslations).some((locale) => {
     const key = sourcePhrases[locale] && sourcePhrases[locale][phrase.toLowerCase()];
     return key && key === phrase;
