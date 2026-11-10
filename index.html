@@ -10,10 +10,14 @@ permalink: /
   <meta property="og:title" content="Devagya Vastu | Architectural Spatial Planning &amp; Interior Design">
   <meta property="og:description" content="An architectural spatial-design practice integrating Vastu principles, site conditions and interior design consultation for contemporary spaces.">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Devagya Vastu">
   <meta property="og:url" content="https://devagyavastu.com/">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://devagyavastu.com/logo-full.jpg">
+  <meta property="og:image:alt" content="Devagya Vastu and Signature Spaces brand mark">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Devagya Vastu | Architectural Spatial Planning &amp; Interior Design">
   <meta name="twitter:description" content="An architectural spatial-design practice integrating Vastu principles, site conditions and interior design consultation for contemporary spaces.">
+  <meta name="twitter:image" content="https://devagyavastu.com/logo-full.jpg">
   <meta name="theme-color" content="#0A0A0A">
   <link rel="manifest" href="manifest.webmanifest">
   <title>Devagya Vastu | Architectural Vastu &amp; Interior Design</title>
@@ -33,22 +37,43 @@ permalink: /
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Devagya Vastu",
-      "url": "https://devagyavastu.com/",
-      "email": "devagyavastu@gmail.com",
-      "telephone": "+91 94674 96725",
-      "serviceType": ["Architectural spatial planning", "Vastu consultation", "Interior design consultation"]
-    }
-  </script>
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Devagya Vastu",
-      "url": "https://devagyavastu.com/",
-      "email": "devagyavastu@gmail.com",
-      "telephone": "+91 94674 96725"
+      "@graph": [
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://devagyavastu.com/#organization",
+          "name": "Devagya Vastu",
+          "alternateName": "Devagya Vastu & Signature Spaces",
+          "url": "https://devagyavastu.com/",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1549 Ground Floor, Uttam Nagar",
+            "addressLocality": "Hisar",
+            "addressRegion": "Haryana",
+            "postalCode": "125001",
+            "addressCountry": "IN"
+          },
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://devagyavastu.com/logo-full.jpg"
+          },
+          "email": "devagyavastu@gmail.com",
+          "telephone": "+91 94674 96725",
+          "sameAs": ["https://www.instagram.com/devagyavastu/"],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "email": "devagyavastu@gmail.com",
+            "telephone": "+91 94674 96725"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://devagyavastu.com/#website",
+          "url": "https://devagyavastu.com/",
+          "name": "Devagya Vastu",
+          "publisher": {"@id": "https://devagyavastu.com/#organization"}
+        }
+      ]
     }
   </script>
 </head>
