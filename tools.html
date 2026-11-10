@@ -38,6 +38,29 @@ redirect_from:
   <main id="main-content">
     <section class="page-hero"><div class="container"><p class="eyebrow">Practical planning aids</p><h1 class="display" data-i18n="toolsTitle">Vastu tools for clearer design conversations.</h1><p class="page-answer" data-i18n="toolsIntro">Devagya Vastu offers traditional Vastu consultation alongside architectural spatial planning and interior design. These interactive tools help organise questions and project information; they do not measure Vastu compliance or replace site surveys, professional design or code review.</p></div></section>
     <section class="section" style="padding-top:16px"><div class="container tool-grid">
+      <article class="planning-tool" id="direction-check">
+        <p class="eyebrow">Directional planning prompt</p><h2>Start with a verified orientation.</h2>
+        <p>Choose the direction of the main entrance only after checking north on a measured or otherwise reliable site plan. This is a planning prompt, not an energetic zone rating or prediction.</p>
+        <label for="entryDirection">Which direction does your main entrance face?
+          <select id="entryDirection" required>
+            <option value="">Choose an entrance direction</option>
+            <option value="north">North</option>
+            <option value="north-east">North-east</option>
+            <option value="east">East</option>
+            <option value="south-east">South-east</option>
+            <option value="south">South</option>
+            <option value="south-west">South-west</option>
+            <option value="west">West</option>
+            <option value="north-west">North-west</option>
+          </select>
+        </label>
+        <div class="tool-actions"><button class="button" id="checkDirection" type="button">Check direction</button></div>
+        <div class="service-result direction-result" id="directionResult" aria-live="polite" hidden>
+          <h3 id="directionResultTitle"></h3>
+          <p id="directionResultNote"></p>
+        </div>
+      </article>
+
       <article class="planning-tool" id="room-planner">
         <p class="eyebrow">01 / Room-by-room planner</p><h2 data-i18n="roomPlannerTitle">Explore a room through two lenses.</h2>
         <p>Select a room in the schematic plan. Traditional Vastu considerations are shown separately from architectural and interior-design questions. The diagram is illustrative, not a recommended layout.</p>
