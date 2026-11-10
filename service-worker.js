@@ -1,4 +1,4 @@
-const CACHE_NAME = 'devagya-tools-v5';
+const CACHE_NAME = 'devagya-tools-v6';
 const CORE_ASSETS = [
   './',
   './tools/',

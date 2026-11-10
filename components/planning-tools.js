@@ -90,6 +90,59 @@ if (roomMap) {
   });
 }
 
+const entryDirection = document.getElementById('entryDirection');
+const checkDirectionButton = document.getElementById('checkDirection');
+const directionResult = document.getElementById('directionResult');
+const directionResultTitle = document.getElementById('directionResultTitle');
+const directionResultNote = document.getElementById('directionResultNote');
+if (entryDirection && checkDirectionButton && directionResult && directionResultTitle && directionResultNote) {
+  const directionNames = {
+    north: 'North',
+    'north-east': 'North-east',
+    east: 'East',
+    'south-east': 'South-east',
+    south: 'South',
+    'south-west': 'South-west',
+    west: 'West',
+    'north-west': 'North-west'
+  };
+  const planningNote = 'Confirm the north mark against a measured site plan; then review access, door swing, daylight, privacy and circulation with your project team. Direction alone cannot assess a layout.';
+  const renderDirectionResult = () => {
+    const language = window.devagyaI18n ? window.devagyaI18n.language : 'en';
+    const translate = (text) => window.devagyaI18n ? window.devagyaI18n.translate(text, language) : text;
+    const directionName = directionNames[entryDirection.value];
+    if (!directionName) {
+      directionResult.hidden = true;
+      return;
+    }
+    directionResultTitle.replaceChildren(
+      document.createTextNode(translate('Selected entrance direction:')),
+      document.createTextNode(` ${translate(directionName)}`)
+    );
+    directionResultNote.textContent = translate(planningNote);
+    directionResult.hidden = false;
+  };
+
+  entryDirection.addEventListener('change', () => {
+    entryDirection.setCustomValidity('');
+    directionResult.hidden = true;
+  });
+  checkDirectionButton.addEventListener('click', () => {
+    if (!entryDirection.value) {
+      const message = window.devagyaI18n
+        ? window.devagyaI18n.translate('Choose a direction first.')
+        : 'Choose a direction first.';
+      entryDirection.setCustomValidity(message);
+      entryDirection.reportValidity();
+      return;
+    }
+    entryDirection.setCustomValidity('');
+    renderDirectionResult();
+    trackToolCompletion('direction-check');
+  });
+  document.addEventListener('devagya:languagechange', renderDirectionResult);
+}
+
 const readinessItems = document.querySelectorAll('#readinessItems input[name="readiness"]');
 const readinessKey = 'devagya-readiness-v1';
 const checklistProgress = document.getElementById('checklistProgress');
@@ -318,30 +371,87 @@ document.querySelectorAll('[data-date-min]').forEach((input) => {
 
 const schedulerForm = document.getElementById('schedulerForm');
 if (schedulerForm) {
+  const bookingSteps = Array.from(schedulerForm.querySelectorAll('[data-booking-step]'));
+  const bookingProgress = Array.from(schedulerForm.querySelectorAll('.booking-progress li'));
+  const bookingBack = document.getElementById('bookingBack');
+  const bookingNext = document.getElementById('bookingNext');
+  const bookingSubmit = document.getElementById('bookingSubmit');
+  let activeBookingStep = 0;
+
+  const renderBookingStep = () => {
+    bookingSteps.forEach((step, index) => {
+      step.hidden = index !== activeBookingStep;
+    });
+    bookingProgress.forEach((step, index) => {
+      if (index === activeBookingStep) step.setAttribute('aria-current', 'step');
+      else step.removeAttribute('aria-current');
+    });
+    bookingBack.disabled = activeBookingStep === 0;
+    bookingNext.hidden = activeBookingStep === bookingSteps.length - 1;
+    bookingSubmit.hidden = activeBookingStep !== bookingSteps.length - 1;
+  };
+  const invalidFieldIn = (step) => Array.from(step.querySelectorAll('input, select, textarea'))
+    .find((field) => !field.checkValidity());
+  const showBookingStep = (index, focusField = false) => {
+    activeBookingStep = index;
+    renderBookingStep();
+    const firstField = bookingSteps[index].querySelector('input, select, textarea');
+    if (focusField && firstField) firstField.focus();
+  };
+
+  bookingSubmit.setAttribute('formnovalidate', '');
+  renderBookingStep();
+  bookingNext.addEventListener('click', () => {
+    const invalidField = invalidFieldIn(bookingSteps[activeBookingStep]);
+    if (invalidField) {
+      invalidField.reportValidity();
+      return;
+    }
+    showBookingStep(Math.min(activeBookingStep + 1, bookingSteps.length - 1), true);
+  });
+  bookingBack.addEventListener('click', () => {
+    showBookingStep(Math.max(activeBookingStep - 1, 0), true);
+  });
+
   schedulerForm.addEventListener('submit', async (event) => {
     event.preventDefault();
+    const invalidStep = bookingSteps.findIndex((step) => invalidFieldIn(step));
+    if (invalidStep !== -1) {
+      showBookingStep(invalidStep);
+      invalidFieldIn(bookingSteps[invalidStep]).reportValidity();
+      return;
+    }
     if (!schedulerForm.reportValidity()) return;
     const from = schedulerForm.elements.preferred_date_from.value;
     const to = schedulerForm.elements.preferred_date_to.value;
     const status = document.getElementById('schedulerStatus');
     if (to < from) {
-      schedulerForm.elements.preferred_date_to.setCustomValidity('Choose an end date on or after the start date.');
+      showBookingStep(1);
+      const dateOrderError = 'Choose an end date on or after the start date.';
+      const message = window.devagyaI18n
+        ? window.devagyaI18n.translate(dateOrderError, window.devagyaI18n.language)
+        : dateOrderError;
+      schedulerForm.elements.preferred_date_to.setCustomValidity(message);
       schedulerForm.elements.preferred_date_to.reportValidity();
       schedulerForm.elements.preferred_date_to.addEventListener('input', () => schedulerForm.elements.preferred_date_to.setCustomValidity(''), { once: true });
       return;
     }
-    const button = schedulerForm.querySelector('button[type="submit"]');
-    button.disabled = true;
+    bookingSubmit.disabled = true;
+    bookingBack.disabled = true;
+    bookingNext.disabled = true;
     status.textContent = 'Sending your consultation request...';
     try {
       await window.devagyaForms.submit(schedulerForm);
       schedulerForm.reset();
+      showBookingStep(0);
       trackToolCompletion('consultation-scheduler');
       status.textContent = 'Your request was sent. Devagya Vastu will confirm actual availability directly.';
     } catch (error) {
       status.textContent = 'We could not confirm delivery. Please try again or contact Devagya Vastu directly.';
     } finally {
-      button.disabled = false;
+      bookingSubmit.disabled = false;
+      bookingBack.disabled = activeBookingStep === 0;
+      bookingNext.disabled = false;
     }
   });
 }

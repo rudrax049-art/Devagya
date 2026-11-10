@@ -42,19 +42,50 @@ redirect_from:
         <input type="hidden" name="access_key" value="06802d3b-83fc-4107-9cf8-57fff3706002">
         <input type="hidden" name="subject" value="Consultation request - Devagya Vastu">
         <input type="hidden" name="from_name" value="Devagya Website">
-        <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
-        <label>Name <input name="name" autocomplete="name" required></label>
-        <label>Email <input type="email" name="email" autocomplete="email" required></label>
-        <label>Preferred date from <input type="date" name="preferred_date_from" data-date-min required></label>
-        <label>Preferred date to <input type="date" name="preferred_date_to" data-date-min required></label>
-        <label>Preferred mode
-          <select name="preferred_mode" required><option value="">Choose one</option><option>Online video call</option><option>Phone</option><option>In person, if practical</option></select>
-        </label>
-        <label>City / time zone <input name="time_zone" autocomplete="address-level2" placeholder="City and country" required></label>
-        <label class="full">What would you like to discuss? <textarea name="request_notes" rows="4" required></textarea></label>
+        <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" hidden>
+        <ol class="booking-progress full" aria-label="Consultation request steps">
+          <li aria-current="step"><span>1</span><span>Service</span></li>
+          <li><span>2</span><span>Timing</span></li>
+          <li><span>3</span><span>Details</span></li>
+        </ol>
+        <fieldset class="booking-step full" data-booking-step="0">
+          <legend>Step 1 of 3: Service and property</legend>
+          <label>Which service are you considering?
+            <select name="service" required><option value="">Select a service</option><option value="traditional-vastu-consultation">Traditional Vastu consultation</option><option value="architectural-spatial-planning">Architectural spatial planning</option><option value="interior-design-consultation">Interior design consultation</option></select>
+          </label>
+          <label>Property type
+            <select name="property_type" required><option value="">Select property type</option><option value="residential">Residential</option><option value="commercial">Commercial</option><option value="industrial">Industrial</option></select>
+          </label>
+          <label>Approximate built-up area (sq. ft.), if known
+            <input type="number" name="built_up_area_sq_ft" min="1" step="1" inputmode="numeric">
+          </label>
+        </fieldset>
+        <fieldset class="booking-step full" data-booking-step="1">
+          <legend>Step 2 of 3: Preferred dates and format</legend>
+          <label>Preferred date from <input type="date" name="preferred_date_from" data-date-min required></label>
+          <label>Preferred date to <input type="date" name="preferred_date_to" data-date-min required></label>
+          <label>Preferred mode
+            <select name="preferred_mode" required><option value="">Choose one</option><option value="online-video-call">Online video call</option><option value="phone">Phone</option><option value="in-person-if-practical">In person, if practical</option></select>
+          </label>
+          <label>Preferred time of day
+            <select name="preferred_time"><option value="">No preference</option><option value="morning">Morning</option><option value="afternoon">Afternoon</option><option value="evening">Evening</option></select>
+          </label>
+          <label class="full">Project city / time zone <input name="time_zone" autocomplete="address-level2" placeholder="City and country" required></label>
+        </fieldset>
+        <fieldset class="booking-step full" data-booking-step="2">
+          <legend>Step 3 of 3: Contact and project details</legend>
+          <label>Name <input name="name" autocomplete="name" required></label>
+          <label>Email <input type="email" name="email" autocomplete="email" required></label>
+          <label>Phone or WhatsApp number (optional) <input name="phone" type="tel" autocomplete="tel"></label>
+          <label class="full">Anything else we should know? (optional) <textarea name="request_notes" rows="4"></textarea></label>
+        </fieldset>
+        <div class="tool-actions full booking-actions">
+          <button class="button button-secondary" id="bookingBack" type="button" disabled>Back</button>
+          <button class="button" id="bookingNext" type="button">Continue</button>
+          <button class="button" id="bookingSubmit" type="submit">Send consultation request</button>
+        </div>
         <p class="quiet-disclaimer full">The preferred dates are requests only. No live availability is displayed, and submitting this form does not reserve a time.</p>
         <p class="tool-status full" id="schedulerStatus" role="status" aria-live="polite"></p>
-        <button class="button full" type="submit">Send consultation request</button>
       </form>
       <div class="quiet-disclaimer" style="margin-top:24px"><!-- CUSTOMIZE: add a third-party scheduler only after the owner supplies and approves its URL. --><strong>Optional scheduler embed:</strong> No third-party booking URL has been supplied. Until one is provided, consultation timing is coordinated directly after an enquiry.</div>
     </div></section>

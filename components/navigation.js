@@ -45,7 +45,8 @@ const icon = (name) => {
   const paths = {
     whatsapp: '<path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.4-4.7A8.5 8.5 0 1 1 20.5 11.8Z"/><path d="M8.5 8.3c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4 0 .6l-.5.7c-.2.2-.2.4 0 .6.3.6 1.2 1.6 2.5 2.1.3.1.5.1.7-.1l.8-.9c.2-.2.4-.2.6-.1l1.6.8c.3.1.4.3.4.5 0 .3-.2 1.3-.9 1.8-.6.5-1.4.6-2.3.3-1-.3-2.3-.8-3.9-2.2-1.3-1.2-2.2-2.6-2.4-3.5-.3-.9 0-1.7.5-2.2Z"/>',
     phone: '<path d="M21 16.5v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.1 3.7 2 2 0 0 1 3.1 1.5h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L7 9.5a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2.1Z"/>',
-    email: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/>'
+    email: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/>',
+    calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/>'
   };
   return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${paths[name]}</svg>`;
 };
@@ -70,6 +71,7 @@ const headerMarkup = `
             <a href="${sitePage('insights')}">Insights <small>Notes on Vastu and spatial design</small></a>
             <a href="${sitePage('tools')}">Planning tools <small>Practical, non-certified planning aids</small></a>
             <a href="${sitePage('about')}">About Devagya <small>Our philosophy and approach</small></a>
+            <a href="https://youtube.com/@devagyavastu" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Devagya Vastu YouTube channel">YouTube <small>@devagyavastu</small></a>
             <a href="${sitePage('faq')}">FAQ <small>Answers about the process</small></a>
           </div>
         </div>
@@ -89,9 +91,10 @@ const headerMarkup = `
     </div>
   </header>
   <div class="contact-dock" aria-label="Contact Devagya">
-    <a class="dock-link dock-whatsapp" href="${contactLinks.whatsapp}" aria-label="Open WhatsApp" title="WhatsApp">${icon('whatsapp')}<span>WhatsApp</span></a>
+    <a class="dock-link dock-whatsapp" href="${contactLinks.whatsapp}?text=${encodeURIComponent('Hello Devagya Vastu, I would like to book a consultation for my property.')}" aria-label="Open WhatsApp" title="WhatsApp">${icon('whatsapp')}<span>WhatsApp</span></a>
     <a class="dock-link dock-phone" href="${contactLinks.phone}" aria-label="Call Devagya" title="Call">${icon('phone')}<span>Call</span></a>
     <a class="dock-link dock-email" href="${contactLinks.email}" aria-label="Email Devagya" title="Email">${icon('email')}<span>Email</span></a>
+    <a class="dock-link dock-book" href="${sitePage('book')}" aria-label="Book consultation" title="Book consultation">${icon('calendar')}<span>Book</span></a>
   </div>`;
 
 const footerMarkup = `
@@ -119,6 +122,7 @@ const footerMarkup = `
         <a href="${contactLinks.phone}">+91 94674 96725</a>
         <a href="${contactLinks.email}">devagyavastu@gmail.com</a>
         <a href="${contactLinks.instagram}" target="_blank" rel="noopener noreferrer" aria-label="Instagram @devagyavastu">@devagyavastu on Instagram</a>
+        <a href="https://youtube.com/@devagyavastu" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Devagya Vastu YouTube channel">YouTube · @devagyavastu</a>
         <address class="footer-address"><span>1549 Ground Floor, Uttam Nagar, Hisar, Haryana 125001, India</span><span>Visits by appointment</span></address>
       </div>
     </div>
@@ -282,6 +286,8 @@ const hindiTranslations = {
   'VASTU & SIGNATURE SPACES': 'वास्तु और विशिष्ट स्थान',
   'Open WhatsApp': 'व्हाट्सऐप खोलें',
   'Call Devagya': 'देवग्या को कॉल करें',
+  'Book consultation': 'परामर्श बुक करें',
+  'Visit the official Devagya Vastu YouTube channel': 'देवग्या वास्तु का आधिकारिक YouTube चैनल देखें',
   'Email Devagya': 'देवग्या को ईमेल करें',
   'WhatsApp Devagya Vastu': 'देवग्या वास्तु को व्हाट्सऐप करें',
   '© ': '© ',
@@ -689,8 +695,232 @@ const installLocaleData = (data) => {
     addTranslationMap(locale, data[locale]);
   });
 };
+const customLocalePhrases = {
+  'Book consultation': {
+    hi: 'परामर्श बुक करें',
+    es: 'Reservar consulta',
+    de: 'Beratung buchen',
+    fr: 'Réserver une consultation'
+  },
+  'Book': {
+    hi: 'बुक करें',
+    es: 'Reservar',
+    de: 'Buchen',
+    fr: 'Réserver'
+  },
+  'Visit the official Devagya Vastu YouTube channel': {
+    hi: 'देवग्या वास्तु का आधिकारिक YouTube चैनल देखें',
+    es: 'Visita el canal oficial de YouTube de Devagya Vastu',
+    de: 'Besuche den offiziellen YouTube-Kanal von Devagya Vastu',
+    fr: 'Visitez la chaîne YouTube officielle de Devagya Vastu'
+  },
+  'Consultation request steps': {
+    hi: 'परामर्श अनुरोध के चरण',
+    es: 'Pasos para solicitar una consulta',
+    de: 'Schritte zur Beratungsanfrage',
+    fr: 'Étapes de la demande de consultation'
+  },
+  'Service': { hi: 'सेवा', es: 'Servicio', de: 'Leistung', fr: 'Service' },
+  'Timing': { hi: 'समय', es: 'Fechas', de: 'Termin', fr: 'Dates' },
+  'Details': { hi: 'विवरण', es: 'Datos', de: 'Angaben', fr: 'Coordonnées' },
+  'Step 1 of 3: Service and property': {
+    hi: 'चरण 1/3: सेवा और संपत्ति',
+    es: 'Paso 1 de 3: Servicio e inmueble',
+    de: 'Schritt 1 von 3: Leistung und Objekt',
+    fr: 'Étape 1 sur 3 : Service et bien immobilier'
+  },
+  'Step 2 of 3: Preferred dates and format': {
+    hi: 'चरण 2/3: पसंदीदा तारीखें और माध्यम',
+    es: 'Paso 2 de 3: Fechas y modalidad preferidas',
+    de: 'Schritt 2 von 3: Wunschtermin und Format',
+    fr: 'Étape 2 sur 3 : Dates et format souhaités'
+  },
+  'Step 3 of 3: Contact and project details': {
+    hi: 'चरण 3/3: संपर्क और परियोजना विवरण',
+    es: 'Paso 3 de 3: Contacto y detalles del proyecto',
+    de: 'Schritt 3 von 3: Kontakt und Projektdetails',
+    fr: 'Étape 3 sur 3 : Contact et détails du projet'
+  },
+  'Which service are you considering?': {
+    hi: 'आप किस सेवा पर विचार कर रहे हैं?',
+    es: '¿Qué servicio está considerando?',
+    de: 'Welche Leistung kommt für Sie infrage?',
+    fr: 'Quel service envisagez-vous ?'
+  },
+  'Traditional Vastu consultation': {
+    hi: 'पारंपरिक वास्तु परामर्श',
+    es: 'Consulta de Vastu tradicional',
+    de: 'Traditionelle Vastu-Beratung',
+    fr: 'Consultation Vastu traditionnelle'
+  },
+  'Architectural spatial planning': {
+    hi: 'वास्तुशिल्पीय स्थानिक योजना',
+    es: 'Planificación espacial arquitectónica',
+    de: 'Architektonische Raumplanung',
+    fr: 'Planification spatiale architecturale'
+  },
+  'Interior design consultation': {
+    hi: 'इंटीरियर डिज़ाइन परामर्श',
+    es: 'Consulta de diseño de interiores',
+    de: 'Beratung zur Innenraumgestaltung',
+    fr: 'Consultation en design d’intérieur'
+  },
+  'Select a service': {
+    hi: 'सेवा चुनें',
+    es: 'Elija un servicio',
+    de: 'Leistung auswählen',
+    fr: 'Choisissez un service'
+  },
+  'Select property type': {
+    hi: 'संपत्ति का प्रकार चुनें',
+    es: 'Elija el tipo de inmueble',
+    de: 'Objekttyp auswählen',
+    fr: 'Choisissez le type de bien'
+  },
+  'Residential': {
+    hi: 'आवासीय',
+    es: 'Residencial',
+    de: 'Wohnen',
+    fr: 'Résidentiel'
+  },
+  'Commercial': {
+    hi: 'व्यावसायिक',
+    es: 'Comercial',
+    de: 'Gewerblich',
+    fr: 'Commercial'
+  },
+  'Industrial': {
+    hi: 'औद्योगिक',
+    es: 'Industrial',
+    de: 'Industriell',
+    fr: 'Industriel'
+  },
+  'Approximate built-up area (sq. ft.), if known': {
+    hi: 'अनुमानित निर्मित क्षेत्रफल (वर्ग फुट), यदि ज्ञात हो',
+    es: 'Superficie construida aproximada (pies²), si la conoce',
+    de: 'Ungefähre bebaute Fläche (sq ft), falls bekannt',
+    fr: 'Surface construite approximative (pi²), si connue'
+  },
+  'Preferred time of day': {
+    hi: 'दिन का पसंदीदा समय',
+    es: 'Horario preferido',
+    de: 'Bevorzugte Tageszeit',
+    fr: 'Moment de la journée souhaité'
+  },
+  'No preference': {
+    hi: 'कोई प्राथमिकता नहीं',
+    es: 'Sin preferencia',
+    de: 'Keine Präferenz',
+    fr: 'Sans préférence'
+  },
+  'Morning': {
+    hi: 'सुबह',
+    es: 'Mañana',
+    de: 'Vormittag',
+    fr: 'Matin'
+  },
+  'Afternoon': {
+    hi: 'दोपहर',
+    es: 'Tarde',
+    de: 'Nachmittag',
+    fr: 'Après-midi'
+  },
+  'Evening': {
+    hi: 'शाम',
+    es: 'Noche',
+    de: 'Abend',
+    fr: 'Soir'
+  },
+  'Phone or WhatsApp number (optional)': {
+    hi: 'फ़ोन या WhatsApp नंबर (वैकल्पिक)',
+    es: 'Teléfono o número de WhatsApp (opcional)',
+    de: 'Telefon- oder WhatsApp-Nummer (optional)',
+    fr: 'Numéro de téléphone ou WhatsApp (facultatif)'
+  },
+  'Project city / time zone': {
+    hi: 'परियोजना का शहर / समय क्षेत्र',
+    es: 'Ciudad del proyecto / zona horaria',
+    de: 'Projektstadt / Zeitzone',
+    fr: 'Ville du projet / fuseau horaire'
+  },
+  'Anything else we should know? (optional)': {
+    hi: 'क्या कोई अन्य जानकारी साझा करना चाहेंगे? (वैकल्पिक)',
+    es: '¿Hay algo más que debamos saber? (opcional)',
+    de: 'Gibt es noch etwas Wichtiges? (optional)',
+    fr: 'Y a-t-il autre chose à préciser ? (facultatif)'
+  },
+  'Which direction does your main entrance face?': {
+    hi: 'आपका मुख्य प्रवेश द्वार किस दिशा में है?',
+    es: '¿Hacia qué dirección da la entrada principal?',
+    de: 'In welche Richtung zeigt der Haupteingang?',
+    fr: 'Dans quelle direction donne l’entrée principale ?'
+  },
+  'Choose an entrance direction': {
+    hi: 'प्रवेश की दिशा चुनें',
+    es: 'Elija la orientación de la entrada',
+    de: 'Eingangsrichtung auswählen',
+    fr: 'Choisissez l’orientation de l’entrée'
+  },
+  'North': { hi: 'उत्तर', es: 'Norte', de: 'Norden', fr: 'Nord' },
+  'North-east': { hi: 'उत्तर-पूर्व', es: 'Noreste', de: 'Nordosten', fr: 'Nord-est' },
+  'East': { hi: 'पूर्व', es: 'Este', de: 'Osten', fr: 'Est' },
+  'South-east': { hi: 'दक्षिण-पूर्व', es: 'Sureste', de: 'Südosten', fr: 'Sud-est' },
+  'South': { hi: 'दक्षिण', es: 'Sur', de: 'Süden', fr: 'Sud' },
+  'South-west': { hi: 'दक्षिण-पश्चिम', es: 'Suroeste', de: 'Südwesten', fr: 'Sud-ouest' },
+  'West': { hi: 'पश्चिम', es: 'Oeste', de: 'Westen', fr: 'Ouest' },
+  'North-west': { hi: 'उत्तर-पश्चिम', es: 'Noroeste', de: 'Nordwesten', fr: 'Nord-ouest' },
+  'Check direction': {
+    hi: 'दिशा जाँचें',
+    es: 'Comprobar orientación',
+    de: 'Richtung prüfen',
+    fr: 'Vérifier l’orientation'
+  },
+  'Choose a direction first.': {
+    hi: 'पहले एक दिशा चुनें।',
+    es: 'Primero elija una dirección.',
+    de: 'Wählen Sie zuerst eine Richtung.',
+    fr: 'Choisissez d’abord une direction.'
+  },
+  'Selected entrance direction:': {
+    hi: 'चुनी गई प्रवेश दिशा:',
+    es: 'Orientación de entrada seleccionada:',
+    de: 'Gewählte Eingangsrichtung:',
+    fr: 'Orientation d’entrée choisie :'
+  },
+  'Directional planning prompt': {
+    hi: 'दिशा-आधारित योजना संकेत',
+    es: 'Orientación para la planificación direccional',
+    de: 'Planungshinweis zur Ausrichtung',
+    fr: 'Repère de planification directionnelle'
+  },
+  'Start with a verified orientation.': {
+    hi: 'सत्यापित दिशा से शुरुआत करें।',
+    es: 'Empiece con una orientación verificada.',
+    de: 'Beginnen Sie mit einer geprüften Ausrichtung.',
+    fr: 'Commencez par une orientation vérifiée.'
+  },
+  'Choose a direction only after checking north on a measured or otherwise reliable site plan. This is a planning prompt, not an energetic zone rating or prediction.': {
+    hi: 'मापे गए या विश्वसनीय साइट प्लान पर उत्तर दिशा जाँचने के बाद ही दिशा चुनें। यह योजना के लिए एक संकेत है, ऊर्जा-क्षेत्र का मूल्यांकन या भविष्यवाणी नहीं।',
+    es: 'Elija una dirección solo después de comprobar el norte en un plano del sitio medido o fiable. Es una orientación para planificar, no una calificación energética ni una predicción.',
+    de: 'Wählen Sie die Richtung erst, nachdem Sie Norden auf einem vermessenen oder anderweitig verlässlichen Lageplan geprüft haben. Dies ist ein Planungshinweis, keine energetische Bewertung oder Vorhersage.',
+    fr: 'Choisissez une direction uniquement après avoir vérifié le nord sur un plan de site mesuré ou fiable. Il s’agit d’un repère de planification, pas d’une évaluation énergétique ni d’une prédiction.'
+  },
+  'Confirm the north mark against a measured site plan; then review access, door swing, daylight, privacy and circulation with your project team. Direction alone cannot assess a layout.': {
+    hi: 'मापे गए साइट प्लान से उत्तर दिशा की पुष्टि करें; फिर अपनी परियोजना टीम के साथ पहुँच, दरवाज़े के खुलने की दिशा, दिन का प्रकाश, निजता और आवागमन देखें। केवल दिशा से लेआउट का आकलन नहीं किया जा सकता।',
+    es: 'Confirme el norte en un plano del sitio medido; después revise con su equipo el acceso, la apertura de la puerta, la luz natural, la privacidad y la circulación. La orientación por sí sola no permite evaluar una distribución.',
+    de: 'Prüfen Sie die Nordmarkierung anhand eines vermessenen Lageplans. Besprechen Sie anschließend Zugang, Türanschlag, Tageslicht, Privatsphäre und Wegeführung mit Ihrem Projektteam. Die Richtung allein bewertet keinen Grundriss.',
+    fr: 'Vérifiez le nord à l’aide d’un plan de site mesuré, puis examinez avec votre équipe l’accès, le sens d’ouverture de la porte, la lumière naturelle, l’intimité et la circulation. La direction seule ne permet pas d’évaluer un plan.'
+  }
+};
 const translateText = (value, nextLanguage) => {
   const phrase = normalizePhrase(value);
+  const customSource = Object.keys(customLocalePhrases).find((source) => (
+    Object.keys(customLocalePhrases[source]).some((locale) => customLocalePhrases[source][locale] === phrase)
+  ));
+  if (customSource) return customLocalePhrases[customSource][nextLanguage] || customSource;
+  if (customLocalePhrases[phrase]) {
+    return customLocalePhrases[phrase][nextLanguage] || phrase;
+  }
   if (phrase === 'Visits by appointment') {
     const labels = {
       en: 'Visits by appointment',
