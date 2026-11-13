@@ -14,6 +14,7 @@
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", Arial, sans-serif;
   --font-mono: "JetBrains Mono", Consolas, monospace;
+  --mono: var(--font-mono);
 
   --black: var(--text-primary-obsidian);
   --navy: var(--text-primary-obsidian);
@@ -243,6 +244,8 @@ section { padding-block: clamp(4.5rem, 9vw, 8.5rem); }
 .spatial-dial-grid { padding: 12px; border: 1px solid var(--border-architectural-hairline); border-radius: 7px; background: var(--bg-secondary-sandstone); }
 .spatial-dial-reference { border-color: var(--border-architectural-hairline) !important; border-radius: 5px; background: var(--bg-elevated-surface) !important; color: var(--text-secondary-slate) !important; }
 .spatial-dial-reference:hover, .spatial-dial-reference[aria-pressed="true"] { border-color: var(--trust-biophilic-sage) !important; background: var(--trust-biophilic-sage) !important; color: var(--bg-primary-alabaster) !important; }
+.tools-page .devta-group .spatial-dial-reference { border-color: rgba(245,245,240,.2) !important; background: #121318 !important; color: #F5F5F0 !important; }
+.tools-page .devta-group .spatial-dial-reference:hover, .tools-page .devta-group .spatial-dial-reference[aria-pressed="true"] { border-color: #D4AF37 !important; background: rgba(212,175,55,.16) !important; color: #D4AF37 !important; }
 .luxury-form-grid output { color: var(--trust-biophilic-sage) !important; font-family: var(--font-mono); }
 .luxury-form-grid input[type="range"] { accent-color: var(--trust-biophilic-sage); }
 .zone-analysis { border-color: rgba(44, 74, 62, .25); background: rgba(44, 74, 62, .05); }
@@ -380,7 +383,8 @@ section { padding-block: clamp(4.5rem, 9vw, 8.5rem); }
   .service-pillar-grid { grid-template-columns: 1fr; }
   .service-pillar, .service-pillar:nth-child(2) { border-right: 0; }
   .service-pillar + .service-pillar { border-top: 1px solid var(--border-architectural-hairline); }
-  .tools-page .spatial-dial-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .tools-page .spatial-dial-grid { grid-template-columns: 1fr; }
+  .tools-page .devta-group-outer { grid-column: auto; }
   .tools-page .planning-tool { padding: 20px; }
   .direct-cards { grid-template-columns: 1fr; }
 }

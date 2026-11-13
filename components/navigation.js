@@ -456,12 +456,8 @@ const hindiTranslations = {
   '07 / Consultation request': '07 / परामर्श अनुरोध',
   'Ask about a consultation time.': 'परामर्श के समय के बारे में पूछें।',
   'Share a preferred date range and meeting mode. Devagya confirms availability directly; the website does not display invented or live open slots.': 'अपनी पसंद की तारीखें और बैठक का तरीका बताएँ। देवग्या उपलब्धता की पुष्टि सीधे करेगा; वेबसाइट पर काल्पनिक या लाइव समय नहीं दिखाए जाते।',
-  '08 / Starter guide': '08 / शुरुआती मार्गदर्शिका',
-  'Request the spatial planning starter guide.': 'स्थानिक योजना की शुरुआती मार्गदर्शिका का अनुरोध करें।',
-  'The guide is not available yet. We will not collect your email until an approved PDF is supplied.': 'मार्गदर्शिका अभी उपलब्ध नहीं है। स्वीकृत PDF मिलने तक आपका ईमेल नहीं लिया जाएगा।',
   'Email address': 'ईमेल पता',
-  'Request the guide': 'मार्गदर्शिका का अनुरोध करें',
-  '09 / Language': '09 / भाषा',
+  '08 / Language': '08 / भाषा',
   'Traditional guidance may consider entry direction and its relationship to the plan. Treat these as discussion prompts, not universal placement rules.': 'पारंपरिक मार्गदर्शन में प्रवेश की दिशा और योजना से उसके संबंध पर विचार किया जा सकता है। इसे चर्चा के संकेत मानें, सार्वभौमिक स्थान-नियम नहीं।',
   'Review clear access, door swing, weather protection, daylight, privacy and an unobstructed route into the home.': 'सुगम पहुँच, दरवाज़े के खुलने की दिशा, मौसम से सुरक्षा, प्राकृतिक रोशनी, निजता और घर तक बिना रुकावट के रास्ते की समीक्षा करें।',
   'Consider how the room relates to the wider directional framework and the intended use of shared space.': 'कमरे का व्यापक दिशात्मक ढाँचे और साझा स्थान के प्रस्तावित उपयोग से संबंध देखें।',
@@ -654,7 +650,6 @@ const hindiTranslations = {
   'Sending your consultation request...': 'परामर्श अनुरोध भेजा जा रहा है...',
   'Your request was sent. Devagya Vastu will confirm actual availability directly.': 'आपका अनुरोध भेज दिया गया। देवग्या वास्तु वास्तविक उपलब्धता की सीधे पुष्टि करेगा।',
   'We could not confirm delivery. Please try again or contact Devagya Vastu directly.': 'भेजे जाने की पुष्टि नहीं हो सकी। फिर कोशिश करें या सीधे देवग्या वास्तु से संपर्क करें।',
-  'The guide is not available yet. We will not collect your email until an approved PDF is supplied.': 'मार्गदर्शिका अभी उपलब्ध नहीं है। स्वीकृत PDF मिलने तक आपका ईमेल नहीं लिया जाएगा।',
   'This is your preferred consultation date, not a confirmed appointment. Please share your time zone and preferred time so our team can check actual availability.': 'यह आपकी पसंदीदा परामर्श तारीख है, पक्की नियुक्ति नहीं। उपलब्धता जाँचने के लिए अपना समय क्षेत्र और पसंदीदा समय बताएँ।',
   'Consultation request': 'परामर्श अनुरोध',
   'Select a room in the schematic plan. Traditional Vastu considerations are shown separately from architectural and interior-design questions. The diagram is illustrative, not a recommended layout.': 'योजनाबद्ध नक्शे में एक कमरा चुनें। पारंपरिक वास्तु विचारों को वास्तुकला और इंटीरियर से जुड़े प्रश्नों से अलग दिखाया गया है। यह चित्र केवल उदाहरण है, सुझाया गया लेआउट नहीं।'
@@ -968,17 +963,6 @@ const translateText = (value, nextLanguage) => {
     if (nextLanguage === 'de') return `${percentage}% des angepassten Plans sichtbar`;
     if (nextLanguage === 'fr') return `${percentage} % du plan ajusté visible`;
     return `${percentage}% adjusted plan visible`;
-  }
-  const gridReference = phrase.match(/^Classical 45-zone grid reference (\d+)$/);
-  if (gridReference) {
-    const labels = {
-      en: `Classical 45-zone grid reference ${gridReference[1]}`,
-      hi: `पारंपरिक 45-क्षेत्र ग्रिड संदर्भ ${gridReference[1]}`,
-      es: `Referencia de cuadrícula clásica de 45 zonas ${gridReference[1]}`,
-      de: `Klassische 45-Zonen-Rasterreferenz ${gridReference[1]}`,
-      fr: `Référence de grille classique à 45 zones ${gridReference[1]}`
-    };
-    return labels[nextLanguage];
   }
   const rejectedFile = phrase.match(/^(.+) was not added\. Use a PDF, PNG or JPG under 10 MB\.$/);
   if (rejectedFile) {
