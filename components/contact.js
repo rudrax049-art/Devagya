@@ -4,6 +4,7 @@ const uploadList = document.getElementById('uploadList');
 const intakeForm = document.getElementById('projectIntakeForm');
 const intakeMessage = document.getElementById('intakeMessage');
 const blueprintNames = document.getElementById('blueprintNames');
+const fileWhatsAppAction = document.getElementById('fileWhatsAppAction');
 const intakeSubmitButton = intakeForm && intakeForm.querySelector('button[type="submit"]');
 const maximumFileSize = 10 * 1024 * 1024;
 const acceptedFileTypes = ['application/pdf', 'image/png', 'image/jpeg'];
@@ -41,6 +42,42 @@ function renderFileNames(validFiles, rejectedFiles) {
     item.style.color = '#bd3c3c';
     uploadList.appendChild(item);
   });
+  updateWhatsAppAction(validFiles);
+}
+
+function updateWhatsAppAction(files) {
+  if (!fileWhatsAppAction || !intakeForm) return;
+  if (!files.length) {
+    fileWhatsAppAction.hidden = true;
+    fileWhatsAppAction.removeAttribute('href');
+    return;
+  }
+  const fieldLabels = {
+    name: 'Name',
+    phone: 'Phone / WhatsApp',
+    email: 'Email',
+    location: 'Project location',
+    scope: 'Project scope',
+    site_status: 'Site status',
+    frustrations: 'Project questions'
+  };
+  const details = Object.keys(fieldLabels)
+    .map((name) => {
+      const field = intakeForm.elements.namedItem(name);
+      return field && field.value.trim() ? `${fieldLabels[name]}: ${field.value.trim()}` : '';
+    })
+    .filter(Boolean);
+  const filenames = Array.from(files, (file) => file.name);
+  const message = [
+    'Hi Devagya Vastu, I would like to share my project brief and floor plan for a consultation.',
+    ...details,
+    `Selected plan files: ${filenames.join(', ')}`,
+    'I will attach the selected drawing(s) in this WhatsApp chat.'
+  ].join('\n');
+  fileWhatsAppAction.href = `https://wa.me/919467496725?text=${encodeURIComponent(message)}`;
+  const label = filenames.length > 1 ? `${filenames[0]} + ${filenames.length - 1} more` : filenames[0];
+  fileWhatsAppAction.textContent = `Submit Brief & Send ${label} via WhatsApp (+91 94674 96725) ↗`;
+  fileWhatsAppAction.hidden = false;
 }
 
 if (fileInput) {
@@ -67,6 +104,8 @@ if (dropZone) {
 }
 
 if (intakeForm) {
+  intakeForm.addEventListener('input', () => updateWhatsAppAction(fileInput ? fileInput.files : []));
+  intakeForm.addEventListener('change', () => updateWhatsAppAction(fileInput ? fileInput.files : []));
   intakeForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (!intakeForm.reportValidity()) return;
@@ -80,8 +119,9 @@ if (intakeForm) {
       intakeForm.reset();
       if (uploadList) uploadList.replaceChildren();
       if (blueprintNames) blueprintNames.value = '';
+      updateWhatsAppAction([]);
       intakeMessage.classList.add('is-success');
-      intakeMessage.textContent = 'Your enquiry was received. We will be in touch; please attach any plans when you reply.';
+      intakeMessage.textContent = 'Your enquiry was received. We will be in touch shortly; you can also share your selected plans with us on WhatsApp.';
     } catch (error) {
       intakeMessage.classList.add('is-error');
       intakeMessage.textContent = 'We could not confirm delivery. Please try again or contact us directly by email or WhatsApp.';

@@ -34,7 +34,7 @@ function updateSelectedDate() {
     fr: `Bonjour, Devagya. Je souhaiterais demander une consultation en aménagement de l’espace le ${formattedDate}. Mon fuseau horaire et l’heure qui me conviendrait sont :`
   }[language] || `Hello Devagya, I would like to request a spatial design consultation on ${formattedDate}. My time zone and preferred time are:`;
   modalTitle.textContent = formattedDate;
-  modalDetails.textContent = 'This is your preferred consultation date, not a confirmed appointment. Please share your time zone and preferred time so our team can check actual availability.';
+  modalDetails.textContent = 'Share your time zone and preferred time so our studio team can confirm a convenient slot via WhatsApp or email within 24 hours.';
   whatsappDateLink.href = `https://wa.me/919467496725?text=${encodeURIComponent(messageText)}`;
 }
 
