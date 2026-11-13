@@ -72,7 +72,7 @@ const headerMarkup = `
             <a href="${sitePage('tools')}">Planning tools <small>Practical, non-certified planning aids</small></a>
             <a href="${sitePage('about')}">About Devagya <small>Our philosophy and approach</small></a>
             <a href="https://www.instagram.com/devagyavastu/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Devagya Vastu Instagram profile">Instagram <small>@devagyavastu</small></a>
-            <a href="https://youtube.com/@devagyavastu" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Devagya Vastu YouTube channel">YouTube <small>@devagyavastu</small></a>
+            <a href="https://www.youtube.com/@devagyavastu" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Devagya Vastu YouTube channel">YouTube <small>@devagyavastu</small></a>
             <a href="${sitePage('faq')}">FAQ <small>Answers about the process</small></a>
           </div>
         </div>
@@ -127,10 +127,10 @@ const footerMarkup = `
         <a href="${contactLinks.phone}">+91 94674 96725</a>
         <a href="${contactLinks.email}">devagyavastu@gmail.com</a>
         <a href="${contactLinks.instagram}" target="_blank" rel="noopener noreferrer" aria-label="Instagram @devagyavastu">@devagyavastu on Instagram</a>
-        <a href="https://youtube.com/@devagyavastu" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Devagya Vastu YouTube channel">YouTube · @devagyavastu</a>
+        <a href="https://www.youtube.com/@devagyavastu" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Devagya Vastu YouTube channel">YouTube · @devagyavastu</a>
         <p class="footer-business-name">Devagya Vastu &amp; Signature Spaces</p>
         <address class="footer-address"><span>Studio base: 1549 Ground Floor, Uttam Nagar, Hisar, Haryana 125001, India</span><span>Visits by appointment</span></address>
-        <p class="footer-service-area"><strong>On-site:</strong> Delhi-NCR, Chandigarh, Rajasthan and pan-India. <strong>Online:</strong> architectural and Vastu plan reviews across the UAE, UK, USA, Canada and Australia.</p>
+        <p class="footer-service-area"><strong>Studio Base:</strong> Hisar, Haryana · Serving Delhi-NCR, Chandigarh &amp; Pan-India On-Site · Online Architectural Vastu Consultations Worldwide.</p>
         <p class="footer-credentials">Kashi-trained classical Vastu foundation, paired with modern Environmental Psychology and Architectural Physics.</p>
       </div>
     </div>
