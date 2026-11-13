@@ -52,25 +52,41 @@ const spatialDialGrid = document.getElementById('spatialDialGrid');
 if (spatialDialGrid) {
   const spatialDialStatus = document.getElementById('spatialDialStatus');
   const spatialDialWhatsApp = document.getElementById('spatialDialWhatsApp');
-  for (let index = 1; index <= 45; index += 1) {
-    const reference = document.createElement('button');
-    reference.type = 'button';
-    reference.className = 'spatial-dial-reference';
-    reference.textContent = String(index).padStart(2, '0');
-    reference.setAttribute('aria-pressed', 'false');
-    reference.setAttribute('aria-label', `Select spatial grid reference ${index}`);
-    reference.addEventListener('click', () => {
-      spatialDialGrid.querySelectorAll('.spatial-dial-reference').forEach((item) => item.setAttribute('aria-pressed', 'false'));
-      reference.setAttribute('aria-pressed', 'true');
-      spatialDialStatus.textContent = `Grid reference ${index} selected.`;
-      spatialDialWhatsApp.dataset.waMessage = `Hi Devagya Vastu, I would like to discuss 45-zone spatial grid reference ${index} in relation to my floor plan.`;
-      document.querySelector('#spatial-dial').dataset.activeToolState = `45-zone grid reference ${index}`;
-      document.dispatchEvent(new CustomEvent('devagya:tool-interaction', {
-        detail: { event: 'tool_interaction_45_zone_dial', zone_reference: index }
-      }));
+  const devtaGroups = window.devagyaVastuDevtaGroups || [];
+  let index = 0;
+  devtaGroups.forEach((group) => {
+    const section = document.createElement('section');
+    section.className = `devta-group devta-group-${group.id}`;
+    const heading = document.createElement('h3');
+    heading.textContent = group.label;
+    const fields = document.createElement('div');
+    fields.className = 'devta-group-fields';
+    fields.setAttribute('role', 'group');
+    fields.setAttribute('aria-label', group.label);
+    group.devtas.forEach((name) => {
+      const referenceIndex = index + 1;
+      index = referenceIndex;
+      const reference = document.createElement('button');
+      reference.type = 'button';
+      reference.className = 'spatial-dial-reference';
+      reference.textContent = `${String(referenceIndex).padStart(2, '0')} · ${name}`;
+      reference.setAttribute('aria-pressed', 'false');
+      reference.setAttribute('aria-label', `Select ${name}, Vastu Devta field ${referenceIndex}`);
+      reference.addEventListener('click', () => {
+        spatialDialGrid.querySelectorAll('.spatial-dial-reference').forEach((item) => item.setAttribute('aria-pressed', 'false'));
+        reference.setAttribute('aria-pressed', 'true');
+        spatialDialStatus.textContent = `${name} selected · ${group.label}.`;
+        spatialDialWhatsApp.dataset.waMessage = `Hi Devagya Vastu, I would like to discuss the ${name} Vastu Devta field (${group.label}) in relation to my oriented floor plan.`;
+        document.querySelector('#spatial-dial').dataset.activeToolState = `${name} · ${group.label}`;
+        document.dispatchEvent(new CustomEvent('devagya:tool-interaction', {
+          detail: { event: 'tool_interaction_45_zone_dial', devta_name: name, devta_group: group.id, zone_reference: referenceIndex }
+        }));
+      });
+      fields.appendChild(reference);
     });
-    spatialDialGrid.appendChild(reference);
-  }
+    section.append(heading, fields);
+    spatialDialGrid.appendChild(section);
+  });
 }
 
 function readStoredJson(key, fallback) {
@@ -376,6 +392,7 @@ if (recommendButton) {
       whatsappLink.dataset.waContext = 'service-recommender';
     }
     result.hidden = false;
+    title.focus();
     trackToolCompletion('service-recommender');
   });
 }
@@ -486,40 +503,6 @@ if (schedulerForm) {
   });
 }
 
-const guideForm = document.getElementById('guideForm');
-if (guideForm) {
-  const guideUrl = guideForm.dataset.guideUrl.trim();
-  const email = guideForm.querySelector('input[type="email"]');
-  const button = guideForm.querySelector('button[type="submit"]');
-  const message = document.getElementById('guideMessage');
-  const status = document.getElementById('guideStatus');
-  if (guideUrl) {
-    email.disabled = false;
-    button.disabled = false;
-    message.textContent = 'Enter your email to request the guide. The download link will appear after the form service confirms delivery.';
-    guideForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      if (!guideForm.reportValidity()) return;
-      button.disabled = true;
-      status.textContent = 'Sending your request...';
-      try {
-        await window.devagyaForms.submit(guideForm);
-        trackToolCompletion('starter-guide');
-        const download = document.createElement('a');
-        download.href = guideUrl;
-        download.textContent = 'Download the spatial planning starter guide';
-        download.className = 'text-link';
-        download.setAttribute('download', '');
-        status.replaceChildren(document.createTextNode('Your request was received. '), download);
-      } catch (error) {
-        status.textContent = 'We could not confirm delivery. Please try again later.';
-      } finally {
-        button.disabled = false;
-      }
-    });
-  }
-}
-
 const zoneButton = document.getElementById('checkVastuZone');
 if (zoneButton) {
   const roomSelect = document.getElementById('zoneRoom');
@@ -567,6 +550,7 @@ if (zoneButton) {
     zoneTitle.textContent = `${roomSelect.value} in the ${directionNames[directionSelect.value]} sector`;
     zoneCopy.textContent = `${theme}: ${guidance}`;
     zoneAnalysis.hidden = false;
+    zoneTitle.focus();
     zoneStatus.textContent = 'Zone prompt ready. Share your oriented plan to discuss the full layout.';
     document.querySelector('#vastu-zone-checker').dataset.activeToolState = `${roomSelect.value} · ${directionSelect.value}`;
     document.dispatchEvent(new CustomEvent('devagya:tool-interaction', {
@@ -589,6 +573,7 @@ if (scopeButton) {
   const scopeList = document.getElementById('scopeDeliverables');
   const scopeStatus = document.getElementById('scopeStatus');
   const formatArea = (area) => `${Number(area).toLocaleString('en-IN')} sq. ft.`;
+  propertySelect.addEventListener('change', () => propertySelect.setCustomValidity(''));
   const updateArea = () => {
     const area = Number(areaInput.value);
     areaOutput.textContent = area >= Number(areaInput.max) ? '25,000+ sq. ft.' : formatArea(area);
@@ -597,12 +582,20 @@ if (scopeButton) {
   areaInput.addEventListener('input', updateArea);
   updateArea();
   scopeButton.addEventListener('click', () => {
+    if (!propertySelect.reportValidity() || !tierSelect.reportValidity() || !areaInput.reportValidity()) return;
     const propertyTypes = {
       residential: ['Residential property', 'Room use, entrance context, orientation, circulation and interior-planning questions.'],
       commercial: ['Commercial property', 'Workplace functions, entry and circulation, functional adjacencies and available layout information.'],
-      industrial: [      'Industrial property', 'Site access, operational adjacencies and available building information for a coordinated project review.']
+      industrial: ['Industrial property', 'Site access, operational adjacencies and available building information for a coordinated project review.']
     };
-    const [propertyName, propertyScope] = propertyTypes[propertySelect.value];
+    const propertyType = propertyTypes[propertySelect.value];
+    if (!propertyType) {
+      propertySelect.setCustomValidity('Choose a property type to continue.');
+      propertySelect.reportValidity();
+      return;
+    }
+    propertySelect.setCustomValidity('');
+    const [propertyName, propertyScope] = propertyType;
     const area = Number(areaInput.value);
     const format = tierSelect.value === 'onsite' ? 'On-site laser & compass visit' : 'Online blueprint audit';
     const complexity = area > 15000 ? 'Large-format review' : area > 5000 ? 'Expanded plan review' : 'Focused plan review';
@@ -610,15 +603,16 @@ if (scopeButton) {
       ? ['Pre-visit drawing and brief review', 'Orientation and on-site spatial observations', 'Written priorities for follow-up with your design team']
       : ['Review of the oriented plan and project brief', 'Room-use, circulation and directional observations', 'Prioritised questions and next steps for your design team'];
     scopeTitle.textContent = `${complexity} · ${propertyName}`;
-    scopeCopy.textContent = `${format} for approximately ${formatArea(area)} Likely scope: ${propertyScope} Share your plan and project questions so we can confirm the review scope and next steps.`;
+    scopeCopy.textContent = `${format} for approximately ${formatArea(area)}; likely scope: ${propertyScope} Final scope and fees are confirmed after the studio reviews your brief.`;
     scopeList.replaceChildren(...deliverables.map((item) => {
       const listItem = document.createElement('li');
       listItem.textContent = item;
       return listItem;
     }));
     scopeAnalysis.hidden = false;
+    scopeTitle.focus();
     scopeStatus.textContent = 'Scope summary ready. Open WhatsApp to discuss this review with Devagya Vastu.';
-    const summary = `Hi Devagya Vastu, I would like to discuss a ${format.toLowerCase()} for a ${propertyName.toLowerCase()} of approximately ${formatArea(area)}`;
+    const summary = `Hi Devagya Vastu, I would like to discuss an ${format.toLowerCase()} for a ${propertyName.toLowerCase()} of approximately ${formatArea(area)}`;
     document.getElementById('scopeWhatsApp').dataset.waMessage = summary;
     document.querySelector('#scope-estimator').dataset.activeToolState = `${propertyName} · ${format} · ${formatArea(area)}`;
     document.dispatchEvent(new CustomEvent('devagya:tool-interaction', {

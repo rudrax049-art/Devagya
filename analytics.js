@@ -27,7 +27,9 @@
     window.dataLayer.push(arguments);
   };
 
-  const currentToolState = () => {
+  const currentToolState = (link) => {
+    const linkedTool = link && link.closest('[data-active-tool-state]');
+    if (linkedTool) return linkedTool.dataset.activeToolState;
     const activeSection = document.querySelector('[data-active-section="true"]');
     const activeTool = activeSection && (
       activeSection.closest('[data-active-tool-state]')
@@ -50,7 +52,7 @@
     getText: () => attributionText()
   });
   const prepareWhatsAppLink = (link, context) => {
-    const toolState = currentToolState();
+    const toolState = currentToolState(link);
     const contextLabel = context || currentContext();
     const currentMessage = new URL(link.href, window.location.href).searchParams.get('text') || '';
     const originalMessage = currentMessage.replace(/\n(?:Tool selection:|Enquiry context:|Traffic source:)[\s\S]*$/, '');
@@ -69,7 +71,8 @@
     return { context: contextLabel, toolState };
   };
 
-  const contextSections = Array.from(document.querySelectorAll('[data-wa-context]'));
+  const contextSections = Array.from(document.querySelectorAll('[data-wa-context]'))
+    .filter((section) => !section.matches('a, button') && section.dataset.waContext !== 'floating-contact');
   if ('IntersectionObserver' in window && contextSections.length) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

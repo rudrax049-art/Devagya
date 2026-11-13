@@ -1,11 +1,15 @@
-const CACHE_NAME = 'devagya-tools-v6';
+const CACHE_NAME = 'devagya-tools-v8';
 const CORE_ASSETS = [
   './',
   './tools/',
   './site.css',
+  './architectural.css',
+  './luxury.css',
   './assets/logo-mark-128.png',
   './components/navigation.js',
+  './components/vastu-devtas.js',
   './components/language-data.json',
+  './analytics.js',
   './components/planning-tools.js',
   './components/web3forms.js'
 ];
