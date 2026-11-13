@@ -94,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (res.ok && data && data.success === true) {
           leadForm.reset();
           if (successEl) successEl.classList.add('show');
+          document.dispatchEvent(new CustomEvent('devagya:form-success', { detail: { form: leadForm.id || 'signup-form' } }));
         } else {
           if (errorEl) errorEl.classList.add('show');
         }

@@ -14,6 +14,7 @@ window.devagyaForms = Object.freeze({
     if (!response.ok || !result || result.success !== true) {
       throw new Error('The form service did not confirm receipt.');
     }
+    document.dispatchEvent(new CustomEvent('devagya:form-success', { detail: { form: form.id || 'web3forms' } }));
     return result;
   }
 });

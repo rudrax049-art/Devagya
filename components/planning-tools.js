@@ -489,3 +489,111 @@ if (guideForm) {
     });
   }
 }
+
+const zoneButton = document.getElementById('checkVastuZone');
+if (zoneButton) {
+  const roomSelect = document.getElementById('zoneRoom');
+  const directionSelect = document.getElementById('zoneDirection');
+  const zoneAnalysis = document.getElementById('zoneAnalysis');
+  const zoneLabel = document.getElementById('zoneAnalysisLabel');
+  const zoneTitle = document.getElementById('zoneAnalysisTitle');
+  const zoneCopy = document.getElementById('zoneAnalysisCopy');
+  const zoneStatus = document.getElementById('zoneStatus');
+  const directionalThemes = {
+    N: ['Water · flow', 'Consider how this room supports clear movement, useful storage and the routines associated with it.'],
+    NNE: ['Water · reflection', 'Review quiet, access and the room’s relationship to nearby circulation and services.'],
+    NE: ['Water · openness', 'Consider light, openness and the way this room relates to the wider plan.'],
+    ENE: ['Air · renewal', 'Review fresh-air paths, transitions between spaces and practical ventilation needs.'],
+    E: ['Sun · daylight', 'Consider daylight, glare, shading and how the room is used at different times of day.'],
+    ESE: ['Fire · transition', 'Review appliance, electrical and heat requirements where relevant, alongside safe clearances.'],
+    SE: ['Fire · activity', 'Consider heat-generating activities, ventilation, safe appliance placement and service access.'],
+    SSE: ['Fire · focus', 'Review task needs, lighting and safe routes through the room rather than relying on direction alone.'],
+    S: ['Earth · steadiness', 'Consider privacy, noise, circulation and the room’s relationship to the rest of the property.'],
+    SSW: ['Earth · support', 'Review storage, access and how the room meets the household or workplace brief.'],
+    SW: ['Earth · grounding', 'Consider privacy, furniture clearances and any structural or service constraints.'],
+    WSW: ['Earth · boundaries', 'Review thresholds, access control, privacy and the movement expected around this room.'],
+    W: ['Space · containment', 'Consider enclosure, views, daylight control and how the room supports its intended use.'],
+    WNW: ['Air · movement', 'Review circulation, cross-ventilation and the way people pass through or gather in this space.'],
+    NW: ['Air · circulation', 'Consider access, changing use, ventilation and the routes connecting this room to the plan.'],
+    NNW: ['Air · refinement', 'Review comfort, privacy, ventilation and small plan adjustments that fit the actual constraints.']
+  };
+  const directionNames = {
+    N: 'North', NNE: 'North-northeast', NE: 'Northeast', ENE: 'East-northeast',
+    E: 'East', ESE: 'East-southeast', SE: 'Southeast', SSE: 'South-southeast',
+    S: 'South', SSW: 'South-southwest', SW: 'Southwest', WSW: 'West-southwest',
+    W: 'West', WNW: 'West-northwest', NW: 'Northwest', NNW: 'North-northwest'
+  };
+  zoneButton.addEventListener('click', () => {
+    if (!roomSelect.value || !directionSelect.value) {
+      const missing = !roomSelect.value ? roomSelect : directionSelect;
+      missing.setCustomValidity('Choose a room and direction to continue.');
+      missing.reportValidity();
+      return;
+    }
+    roomSelect.setCustomValidity('');
+    directionSelect.setCustomValidity('');
+    const [theme, guidance] = directionalThemes[directionSelect.value];
+    zoneLabel.textContent = `${directionSelect.value} · ${directionNames[directionSelect.value]} · Traditional directional lens`;
+    zoneTitle.textContent = `${roomSelect.value} in the ${directionNames[directionSelect.value]} sector`;
+    zoneCopy.textContent = `${theme}: ${guidance} Directional associations vary across traditional systems. This prompt does not assess an entire property, establish elemental balance or replace a measured plan review.`;
+    zoneAnalysis.hidden = false;
+    zoneStatus.textContent = 'Zone prompt ready. Share your oriented plan to discuss the full layout.';
+    document.querySelector('#vastu-zone-checker').dataset.activeToolState = `${roomSelect.value} · ${directionSelect.value}`;
+    document.dispatchEvent(new CustomEvent('devagya:tool-interaction', {
+      detail: { event: 'tool_interaction_vastu_checker', room: roomSelect.value, direction: directionSelect.value }
+    }));
+    trackToolCompletion('vastu-zone-checker');
+  });
+  [roomSelect, directionSelect].forEach((field) => field.addEventListener('change', () => field.setCustomValidity('')));
+}
+
+const scopeButton = document.getElementById('calculateScope');
+if (scopeButton) {
+  const propertySelect = document.getElementById('estimateProperty');
+  const tierSelect = document.getElementById('estimateTier');
+  const areaInput = document.getElementById('estimateArea');
+  const areaOutput = document.getElementById('estimateAreaValue');
+  const scopeAnalysis = document.getElementById('scopeAnalysis');
+  const scopeTitle = document.getElementById('scopeAnalysisTitle');
+  const scopeCopy = document.getElementById('scopeAnalysisCopy');
+  const scopeList = document.getElementById('scopeDeliverables');
+  const scopeStatus = document.getElementById('scopeStatus');
+  const formatArea = (area) => `${Number(area).toLocaleString('en-IN')} sq. ft.`;
+  const updateArea = () => {
+    const area = Number(areaInput.value);
+    areaOutput.textContent = area >= Number(areaInput.max) ? '25,000+ sq. ft.' : formatArea(area);
+    areaInput.setAttribute('aria-valuetext', `${area >= Number(areaInput.max) ? '25,000 or more' : area.toLocaleString('en-IN')} square feet`);
+  };
+  areaInput.addEventListener('input', updateArea);
+  updateArea();
+  scopeButton.addEventListener('click', () => {
+    const propertyTypes = {
+      residential: ['Residential property', 'Room use, entrance context, orientation, circulation and interior-planning questions.'],
+      commercial: ['Commercial property', 'Workplace functions, entry and circulation, functional adjacencies and available layout information.'],
+      industrial: ['Industrial property', 'Site access, operational adjacencies and available building information; engineering and safety reviews remain with qualified professionals.']
+    };
+    const [propertyName, propertyScope] = propertyTypes[propertySelect.value];
+    const area = Number(areaInput.value);
+    const format = tierSelect.value === 'onsite' ? 'On-site laser & compass visit' : 'Online blueprint audit';
+    const complexity = area > 15000 ? 'Large-format review' : area > 5000 ? 'Expanded plan review' : 'Focused plan review';
+    const deliverables = tierSelect.value === 'onsite'
+      ? ['Pre-visit drawing and brief review', 'Orientation and on-site spatial observations', 'Written priorities for follow-up with your design team']
+      : ['Review of the oriented plan and project brief', 'Room-use, circulation and directional observations', 'Prioritised questions and next steps for your design team'];
+    scopeTitle.textContent = `${complexity} · ${propertyName}`;
+    scopeCopy.textContent = `${format} for approximately ${formatArea(area)} Likely scope: ${propertyScope} Exact deliverables depend on drawing quality, site access and your project questions; fee is discussed after the brief.`;
+    scopeList.replaceChildren(...deliverables.map((item) => {
+      const listItem = document.createElement('li');
+      listItem.textContent = item;
+      return listItem;
+    }));
+    scopeAnalysis.hidden = false;
+    scopeStatus.textContent = 'Scope summary ready. No fee is calculated by this tool.';
+    const summary = `Hi Devagya Vastu, I would like to discuss a ${format.toLowerCase()} for a ${propertyName.toLowerCase()} of approximately ${formatArea(area)}`;
+    document.getElementById('scopeWhatsApp').dataset.waMessage = summary;
+    document.querySelector('#scope-estimator').dataset.activeToolState = `${propertyName} · ${format} · ${formatArea(area)}`;
+    document.dispatchEvent(new CustomEvent('devagya:tool-interaction', {
+      detail: { event: 'estimate_calculated', property_type: propertySelect.value, consultation_format: tierSelect.value, area_sq_ft: area }
+    }));
+    trackToolCompletion('scope-estimator');
+  });
+}

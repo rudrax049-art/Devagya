@@ -8,23 +8,34 @@ redirect_from:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vastu Checklist and Spatial Planning Tools | Devagya Vastu</title>
-  <meta name="description" content="Explore a Vastu checklist, room-by-room planner, project brief builder and spatial design planning tools from Devagya Vastu.">
+  <title>Online Vastu Zone Checker &amp; Consultation Scope Tool | Devagya Vastu</title>
+  <meta name="description" content="Explore a 16-direction Vastu zone checker and consultation scope estimator from Devagya Vastu. Practical planning tools for homes, commercial sites and industrial projects.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="geo.region" content="IN-HR">
+  <meta name="geo.placename" content="Hisar, Haryana">
+  <meta name="geo.position" content="29.1492;75.7217">
+  <meta name="ICBM" content="29.1492, 75.7217">
   <link rel="canonical" href="https://devagyavastu.com/tools/">
-  <meta property="og:title" content="Vastu Checklist and Spatial Planning Tools | Devagya Vastu">
-  <meta property="og:description" content="Practical room planning, readiness checks and project-preparation tools. These are planning aids, not certified assessments.">
+  <meta property="og:title" content="Online Vastu Zone Checker &amp; Consultation Scope Tool | Devagya Vastu">
+  <meta property="og:description" content="Explore a 16-direction Vastu zone checker and consultation scope estimator for residential, commercial and industrial spaces.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Devagya Vastu">
   <meta property="og:url" content="https://devagyavastu.com/tools/">
   <meta property="og:image" content="https://devagyavastu.com/logo-full.jpg">
   <meta property="og:image:alt" content="Devagya Vastu and Signature Spaces brand mark">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Vastu Checklist and Spatial Planning Tools | Devagya Vastu">
-  <meta name="twitter:description" content="Practical room planning, readiness checks and project-preparation tools. These are planning aids, not certified assessments.">
+  <meta name="twitter:title" content="Online Vastu Zone Checker &amp; Consultation Scope Tool | Devagya Vastu">
+  <meta name="twitter:description" content="Explore a 16-direction Vastu zone checker and consultation scope estimator for residential, commercial and industrial spaces.">
   <meta name="twitter:image" content="https://devagyavastu.com/logo-full.jpg">
-  <meta name="theme-color" content="#0A0A0A">
+  <meta name="theme-color" content="#0A0A0C">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://www.google-analytics.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="manifest" href="../manifest.webmanifest">
   <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="../luxury.css">
   <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://devagyavastu.com/"},{"@type":"ListItem","position":2,"name":"Planning tools","item":"https://devagyavastu.com/tools/"}]}
   </script>
@@ -32,12 +43,85 @@ redirect_from:
   <script src="../components/web3forms.js" defer></script>
   <script src="../components/planning-tools.js" defer></script>
 </head>
-<body>
+<body class="tools-page">
   <div data-site-header></div>
   <noscript><nav class="noscript-nav" aria-label="Main pages"><a href="../index.html">Home</a><a href="../services/">Services</a><a href="../methodology/">Methodology</a><a href="../projects/">Projects</a><a href="../insights/">Insights</a><a href="../book/">Book</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a></nav></noscript>
   <main id="main-content">
-    <section class="page-hero"><div class="container"><p class="eyebrow">Practical planning aids</p><h1 class="display" data-i18n="toolsTitle">Vastu tools for clearer design conversations.</h1><p class="page-answer" data-i18n="toolsIntro">Devagya Vastu offers traditional Vastu consultation alongside architectural spatial planning and interior design. These interactive tools help organise questions and project information; they do not measure Vastu compliance or replace site surveys, professional design or code review.</p></div></section>
+    <section class="page-hero"><div class="container"><p class="eyebrow">Planning tools · Hisar, Haryana &amp; worldwide</p><h1 class="display" data-i18n="toolsTitle">Online Vastu map analysis, made more approachable.</h1><p class="page-answer" data-i18n="toolsIntro">Explore a 16-direction planning prompt and estimate the likely scope of an online or on-site consultation. These tools help organise a conversation; they are not a site assessment, certification, or guarantee of outcomes.</p></div></section>
     <section class="section" style="padding-top:16px"><div class="container tool-grid">
+      <article class="planning-tool luxury-tool" id="vastu-zone-checker" data-wa-context="vastu-zone-checker">
+        <p class="eyebrow">Interactive lead tool · 16 directional sectors</p>
+        <h2>Explore a Vastu directional zone.</h2>
+        <p>Select the room or activity and its direction from a verified plan. The result is a traditional planning prompt—not a scientific energy reading, compliance score or promise.</p>
+        <div class="luxury-form-grid">
+          <label for="zoneRoom">Room or activity
+            <select id="zoneRoom" data-vastu-room required>
+              <option value="">Choose a room or activity</option>
+              <option value="Master bedroom">Master bedroom</option>
+              <option value="Cash locker">Cash locker</option>
+              <option value="Kitchen">Kitchen</option>
+              <option value="Main entrance">Main entrance</option>
+              <option value="Living room">Living room</option>
+              <option value="Pooja or quiet room">Pooja or quiet room</option>
+              <option value="Study">Study</option>
+              <option value="Work area">Work area</option>
+            </select>
+          </label>
+          <label for="zoneDirection">Direction (16 zones)
+            <select id="zoneDirection" data-vastu-direction required>
+              <option value="">Choose a direction</option>
+              <option value="N">N · North</option><option value="NNE">NNE · North-northeast</option>
+              <option value="NE">NE · Northeast</option><option value="ENE">ENE · East-northeast</option>
+              <option value="E">E · East</option><option value="ESE">ESE · East-southeast</option>
+              <option value="SE">SE · Southeast</option><option value="SSE">SSE · South-southeast</option>
+              <option value="S">S · South</option><option value="SSW">SSW · South-southwest</option>
+              <option value="SW">SW · Southwest</option><option value="WSW">WSW · West-southwest</option>
+              <option value="W">W · West</option><option value="WNW">WNW · West-northwest</option>
+              <option value="NW">NW · Northwest</option><option value="NNW">NNW · North-northwest</option>
+            </select>
+          </label>
+        </div>
+        <div class="tool-actions"><button class="button" id="checkVastuZone" type="button">Explore this zone</button></div>
+        <div class="zone-analysis" id="zoneAnalysis" aria-live="polite" hidden>
+          <p class="zone-analysis-kicker" id="zoneAnalysisLabel"></p>
+          <h3 id="zoneAnalysisTitle"></h3>
+          <p id="zoneAnalysisCopy"></p>
+          <a class="button" data-wa-context="vastu-zone-report" href="https://wa.me/919467496725">Unlock a detailed report on WhatsApp</a>
+        </div>
+        <p class="tool-status" id="zoneStatus" role="status" aria-live="polite">Use a plan with a verified north mark for a more useful discussion.</p>
+      </article>
+
+      <article class="planning-tool luxury-tool" id="scope-estimator" data-wa-context="scope-estimator">
+        <p class="eyebrow">Consultation scope estimator</p>
+        <h2>Plan the right depth of review.</h2>
+        <p>Explore a likely review format using property type, approximate floor area and consultation mode. This tool estimates scope only; fees are confirmed after a project brief and are not calculated here.</p>
+        <div class="luxury-form-grid">
+          <label for="estimateProperty">Property type
+            <select id="estimateProperty" data-estimator-property>
+              <option value="residential">Residential</option><option value="commercial">Commercial</option><option value="industrial">Industrial</option>
+            </select>
+          </label>
+          <label for="estimateTier">Consultation format
+            <select id="estimateTier" data-estimator-tier>
+              <option value="online">Online blueprint audit</option><option value="onsite">On-site laser &amp; compass visit</option>
+            </select>
+          </label>
+          <label class="area-input" for="estimateArea">Approximate floor area
+            <output id="estimateAreaValue" for="estimateArea">1,500 sq. ft.</output>
+            <input id="estimateArea" data-estimator-area type="range" min="500" max="25000" step="500" value="1500" aria-valuetext="1,500 square feet">
+          </label>
+        </div>
+        <div class="tool-actions"><button class="button" id="calculateScope" type="button">Estimate my review scope</button></div>
+        <div class="zone-analysis" id="scopeAnalysis" aria-live="polite" hidden>
+          <p class="zone-analysis-kicker">Indicative consultation scope</p>
+          <h3 id="scopeAnalysisTitle"></h3>
+          <p id="scopeAnalysisCopy"></p>
+          <ul id="scopeDeliverables"></ul>
+          <a class="button" id="scopeWhatsApp" data-wa-context="scope-estimate" href="https://wa.me/919467496725">Discuss this scope on WhatsApp</a>
+        </div>
+        <p class="tool-status" id="scopeStatus" role="status" aria-live="polite">Your scope summary will be prepared from the selections above.</p>
+      </article>
+
       <article class="planning-tool" id="direction-check">
         <p class="eyebrow">Directional planning prompt</p><h2>Start with a verified orientation.</h2>
         <p>Choose the direction of the main entrance only after checking north on a measured or otherwise reliable site plan. This is a planning prompt, not an energetic zone rating or prediction.</p>

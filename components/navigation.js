@@ -54,7 +54,7 @@ const icon = (name) => {
 const headerMarkup = `
   <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="reading-progress" id="readingProgress" aria-hidden="true"><span></span></div>
-  <header class="site-header" id="siteHeader">
+  <header class="site-header luxury-header" id="siteHeader">
     <div class="site-header-inner">
       <a class="brand-lockup" href="${sitePage('')}" aria-label="Devagya Vastu home">
         <img src="${siteAsset('assets/logo-mark-128.png')}" alt="" width="42" height="42">
@@ -91,14 +91,14 @@ const headerMarkup = `
     </div>
   </header>
   <div class="contact-dock" aria-label="Contact Devagya">
-    <a class="dock-link dock-whatsapp" href="${contactLinks.whatsapp}?text=${encodeURIComponent('Hello Devagya Vastu, I would like to book a consultation for my property.')}" aria-label="Open WhatsApp" title="WhatsApp">${icon('whatsapp')}<span>WhatsApp</span></a>
+    <a class="dock-link dock-whatsapp" data-wa-context="floating-contact" href="${contactLinks.whatsapp}?text=${encodeURIComponent('Hello Devagya Vastu, I would like to book a consultation for my property.')}" aria-label="Open WhatsApp" title="WhatsApp">${icon('whatsapp')}<span>WhatsApp</span></a>
     <a class="dock-link dock-phone" href="${contactLinks.phone}" aria-label="Call Devagya" title="Call">${icon('phone')}<span>Call</span></a>
     <a class="dock-link dock-email" href="${contactLinks.email}" aria-label="Email Devagya" title="Email">${icon('email')}<span>Email</span></a>
     <a class="dock-link dock-book" href="${sitePage('book')}" aria-label="Book consultation" title="Book consultation">${icon('calendar')}<span>Book</span></a>
   </div>`;
 
 const footerMarkup = `
-  <footer class="site-footer">
+  <footer class="site-footer luxury-footer">
     <div class="footer-main">
       <a class="brand-lockup footer-brand" href="${sitePage('')}" aria-label="Devagya Vastu home">
         <img src="${siteAsset('assets/logo-mark-128.png')}" alt="" width="42" height="42">
@@ -155,6 +155,11 @@ if (mainContent && !mainContent.id) mainContent.id = 'main-content';
 document.querySelectorAll('[data-current-year]').forEach((element) => {
   element.textContent = new Date().getFullYear();
 });
+
+const telemetry = document.createElement('script');
+telemetry.src = siteAsset('analytics.js');
+telemetry.async = true;
+document.head.appendChild(telemetry);
 
 const siteHeader = document.getElementById('siteHeader');
 const menuToggle = document.getElementById('menuToggle');

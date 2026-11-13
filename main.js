@@ -142,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (res.ok && data && data.success === true) {
           form.reset();
           if (successEl) successEl.classList.remove('hidden');
+          document.dispatchEvent(new CustomEvent('devagya:form-success', { detail: { form: form.id || 'lead-form' } }));
         } else {
           if (errorEl) errorEl.classList.remove('hidden');
         }
