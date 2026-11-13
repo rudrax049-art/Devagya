@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /*?utm_*
+Disallow: /*&utm_*
+Disallow: /*?gclid=*
+Disallow: /*&gclid=*
+Disallow: /*?fbclid=*
+Disallow: /*&fbclid=*
 
 Sitemap: https://devagyavastu.com/sitemap.xml

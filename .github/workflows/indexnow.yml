@@ -1,0 +1,53 @@
+name: Submit sitemap URLs to IndexNow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Allow the Pages deployment to publish the key file
+        run: sleep 45
+      - name: Notify IndexNow endpoints
+        env:
+          INDEXNOW_KEY: d490528f119346919586648b70578ad9
+        run: |
+          node --input-type=module <<'NODE'
+          const host = 'devagyavastu.com';
+          const key = process.env.INDEXNOW_KEY;
+          const urls = [
+            'https://devagyavastu.com/',
+            'https://devagyavastu.com/services/',
+            'https://devagyavastu.com/methodology/',
+            'https://devagyavastu.com/approach/',
+            'https://devagyavastu.com/projects/',
+            'https://devagyavastu.com/tools/',
+            'https://devagyavastu.com/book/',
+            'https://devagyavastu.com/calendar/',
+            'https://devagyavastu.com/contact/',
+            'https://devagyavastu.com/faq/',
+            'https://devagyavastu.com/privacy/',
+            'https://devagyavastu.com/about/',
+            'https://devagyavastu.com/insights/'
+          ];
+          const response = await fetch('https://api.indexnow.org/indexnow', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json; charset=utf-8' },
+            body: JSON.stringify({
+              host,
+              key,
+              keyLocation: `https://${host}/${key}.txt`,
+              urlList: urls
+            })
+          });
+          if (!response.ok && response.status !== 202) {
+            throw new Error(`IndexNow request failed: HTTP ${response.status}`);
+          }
+          console.log(`IndexNow accepted ${urls.length} URL submissions (HTTP ${response.status}).`);
+          NODE
