@@ -171,6 +171,15 @@ img, svg { max-width: 100%; }
 .footer-contact a { color: #e5eaf0; font-size: .76rem; }
 .footer-contact a:hover { color: var(--brass-light); }
 .footer-address { display: grid; flex-basis: 100%; gap: 4px; color: #e5eaf0; font-size: .72rem; font-style: normal; line-height: 1.5; text-align: right; }
+.footer-business-name, .footer-service-area, .footer-credentials { width: 100%; }
+.footer-business-name { color: #e5eaf0 !important; font-size: .76rem !important; font-weight: 700; }
+.footer-service-area, .footer-credentials { color: #bac4d2 !important; font-size: .72rem !important; line-height: 1.6 !important; }
+.ethical-disclaimer { display: block; max-width: 1100px; margin: 0 auto 22px; padding: 18px 24px; border-top: 1px solid rgba(15,23,42,.14); color: var(--muted); font-size: .72rem; line-height: 1.65; }
+.site-footer .ethical-disclaimer { border-color: rgba(255,255,255,.14); color: #bac4d2; }
+.contact-service-area { margin-top: 24px; padding: 22px; border: 1px solid var(--line); background: rgba(200,164,86,.07); }
+.contact-service-area h3 { margin: 0 0 12px; font-family: var(--serif); font-size: 1.4rem; }
+.contact-service-area p { margin: 0 0 10px; color: var(--muted); font-size: .84rem; line-height: 1.7; }
+.contact-service-area p:last-child { margin-bottom: 0; }
 .footer-bottom { display: flex; justify-content: space-between; gap: 18px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.14); color: #bac4d2; font-size: .67rem; }
 
 .hero { position: relative; display: flex; min-height: min(780px, calc(100svh - 82px)); align-items: center; overflow: hidden; padding: 100px 0 120px; }
