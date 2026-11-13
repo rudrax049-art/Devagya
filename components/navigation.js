@@ -58,7 +58,7 @@ const headerMarkup = `
     <div class="site-header-inner">
       <a class="brand-lockup" href="${sitePage('')}" aria-label="Devagya Vastu home">
         <img src="${siteAsset('assets/logo-mark-128.png')}" alt="" width="42" height="42">
-        <span><strong>DEVAGYA</strong><small>VASTU &amp; SIGNATURE SPACES</small></span>
+        <span><strong>DEVAGYA</strong><small>DEVAGYA VASTU · ARCHITECTURE &amp; SPATIAL SCIENCE</small></span>
       </a>
       <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation"><span></span><span></span></button>
       <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
@@ -71,13 +71,18 @@ const headerMarkup = `
             <a href="${sitePage('insights')}">Insights <small>Notes on Vastu and spatial design</small></a>
             <a href="${sitePage('tools')}">Planning tools <small>Practical, non-certified planning aids</small></a>
             <a href="${sitePage('about')}">About Devagya <small>Our philosophy and approach</small></a>
+            <a href="https://www.instagram.com/devagyavastu/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Devagya Vastu Instagram profile">Instagram <small>@devagyavastu</small></a>
             <a href="https://youtube.com/@devagyavastu" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Devagya Vastu YouTube channel">YouTube <small>@devagyavastu</small></a>
             <a href="${sitePage('faq')}">FAQ <small>Answers about the process</small></a>
           </div>
         </div>
         <a href="${sitePage('book')}">Book</a>
         <a href="${sitePage('contact')}">Contact</a>
-        <label class="language-picker">
+        <label class="language-picker" aria-label="Language">
+          <span class="language-switch" role="group" aria-label="Choose English or Hindi">
+            <button type="button" data-language-button="en" aria-pressed="true">EN</button>
+            <button type="button" data-language-button="hi" aria-pressed="false">हिं</button>
+          </span>
           <select class="language-toggle" data-language-select aria-label="Select language" disabled>
             <option value="en">English</option>
             <option value="hi">हिन्दी</option>
@@ -86,12 +91,12 @@ const headerMarkup = `
             <option value="fr">Français</option>
           </select>
         </label>
-        <a class="nav-cta" href="${sitePage('book')}">Request a consultation <span aria-hidden="true">↗</span></a>
+        <a class="nav-cta" href="${sitePage('book')}">Book Plan Review <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
   <div class="contact-dock" aria-label="Contact Devagya">
-    <a class="dock-link dock-whatsapp" data-wa-context="floating-contact" href="${contactLinks.whatsapp}?text=${encodeURIComponent('Hello Devagya Vastu, I would like to book a consultation for my property.')}" aria-label="Open WhatsApp" title="WhatsApp">${icon('whatsapp')}<span>WhatsApp</span></a>
+    <a class="dock-link dock-whatsapp" data-wa-context="floating-contact" href="${contactLinks.whatsapp}?text=${encodeURIComponent('Hello Devagya Vastu, I would like to book a consultation for my property.')}" aria-label="Consult with an Architect-Vastu Specialist on WhatsApp" title="WhatsApp">${icon('whatsapp')}<span>Consult with an Architect-Vastu Specialist · WhatsApp</span></a>
     <a class="dock-link dock-phone" href="${contactLinks.phone}" aria-label="Call Devagya" title="Call">${icon('phone')}<span>Call</span></a>
     <a class="dock-link dock-email" href="${contactLinks.email}" aria-label="Email Devagya" title="Email">${icon('email')}<span>Email</span></a>
     <a class="dock-link dock-book" href="${sitePage('book')}" aria-label="Book consultation" title="Book consultation">${icon('calendar')}<span>Book</span></a>
@@ -123,10 +128,14 @@ const footerMarkup = `
         <a href="${contactLinks.email}">devagyavastu@gmail.com</a>
         <a href="${contactLinks.instagram}" target="_blank" rel="noopener noreferrer" aria-label="Instagram @devagyavastu">@devagyavastu on Instagram</a>
         <a href="https://youtube.com/@devagyavastu" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Devagya Vastu YouTube channel">YouTube · @devagyavastu</a>
-        <address class="footer-address"><span>1549 Ground Floor, Uttam Nagar, Hisar, Haryana 125001, India</span><span>Visits by appointment</span></address>
+        <p class="footer-business-name">Devagya Vastu &amp; Signature Spaces</p>
+        <address class="footer-address"><span>Studio base: 1549 Ground Floor, Uttam Nagar, Hisar, Haryana 125001, India</span><span>Visits by appointment</span></address>
+        <p class="footer-service-area"><strong>On-site:</strong> Delhi-NCR, Chandigarh, Rajasthan and pan-India. <strong>Online:</strong> architectural and Vastu plan reviews across the UAE, UK, USA, Canada and Australia.</p>
+        <p class="footer-credentials">Kashi-trained classical Vastu foundation, paired with modern Environmental Psychology and Architectural Physics.</p>
       </div>
     </div>
-    <div class="footer-bottom"><span>© <span data-current-year></span> Devagya Vastu</span><span>Traditional spatial guidance considered alongside architecture; no guaranteed outcomes are promised.</span></div>
+    <small class="ethical-disclaimer">Vastu is a traditional spatial framework, not a scientific measurement or promise of health, financial or other outcomes. Website content and tools are general information, not a site survey, structural or code assessment, or a substitute for advice from your appointed project professionals.</small>
+    <div class="footer-bottom"><span>© <span data-current-year></span> Devagya Vastu</span></div>
   </footer>`;
 
 const mountPoint = document.querySelector('[data-site-header]');
@@ -1086,6 +1095,9 @@ const setLanguage = (nextLanguage) => {
     select.value = language;
     select.setAttribute('aria-label', languageLabels[language]);
   });
+  document.querySelectorAll('[data-language-button]').forEach((button) => {
+    button.setAttribute('aria-pressed', String(button.dataset.languageButton === language));
+  });
   document.dispatchEvent(new CustomEvent('devagya:languagechange', { detail: { language } }));
 };
 const startLanguageSwitcher = () => {
@@ -1095,6 +1107,14 @@ const startLanguageSwitcher = () => {
     select.addEventListener('change', () => {
       window.devagyaStorage.set('devagya-language', select.value);
       setLanguage(select.value);
+    });
+  });
+  document.querySelectorAll('[data-language-button]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const select = document.querySelector('[data-language-select]');
+      if (!select) return;
+      select.value = button.dataset.languageButton;
+      select.dispatchEvent(new Event('change', { bubbles: true }));
     });
   });
   setLanguage(language);

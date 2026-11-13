@@ -33,6 +33,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 96px; }
 .home-page .site-footer .footer-links a, .tools-page .site-footer .footer-links a,
 .home-page .site-footer .footer-contact a, .tools-page .site-footer .footer-contact a { color: var(--luxury-ivory); }
 .home-page .site-footer .footer-bottom, .tools-page .site-footer .footer-bottom { border-color: var(--luxury-line); color: var(--luxury-slate); }
+.home-page .site-footer .ethical-disclaimer, .tools-page .site-footer .ethical-disclaimer { display: block; margin: 0 auto 22px; max-width: 1100px; padding: 18px 24px; border-top: 1px solid var(--luxury-line); color: var(--luxury-slate); font-size: .72rem; line-height: 1.65; }
+.home-page .site-footer .footer-service-area, .home-page .site-footer .footer-credentials, .tools-page .site-footer .footer-service-area, .tools-page .site-footer .footer-credentials { color: var(--luxury-slate); font-size: .76rem; line-height: 1.65; }
 .home-page .eyebrow, .tools-page .eyebrow { color: var(--luxury-champagne) !important; }
 .home-page .display, .home-page .section-title, .tools-page .display, .tools-page .section-title,
 .tools-page .planning-tool h2, .home-page h2, .home-page h3, .tools-page h3 { font-family: var(--luxury-serif); }
@@ -89,6 +91,10 @@ html { scroll-behavior: smooth; scroll-padding-top: 96px; }
 .home-page .section-title, .home-page .home-interior-note a, .home-page .home-interior-note .lede { color: var(--luxury-ivory); }
 .tools-page .page-hero { padding-block: 76px 40px; }
 .tools-page .tool-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+.tools-page .planning-tool-wide { grid-column: 1 / -1; }
+.tools-page .spatial-dial-grid { display: grid; grid-template-columns: repeat(9,minmax(0,1fr)); gap: 8px; margin-top: 20px; }
+.tools-page .spatial-dial-reference { min-width: 44px; min-height: 48px; border: 1px solid var(--luxury-line); background: #0F1014; color: var(--luxury-ivory); cursor: pointer; }
+.tools-page .spatial-dial-reference:hover, .tools-page .spatial-dial-reference[aria-pressed="true"] { border-color: var(--luxury-gold); background: rgba(212,175,55,.16); color: var(--luxury-gold); }
 .tools-page .planning-tool { border-color: var(--luxury-line); background: var(--luxury-charcoal); color: var(--luxury-ivory); }
 .tools-page .planning-tool p { color: #B1B3BA; }
 .tools-page .planning-tool label, .tools-page .planning-tool legend { color: var(--luxury-ivory); }
@@ -137,6 +143,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 96px; }
   .home-page .home-tool-card { min-height: 260px; }
   .home-page .home-faq-grid { grid-template-columns: 1fr; }
   .tools-page .tool-grid { grid-template-columns: 1fr; }
+  .tools-page .planning-tool-wide { grid-column: auto; }
   .home-page .site-header .primary-nav, .tools-page .site-header .primary-nav { background: rgba(10,10,12,.98); }
   .home-page .primary-nav > a:not(.nav-cta), .home-page .nav-tools-toggle,
   .tools-page .primary-nav > a:not(.nav-cta), .tools-page .nav-tools-toggle { color: var(--luxury-ivory); }
@@ -148,6 +155,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 96px; }
   .home-page .hero-actions .button { width: 100%; }
   .home-trust-list { display: grid; grid-template-columns: 1fr; }
   .service-pillar-grid, .luxury-form-grid { grid-template-columns: 1fr; }
+  .tools-page .spatial-dial-grid { grid-template-columns: repeat(5,minmax(0,1fr)); }
   .luxury-form-grid .area-input { grid-column: auto; }
   .tools-page .page-hero { padding-top: 52px; }
   .tools-page .planning-tool { padding: 20px; }

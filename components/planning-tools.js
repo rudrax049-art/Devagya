@@ -16,7 +16,7 @@ const roomGuidance = {
   },
   bedroom: {
     name: 'Main bedroom',
-    vastu: 'Traditional room-placement ideas can be one input when the layout is still flexible; they do not establish an outcome or certify a plan.',
+    vastu: 'Traditional room-placement ideas can be one input when the layout is still flexible, alongside the plan, household needs and project constraints.',
     design: 'Review privacy, acoustics, daylight control, accessible circulation, storage and comfortable furniture clearances.'
   },
   study: {
@@ -46,6 +46,31 @@ function trackToolCompletion(tool) {
   if (completedToolEvents.has(tool)) return;
   completedToolEvents.add(tool);
   window.dispatchEvent(new CustomEvent('devagya:tool-complete', { detail: { tool } }));
+}
+
+const spatialDialGrid = document.getElementById('spatialDialGrid');
+if (spatialDialGrid) {
+  const spatialDialStatus = document.getElementById('spatialDialStatus');
+  const spatialDialWhatsApp = document.getElementById('spatialDialWhatsApp');
+  for (let index = 1; index <= 45; index += 1) {
+    const reference = document.createElement('button');
+    reference.type = 'button';
+    reference.className = 'spatial-dial-reference';
+    reference.textContent = String(index).padStart(2, '0');
+    reference.setAttribute('aria-pressed', 'false');
+    reference.setAttribute('aria-label', `Select spatial grid reference ${index}`);
+    reference.addEventListener('click', () => {
+      spatialDialGrid.querySelectorAll('.spatial-dial-reference').forEach((item) => item.setAttribute('aria-pressed', 'false'));
+      reference.setAttribute('aria-pressed', 'true');
+      spatialDialStatus.textContent = `Grid reference ${index} selected.`;
+      spatialDialWhatsApp.dataset.waMessage = `Hi Devagya Vastu, I would like to discuss 45-zone spatial grid reference ${index} in relation to my floor plan.`;
+      document.querySelector('#spatial-dial').dataset.activeToolState = `45-zone grid reference ${index}`;
+      document.dispatchEvent(new CustomEvent('devagya:tool-interaction', {
+        detail: { event: 'tool_interaction_45_zone_dial', zone_reference: index }
+      }));
+    });
+    spatialDialGrid.appendChild(reference);
+  }
 }
 
 function readStoredJson(key, fallback) {
@@ -106,7 +131,7 @@ if (entryDirection && checkDirectionButton && directionResult && directionResult
     west: 'West',
     'north-west': 'North-west'
   };
-  const planningNote = 'Confirm the north mark against a measured site plan; then review access, door swing, daylight, privacy and circulation with your project team. Direction alone cannot assess a layout.';
+  const planningNote = 'Use a verified north mark, then review access, door swing, daylight, privacy and circulation with your project team.';
   const renderDirectionResult = () => {
     const language = window.devagyaI18n ? window.devagyaI18n.language : 'en';
     const translate = (text) => window.devagyaI18n ? window.devagyaI18n.translate(text, language) : text;
@@ -345,6 +370,11 @@ if (recommendButton) {
     const propertyName = { home: 'a home', workplace: 'a workplace', development: 'a development', interior: 'an interior scope' }[type];
     title.textContent = serviceName;
     reason.textContent = `${serviceName} may be a useful starting point for ${propertyName}. ${explanation} The exact scope depends on project stage, available drawings and responsibilities of your appointed design professionals.`;
+    const whatsappLink = document.getElementById('recommendWhatsApp');
+    if (whatsappLink) {
+      whatsappLink.dataset.waMessage = `Hi Devagya Vastu, I would like to discuss ${serviceName.toLowerCase()} for ${propertyName}.`;
+      whatsappLink.dataset.waContext = 'service-recommender';
+    }
     result.hidden = false;
     trackToolCompletion('service-recommender');
   });
@@ -535,7 +565,7 @@ if (zoneButton) {
     const [theme, guidance] = directionalThemes[directionSelect.value];
     zoneLabel.textContent = `${directionSelect.value} · ${directionNames[directionSelect.value]} · Traditional directional lens`;
     zoneTitle.textContent = `${roomSelect.value} in the ${directionNames[directionSelect.value]} sector`;
-    zoneCopy.textContent = `${theme}: ${guidance} Directional associations vary across traditional systems. This prompt does not assess an entire property, establish elemental balance or replace a measured plan review.`;
+    zoneCopy.textContent = `${theme}: ${guidance}`;
     zoneAnalysis.hidden = false;
     zoneStatus.textContent = 'Zone prompt ready. Share your oriented plan to discuss the full layout.';
     document.querySelector('#vastu-zone-checker').dataset.activeToolState = `${roomSelect.value} · ${directionSelect.value}`;
@@ -570,7 +600,7 @@ if (scopeButton) {
     const propertyTypes = {
       residential: ['Residential property', 'Room use, entrance context, orientation, circulation and interior-planning questions.'],
       commercial: ['Commercial property', 'Workplace functions, entry and circulation, functional adjacencies and available layout information.'],
-      industrial: ['Industrial property', 'Site access, operational adjacencies and available building information; engineering and safety reviews remain with qualified professionals.']
+      industrial: [      'Industrial property', 'Site access, operational adjacencies and available building information for a coordinated project review.']
     };
     const [propertyName, propertyScope] = propertyTypes[propertySelect.value];
     const area = Number(areaInput.value);
@@ -580,14 +610,14 @@ if (scopeButton) {
       ? ['Pre-visit drawing and brief review', 'Orientation and on-site spatial observations', 'Written priorities for follow-up with your design team']
       : ['Review of the oriented plan and project brief', 'Room-use, circulation and directional observations', 'Prioritised questions and next steps for your design team'];
     scopeTitle.textContent = `${complexity} · ${propertyName}`;
-    scopeCopy.textContent = `${format} for approximately ${formatArea(area)} Likely scope: ${propertyScope} Exact deliverables depend on drawing quality, site access and your project questions; fee is discussed after the brief.`;
+    scopeCopy.textContent = `${format} for approximately ${formatArea(area)} Likely scope: ${propertyScope} Share your plan and project questions so we can confirm the review scope and next steps.`;
     scopeList.replaceChildren(...deliverables.map((item) => {
       const listItem = document.createElement('li');
       listItem.textContent = item;
       return listItem;
     }));
     scopeAnalysis.hidden = false;
-    scopeStatus.textContent = 'Scope summary ready. No fee is calculated by this tool.';
+    scopeStatus.textContent = 'Scope summary ready. Open WhatsApp to discuss this review with Devagya Vastu.';
     const summary = `Hi Devagya Vastu, I would like to discuss a ${format.toLowerCase()} for a ${propertyName.toLowerCase()} of approximately ${formatArea(area)}`;
     document.getElementById('scopeWhatsApp').dataset.waMessage = summary;
     document.querySelector('#scope-estimator').dataset.activeToolState = `${propertyName} · ${format} · ${formatArea(area)}`;

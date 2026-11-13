@@ -28,7 +28,11 @@
   };
 
   const currentToolState = () => {
-    const activeTool = document.querySelector('[data-active-tool-state]');
+    const activeSection = document.querySelector('[data-active-section="true"]');
+    const activeTool = activeSection && (
+      activeSection.closest('[data-active-tool-state]')
+      || activeSection.querySelector('[data-active-tool-state]')
+    );
     return activeTool ? activeTool.dataset.activeToolState : '';
   };
   const currentContext = () => {
@@ -41,10 +45,17 @@
       .map((key) => `${key.replace('utm_', '')}=${attribution[key]}`);
     return source.length ? `\nTraffic source: ${source.join(', ')}` : '';
   };
+  window.devagyaAttribution = Object.freeze({
+    getValues: () => Object.assign({}, attribution),
+    getText: () => attributionText()
+  });
   const prepareWhatsAppLink = (link, context) => {
     const toolState = currentToolState();
     const contextLabel = context || currentContext();
+    const currentMessage = new URL(link.href, window.location.href).searchParams.get('text') || '';
+    const originalMessage = currentMessage.replace(/\n(?:Tool selection:|Enquiry context:|Traffic source:)[\s\S]*$/, '');
     const baseMessage = link.dataset.waMessage
+      || originalMessage
       || (contextLabel === 'vastu-zone-report'
         ? 'Hi Devagya Vastu, I would like to unlock the detailed report for my Vastu zone.'
         : contextLabel === 'scope-estimate'
@@ -83,6 +94,19 @@
       active_tool_state: state.toolState || 'none',
       page_location: window.location.pathname
     });
+  }, true);
+
+  document.addEventListener('submit', (event) => {
+    const form = event.target;
+    if (!(form instanceof HTMLFormElement) || !form.action.includes('web3forms.com')) return;
+    let attributionField = form.querySelector('input[name="utm_attribution"]');
+    if (!attributionField) {
+      attributionField = document.createElement('input');
+      attributionField.type = 'hidden';
+      attributionField.name = 'utm_attribution';
+      form.appendChild(attributionField);
+    }
+    attributionField.value = attributionText().replace(/^\nTraffic source: /, '');
   }, true);
 
   document.addEventListener('devagya:tool-interaction', (event) => {
