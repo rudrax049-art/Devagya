@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* Scroll-reveal */
   const revealEls = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
+  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !prefersReducedMotion) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {

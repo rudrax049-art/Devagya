@@ -6,5 +6,7 @@ Disallow: /*?gclid=*
 Disallow: /*&gclid=*
 Disallow: /*?fbclid=*
 Disallow: /*&fbclid=*
+Disallow: /*?q=*
+Disallow: /*&q=*
 
 Sitemap: https://devagyavastu.com/sitemap.xml
