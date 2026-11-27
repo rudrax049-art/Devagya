@@ -16,7 +16,7 @@ redirect_from:
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://www.google-analytics.com">
   <meta property="og:title" content="Book a Vastu Consultation Online | Devagya Vastu">
-  <meta property="og:description" content="Request a consultation and share preferred dates. Availability is confirmed directly; no live slots are shown.">
+  <meta property="og:description" content="Tell our Hisar-based studio about your home, workplace or development, then share your project brief and floor plan directly on WhatsApp.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Devagya Vastu">
   <meta property="og:url" content="https://devagyavastu.com/book/">
@@ -24,9 +24,9 @@ redirect_from:
   <meta property="og:image:alt" content="Devagya Vastu and Signature Spaces brand mark">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Book a Vastu Consultation Online | Devagya Vastu">
-  <meta name="twitter:description" content="Request a consultation and share preferred dates. Availability is confirmed directly; no live slots are shown.">
+  <meta name="twitter:description" content="Tell our Hisar-based studio about your home, workplace or development, then share your project brief and floor plan directly on WhatsApp.">
   <meta name="twitter:image" content="https://devagyavastu.com/logo-full.jpg">
-  <meta name="theme-color" content="#0A0A0A">
+  <meta name="theme-color" content="#FAF8F5">
   <link rel="manifest" href="../manifest.webmanifest">
   <link rel="stylesheet" href="../site.css">
   <link rel="stylesheet" href="../architectural.css">
@@ -34,69 +34,43 @@ redirect_from:
     {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://devagyavastu.com/"},{"@type":"ListItem","position":2,"name":"Book a consultation","item":"https://devagyavastu.com/book/"}]}
   </script>
   <script src="../components/navigation.js" defer></script>
-  <script src="../components/web3forms.js" defer></script>
-  <script src="../components/planning-tools.js" defer></script>
+  <script src="../components/consultation-intake.js" defer></script>
 </head>
 <body>
   <div data-site-header></div>
   <noscript><nav class="noscript-nav" aria-label="Main pages"><a href="../index.html">Home</a><a href="../services/">Services</a><a href="../methodology/">Methodology</a><a href="../projects/">Projects</a><a href="../tools/">Planning tools</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a></nav></noscript>
   <main id="main-content">
-    <section class="page-hero"><div class="container"><p class="eyebrow">Consultation request</p><h1 class="display">Request an online Vastu consultation.</h1><p class="page-answer">Devagya Vastu offers traditional spatial consultation alongside architectural and interior-design considerations for homes, workplaces and developments. Tell us about your project and the consultation format that works for you.</p></div></section>
-    <section class="section" style="padding-top:16px"><div class="container">
-      <form class="planning-tool scheduler-form" id="schedulerForm" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="06802d3b-83fc-4107-9cf8-57fff3706002">
-        <input type="hidden" name="subject" value="Consultation request - Devagya Vastu">
-        <input type="hidden" name="from_name" value="Devagya Website">
-        <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" hidden>
-        <ol class="booking-progress full" aria-label="Consultation request steps">
-          <li aria-current="step"><span>1</span><span>Service</span></li>
-          <li><span>2</span><span>Timing</span></li>
-          <li><span>3</span><span>Details</span></li>
-        </ol>
-        <fieldset class="booking-step full" data-booking-step="0">
-          <legend>Step 1 of 3: Service and property</legend>
-          <label>Which service are you considering?
-            <select name="service" required><option value="">Select a service</option><option value="traditional-vastu-consultation">Traditional Vastu consultation</option><option value="architectural-spatial-planning">Architectural spatial planning</option><option value="interior-design-consultation">Interior design consultation</option></select>
-          </label>
-          <label>Property type
-            <select name="property_type" required><option value="">Select property type</option><option value="residential">Residential</option><option value="commercial">Commercial</option><option value="industrial">Industrial</option></select>
-          </label>
-          <label>Approximate built-up area (sq. ft.), if known
-            <input type="number" name="built_up_area_sq_ft" min="1" step="1" inputmode="numeric">
-          </label>
+    <section class="page-hero"><div class="container"><p class="eyebrow">Consultation request</p><h1 class="display">Begin your Vastu and spatial-design consultation.</h1><p class="page-answer">Share a few essentials about your home, workplace or development. Your details stay in the browser until you choose to open WhatsApp, where you can attach plans and photos directly for our Hisar-based studio.</p></div></section>
+    <section class="section" id="consultation-request" style="padding-top:16px"><div class="container intake-grid">
+      <form class="planning-tool intake-form consultation-intake" id="bookConsultationForm" data-consultation-intake data-wa-context="book-intake">
+        <fieldset class="intake-step" data-intake-step="details">
+          <legend>Step 1 · Tell us a little about your project</legend>
+          <div class="field"><label for="bookingName">Your name *</label><input id="bookingName" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="bookingPhone">WhatsApp number *</label><input id="bookingPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+          <div class="field"><label for="bookingCity">City / country *</label><input id="bookingCity" name="location" autocomplete="address-level2" required></div>
+          <div class="field"><label for="bookingProperty">Property type *</label><select id="bookingProperty" name="property_type" required><option value="">Choose a property type</option><option value="Residential home">Residential home</option><option value="Office or commercial space">Office or commercial space</option><option value="Industrial or factory site">Industrial or factory site</option><option value="Plot or property under consideration">Plot or property under consideration</option></select></div>
+          <div class="field full"><label for="bookingNote">What would you like us to review? <span>(optional)</span></label><textarea id="bookingNote" name="note" rows="4" placeholder="Mention your main planning question, preferred format or timing."></textarea></div>
+          <p class="field full intake-privacy-note">Once you share your brief, our studio will recommend the right consultation format and confirm a convenient time with you by WhatsApp or email within 24 hours.</p>
+          <button class="button field full" type="submit">Continue to WhatsApp <span aria-hidden="true">↗</span></button>
         </fieldset>
-        <fieldset class="booking-step full" data-booking-step="1">
-          <legend>Step 2 of 3: Preferred dates and format</legend>
-          <label>Preferred date from <input type="date" name="preferred_date_from" data-date-min required></label>
-          <label>Preferred date to <input type="date" name="preferred_date_to" data-date-min required></label>
-          <label>Preferred mode
-            <select name="preferred_mode" required><option value="">Choose one</option><option value="online-video-call">Online video call</option><option value="phone">Phone</option><option value="in-person-if-practical">In person, if practical</option></select>
-          </label>
-          <label>Preferred time of day
-            <select name="preferred_time"><option value="">No preference</option><option value="morning">Morning</option><option value="afternoon">Afternoon</option><option value="evening">Evening</option></select>
-          </label>
-          <label class="full">Project city / time zone <input name="time_zone" autocomplete="address-level2" placeholder="City and country" required></label>
-        </fieldset>
-        <fieldset class="booking-step full" data-booking-step="2">
-          <legend>Step 3 of 3: Contact and project details</legend>
-          <label>Name <input name="name" autocomplete="name" required></label>
-          <label>Email <input type="email" name="email" autocomplete="email" required></label>
-          <label>Phone or WhatsApp number (optional) <input name="phone" type="tel" autocomplete="tel"></label>
-          <label class="full">Anything else we should know? (optional) <textarea name="request_notes" rows="4"></textarea></label>
-        </fieldset>
-        <div class="tool-actions full booking-actions">
-          <button class="button button-secondary" id="bookingBack" type="button" disabled>Back</button>
-          <button class="button" id="bookingNext" type="button">Continue</button>
-          <button class="button" id="bookingSubmit" type="submit">Send consultation request</button>
-        </div>
-        <p class="concierge-note full">Select your preferred consultation date below. Once requested, our studio team will confirm your exact time slot via WhatsApp or email within 24 hours.</p>
-        <p class="tool-status full" id="schedulerStatus" role="status" aria-live="polite"></p>
+        <section class="intake-next-step full" data-intake-step="share" aria-labelledby="bookShareTitle" aria-live="polite" hidden>
+          <p class="eyebrow">Step 2 · Review and share</p>
+          <h2 id="bookShareTitle">Your consultation message is ready.</h2>
+          <p data-intake-summary></p>
+          <p class="intake-attachment-note">WhatsApp will open with your brief. Attach your floor plan or site photos in the chat, then send it to our studio.</p>
+          <div class="tool-actions">
+            <a class="button" data-intake-whatsapp data-wa-context="book-intake" href="https://wa.me/919467496725" target="_blank" rel="noopener noreferrer">Open WhatsApp and share your brief <span aria-hidden="true">↗</span></a>
+            <button class="button button-secondary" type="button" data-intake-edit>Edit details</button>
+          </div>
+        </section>
+        <p class="field full form-message" data-intake-status role="status" aria-live="polite"></p>
       </form>
+      <noscript><p class="intake-privacy-note">To begin a consultation, call or WhatsApp <a href="https://wa.me/919467496725">+91 94674 96725</a>.</p></noscript>
       <aside class="planning-tool fast-track-card" aria-labelledby="fastTrackTitle">
         <p class="eyebrow">Prefer to start with your plans?</p>
         <h2 id="fastTrackTitle">Fast-Track Floor Plan Review</h2>
-        <p>Send your drawings and project questions directly to our studio for a focused first conversation.</p>
-        <a class="button" href="https://wa.me/919467496725?text=Hi%20Devagya%20Vastu%2C%20I%20would%20like%20to%20schedule%20a%20consultation%20and%20share%20my%20floor%20plan." target="_blank" rel="noopener noreferrer">Share your floor plan on WhatsApp <span aria-hidden="true">↗</span></a>
+        <p>Share an oriented floor plan, your project location and the decisions you are working through. We will guide you toward an online or on-site review.</p>
+        <a class="button" data-wa-context="fast-track-plan-review" data-wa-message="Hi Devagya Vastu, I would like to share my floor plan and discuss a focused architectural Vastu review. I will attach the drawing in this chat." href="https://wa.me/919467496725" target="_blank" rel="noopener noreferrer">Share your floor plan on WhatsApp <span aria-hidden="true">↗</span></a>
       </aside>
     </div></section>
   </main>

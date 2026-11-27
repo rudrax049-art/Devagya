@@ -239,123 +239,8 @@ if (comparisonRange && comparisonFrame) {
 
 const briefForm = document.getElementById('projectBriefForm');
 if (briefForm) {
-  const briefSteps = Array.from(briefForm.querySelectorAll('.brief-step'));
-  const briefBack = document.getElementById('briefBack');
-  const briefNext = document.getElementById('briefNext');
-  const briefSend = document.getElementById('briefSend');
-  const briefStatus = document.getElementById('briefStatus');
-  const briefSummary = document.getElementById('briefSummary');
-  const briefSummaryField = document.getElementById('briefSummaryField');
-  const briefWhatsApp = document.getElementById('briefWhatsApp');
-  const draftKey = 'devagya-project-brief-v1';
-  let activeStep = 0;
-
-  const fields = Array.from(briefForm.querySelectorAll('input:not([type="hidden"]):not([type="checkbox"]), select, textarea'));
-  const restoreDraft = () => {
-    const saved = readStoredJson(draftKey, {});
-    if (!saved || typeof saved !== 'object' || Array.isArray(saved)) {
-      siteStorage.remove(draftKey);
-      return;
-    }
-    fields.forEach((field) => {
-      if (typeof saved[field.name] === 'string') field.value = saved[field.name];
-    });
-  };
-  const summaryText = () => {
-    const data = new FormData(briefForm);
-    return [
-      'Devagya Vastu project brief',
-      `Property: ${data.get('property_type') || 'Not selected'}`,
-      `Stage: ${data.get('project_stage') || 'Not selected'}`,
-      `Location: ${data.get('project_city') || 'Not provided'}`,
-      `Goal: ${data.get('project_goal') || 'Not selected'}`,
-      `Constraints / questions: ${data.get('project_constraints') || 'Not provided'}`,
-      `Email: ${data.get('email') || 'Not provided'}`
-    ].join('\n');
-  };
-  const updateSummary = (save = true) => {
-    const summary = summaryText();
-    briefSummary.textContent = summary;
-    briefSummaryField.value = summary;
-    briefWhatsApp.href = `https://wa.me/919467496725?text=${encodeURIComponent(summary)}`;
-    if (save) {
-      const draft = fields.reduce((saved, field) => {
-        saved[field.name] = field.value;
-        return saved;
-      }, {});
-      const saved = siteStorage.set(draftKey, JSON.stringify(draft));
-      if (!saved) briefStatus.textContent = 'Browser storage is unavailable. The draft stays on this page but will not persist.';
-    }
-  };
-  const renderStep = () => {
-    briefSteps.forEach((step, index) => { step.hidden = index !== activeStep; });
-    briefBack.disabled = activeStep === 0;
-    briefNext.hidden = activeStep === briefSteps.length - 1;
-    briefSend.hidden = activeStep !== briefSteps.length - 1;
-  };
-  const validateStep = (step, report = true) => {
-    const invalidField = Array.from(step.querySelectorAll('input, select, textarea')).find((field) => !field.checkValidity());
-    if (invalidField) {
-      if (report) invalidField.reportValidity();
-      return false;
-    }
-    return true;
-  };
-
-  restoreDraft();
-  updateSummary(false);
-  renderStep();
-  fields.forEach((field) => {
-    field.addEventListener('input', () => updateSummary());
-    field.addEventListener('change', () => updateSummary());
-  });
-  briefNext.addEventListener('click', () => {
-    if (!validateStep(briefSteps[activeStep])) return;
-    activeStep = Math.min(activeStep + 1, briefSteps.length - 1);
-    renderStep();
-    const firstField = briefSteps[activeStep].querySelector('input, select, textarea');
-    if (firstField) firstField.focus();
-  });
-  briefBack.addEventListener('click', () => {
-    activeStep = Math.max(activeStep - 1, 0);
-    renderStep();
-    const firstField = briefSteps[activeStep].querySelector('input, select, textarea');
-    if (firstField) firstField.focus();
-  });
-  briefForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const firstInvalidStep = briefSteps.findIndex((step) => !validateStep(step, false));
-    if (firstInvalidStep !== -1) {
-      activeStep = firstInvalidStep;
-      renderStep();
-      validateStep(briefSteps[activeStep]);
-      return;
-    }
+  briefForm.addEventListener('submit', () => {
     trackToolCompletion('project-brief');
-    updateSummary();
-    briefSend.disabled = true;
-    briefStatus.textContent = 'Sending your project brief...';
-    try {
-      await window.devagyaForms.submit(briefForm);
-      briefForm.reset();
-      activeStep = 0;
-      renderStep();
-      updateSummary(false);
-      briefStatus.textContent = 'Your project brief was sent. We will follow up using the email you provided.';
-      siteStorage.remove(draftKey);
-    } catch (error) {
-      briefStatus.textContent = 'We could not confirm delivery. Your draft remains saved; please try again or use WhatsApp.';
-    } finally {
-      briefSend.disabled = false;
-    }
-  });
-  document.getElementById('clearBrief').addEventListener('click', () => {
-    briefForm.reset();
-    activeStep = 0;
-    renderStep();
-    siteStorage.remove(draftKey);
-    updateSummary(false);
-    briefStatus.textContent = 'Draft cleared from this browser.';
   });
 }
 
@@ -410,99 +295,6 @@ if (weeklyInsight) {
   weeklyInsight.textContent = insights[weekNumber % insights.length];
 }
 
-document.querySelectorAll('[data-date-min]').forEach((input) => {
-  const today = new Date();
-  const localDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-  input.min = localDate;
-});
-
-const schedulerForm = document.getElementById('schedulerForm');
-if (schedulerForm) {
-  const bookingSteps = Array.from(schedulerForm.querySelectorAll('[data-booking-step]'));
-  const bookingProgress = Array.from(schedulerForm.querySelectorAll('.booking-progress li'));
-  const bookingBack = document.getElementById('bookingBack');
-  const bookingNext = document.getElementById('bookingNext');
-  const bookingSubmit = document.getElementById('bookingSubmit');
-  let activeBookingStep = 0;
-
-  const renderBookingStep = () => {
-    bookingSteps.forEach((step, index) => {
-      step.hidden = index !== activeBookingStep;
-    });
-    bookingProgress.forEach((step, index) => {
-      if (index === activeBookingStep) step.setAttribute('aria-current', 'step');
-      else step.removeAttribute('aria-current');
-    });
-    bookingBack.disabled = activeBookingStep === 0;
-    bookingNext.hidden = activeBookingStep === bookingSteps.length - 1;
-    bookingSubmit.hidden = activeBookingStep !== bookingSteps.length - 1;
-  };
-  const invalidFieldIn = (step) => Array.from(step.querySelectorAll('input, select, textarea'))
-    .find((field) => !field.checkValidity());
-  const showBookingStep = (index, focusField = false) => {
-    activeBookingStep = index;
-    renderBookingStep();
-    const firstField = bookingSteps[index].querySelector('input, select, textarea');
-    if (focusField && firstField) firstField.focus();
-  };
-
-  bookingSubmit.setAttribute('formnovalidate', '');
-  renderBookingStep();
-  bookingNext.addEventListener('click', () => {
-    const invalidField = invalidFieldIn(bookingSteps[activeBookingStep]);
-    if (invalidField) {
-      invalidField.reportValidity();
-      return;
-    }
-    showBookingStep(Math.min(activeBookingStep + 1, bookingSteps.length - 1), true);
-  });
-  bookingBack.addEventListener('click', () => {
-    showBookingStep(Math.max(activeBookingStep - 1, 0), true);
-  });
-
-  schedulerForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const invalidStep = bookingSteps.findIndex((step) => invalidFieldIn(step));
-    if (invalidStep !== -1) {
-      showBookingStep(invalidStep);
-      invalidFieldIn(bookingSteps[invalidStep]).reportValidity();
-      return;
-    }
-    if (!schedulerForm.reportValidity()) return;
-    const from = schedulerForm.elements.preferred_date_from.value;
-    const to = schedulerForm.elements.preferred_date_to.value;
-    const status = document.getElementById('schedulerStatus');
-    if (to < from) {
-      showBookingStep(1);
-      const dateOrderError = 'Choose an end date on or after the start date.';
-      const message = window.devagyaI18n
-        ? window.devagyaI18n.translate(dateOrderError, window.devagyaI18n.language)
-        : dateOrderError;
-      schedulerForm.elements.preferred_date_to.setCustomValidity(message);
-      schedulerForm.elements.preferred_date_to.reportValidity();
-      schedulerForm.elements.preferred_date_to.addEventListener('input', () => schedulerForm.elements.preferred_date_to.setCustomValidity(''), { once: true });
-      return;
-    }
-    bookingSubmit.disabled = true;
-    bookingBack.disabled = true;
-    bookingNext.disabled = true;
-    status.textContent = 'Sending your consultation request...';
-    try {
-      await window.devagyaForms.submit(schedulerForm);
-      schedulerForm.reset();
-      showBookingStep(0);
-      trackToolCompletion('consultation-scheduler');
-      status.textContent = 'Your request was sent. Devagya Vastu will confirm actual availability directly.';
-    } catch (error) {
-      status.textContent = 'We could not confirm delivery. Please try again or contact Devagya Vastu directly.';
-    } finally {
-      bookingSubmit.disabled = false;
-      bookingBack.disabled = activeBookingStep === 0;
-      bookingNext.disabled = false;
-    }
-  });
-}
-
 const zoneButton = document.getElementById('checkVastuZone');
 if (zoneButton) {
   const roomSelect = document.getElementById('zoneRoom');
@@ -511,30 +303,60 @@ if (zoneButton) {
   const zoneLabel = document.getElementById('zoneAnalysisLabel');
   const zoneTitle = document.getElementById('zoneAnalysisTitle');
   const zoneCopy = document.getElementById('zoneAnalysisCopy');
+  const solarNote = document.getElementById('zoneSolarNote');
+  const functionNote = document.getElementById('zoneFunctionNote');
+  const experienceNote = document.getElementById('zoneExperienceNote');
   const zoneStatus = document.getElementById('zoneStatus');
-  const directionalThemes = {
-    N: ['Water · flow', 'Consider how this room supports clear movement, useful storage and the routines associated with it.'],
-    NNE: ['Water · reflection', 'Review quiet, access and the room’s relationship to nearby circulation and services.'],
-    NE: ['Water · openness', 'Consider light, openness and the way this room relates to the wider plan.'],
-    ENE: ['Air · renewal', 'Review fresh-air paths, transitions between spaces and practical ventilation needs.'],
-    E: ['Sun · daylight', 'Consider daylight, glare, shading and how the room is used at different times of day.'],
-    ESE: ['Fire · transition', 'Review appliance, electrical and heat requirements where relevant, alongside safe clearances.'],
-    SE: ['Fire · activity', 'Consider heat-generating activities, ventilation, safe appliance placement and service access.'],
-    SSE: ['Fire · focus', 'Review task needs, lighting and safe routes through the room rather than relying on direction alone.'],
-    S: ['Earth · steadiness', 'Consider privacy, noise, circulation and the room’s relationship to the rest of the property.'],
-    SSW: ['Earth · support', 'Review storage, access and how the room meets the household or workplace brief.'],
-    SW: ['Earth · grounding', 'Consider privacy, furniture clearances and any structural or service constraints.'],
-    WSW: ['Earth · boundaries', 'Review thresholds, access control, privacy and the movement expected around this room.'],
-    W: ['Space · containment', 'Consider enclosure, views, daylight control and how the room supports its intended use.'],
-    WNW: ['Air · movement', 'Review circulation, cross-ventilation and the way people pass through or gather in this space.'],
-    NW: ['Air · circulation', 'Consider access, changing use, ventilation and the routes connecting this room to the plan.'],
-    NNW: ['Air · refinement', 'Review comfort, privacy, ventilation and small plan adjustments that fit the actual constraints.']
-  };
-  const directionNames = {
-    N: 'North', NNE: 'North-northeast', NE: 'Northeast', ENE: 'East-northeast',
-    E: 'East', ESE: 'East-southeast', SE: 'Southeast', SSE: 'South-southeast',
-    S: 'South', SSW: 'South-southwest', SW: 'Southwest', WSW: 'West-southwest',
-    W: 'West', WNW: 'West-northwest', NW: 'Northwest', NNW: 'North-northwest'
+  const zoneWhatsApp = document.getElementById('zoneWhatsApp');
+  const directionalGuidance = {
+    N: {
+      traditional: 'Traditional Vastu references often associate the north with openness and flow. Treat this as a prompt to compare room use with the complete oriented plan.',
+      solar: 'At Hisar’s latitude, a north-facing opening generally receives softer, more diffuse daylight and less direct sun than a south- or west-facing opening. Check nearby buildings and seasonal sky exposure.',
+      function: 'A study, living area or workspace can be considered where steady daylight, access and the household brief align.',
+      experience: 'Review glare, view quality, privacy and visual comfort. These conditions—not the compass point alone—shape how a room may feel.'
+    },
+    NE: {
+      traditional: 'Traditional Vastu discussions often favour a sense of openness in the north-east. Compare that reference with circulation, services and the way the room will be used.',
+      solar: 'North-east openings can receive gentle early-day light when unobstructed. Seasonal sun angles, external shade and neighbouring buildings change the actual exposure.',
+      function: 'A quiet room, reading corner or shared space may suit this area when the plan supports calm access and useful daylight.',
+      experience: 'Consider whether the space offers a clear view, comfortable brightness and separation from noisy routes; avoid assigning a psychological effect to direction itself.'
+    },
+    E: {
+      traditional: 'Traditional Vastu references commonly consider the east in relation to daily activity and morning light. Read this alongside the property’s orientation and use.',
+      solar: 'East-facing windows receive low-angle morning sun, which can create useful early daylight as well as glare. Adjustable shading and window placement help manage it.',
+      function: 'A breakfast area, living room or study can be explored where morning use, furniture layout and privacy work well.',
+      experience: 'Morning brightness may support a pleasant start to the day for some occupants; check glare, sleep needs, views and personal routines.'
+    },
+    SE: {
+      traditional: 'The south-east is often discussed in traditional Vastu in relation to active or heat-generating functions. Room placement remains subject to services, safety and the complete plan.',
+      solar: 'South-east rooms can receive morning and near-midday sun. Review solar gain, exhaust routes, heat sources and safe appliance clearances for the actual site.',
+      function: 'A kitchen or other active-use room can be considered when ventilation, electrical planning, fire safety and plumbing are coordinated by the project team.',
+      experience: 'Heat, noise, task lighting and ventilation shape comfort in active rooms. Assess those conditions directly rather than inferring them from direction.'
+    },
+    S: {
+      traditional: 'Traditional references may associate the south with stable or private uses. Compare those preferences with local climate, privacy, daylight and building requirements.',
+      solar: 'South-facing elevations receive meaningful direct sun through the year in this northern-hemisphere location. External shading can limit high summer sun while admitting lower winter sun.',
+      function: 'A family room, bedroom or work area can be assessed here when solar control, privacy and the intended daily schedule are suitable.',
+      experience: 'Warmth, brightness and outlook can affect perceived comfort. Review seasonal temperature, shading, room use and individual preference.'
+    },
+    SW: {
+      traditional: 'The south-west is frequently considered for private or more settled uses in traditional Vastu. Treat this as one design input, not a universal placement rule.',
+      solar: 'South-west rooms can receive strong afternoon and late-day sun. Test external shading, glazing, insulation and ventilation to reduce unwanted heat gain.',
+      function: 'A private bedroom or quieter room may be considered where the plan provides comfortable access, privacy and effective solar control.',
+      experience: 'Afternoon heat and brightness can influence rest and concentration. Assess actual indoor temperatures, noise, privacy and light control.'
+    },
+    W: {
+      traditional: 'Traditional Vastu references may discuss the west in relation to enclosure and use. Read the direction together with entry, room relationships and site constraints.',
+      solar: 'West-facing openings receive low-angle afternoon sun, often the most difficult exposure to shade. External vertical shading and careful glazing can help manage glare and heat.',
+      function: 'A utility, circulation or flexible-use room may work here; any occupied room should be tested for afternoon glare, heat and ventilation.',
+      experience: 'Late-day brightness can create visual discomfort or warmth. Review shading, views, privacy and the time of day occupants use the room.'
+    },
+    NW: {
+      traditional: 'Traditional Vastu discussions often consider the north-west for flexible or transitional uses. Check that the proposed function fits the household or workplace brief.',
+      solar: 'North-west rooms can receive late-afternoon sun, with exposure shaped by season and obstructions. Assess cross-ventilation only against real openings and local wind conditions.',
+      function: 'A guest room, flexible living space or secondary work area can be explored when access, privacy and daylight are appropriate.',
+      experience: 'Changing use, movement and sound may matter more here than a fixed directional label. Review circulation, privacy, thermal comfort and occupant preference.'
+    }
   };
   zoneButton.addEventListener('click', () => {
     if (!roomSelect.value || !directionSelect.value) {
@@ -545,14 +367,24 @@ if (zoneButton) {
     }
     roomSelect.setCustomValidity('');
     directionSelect.setCustomValidity('');
-    const [theme, guidance] = directionalThemes[directionSelect.value];
-    zoneLabel.textContent = `${directionSelect.value} · ${directionNames[directionSelect.value]} · Traditional directional lens`;
-    zoneTitle.textContent = `${roomSelect.value} in the ${directionNames[directionSelect.value]} sector`;
-    zoneCopy.textContent = `${theme}: ${guidance}`;
+    const direction = directionalGuidance[directionSelect.value];
+    if (!direction) {
+      directionSelect.setCustomValidity('Choose one of the eight compass directions.');
+      directionSelect.reportValidity();
+      return;
+    }
+    const directionName = directionSelect.selectedOptions[0].textContent.replace(/^[A-Z]+ · /, '');
+    zoneLabel.textContent = `${directionSelect.value} · ${directionName} · Traditional and architectural lenses`;
+    zoneTitle.textContent = `${roomSelect.value} in the ${directionName} sector`;
+    zoneCopy.textContent = direction.traditional;
+    solarNote.textContent = direction.solar;
+    functionNote.textContent = direction.function;
+    experienceNote.textContent = direction.experience;
     zoneAnalysis.hidden = false;
     zoneTitle.focus();
-    zoneStatus.textContent = 'Zone prompt ready. Share your oriented plan to discuss the full layout.';
+    zoneStatus.textContent = 'Direction explored. Share an oriented plan to review site-specific conditions and room use.';
     document.querySelector('#vastu-zone-checker').dataset.activeToolState = `${roomSelect.value} · ${directionSelect.value}`;
+    zoneWhatsApp.dataset.waMessage = `Hi Devagya Vastu, I would like to discuss ${roomSelect.value} in the ${directionName} direction. Please help me review its Vastu context, sunlight and thermal comfort in relation to my floor plan.`;
     document.dispatchEvent(new CustomEvent('devagya:tool-interaction', {
       detail: { event: 'tool_interaction_vastu_checker', room: roomSelect.value, direction: directionSelect.value }
     }));
@@ -572,8 +404,11 @@ if (scopeButton) {
   const scopeCopy = document.getElementById('scopeAnalysisCopy');
   const scopeList = document.getElementById('scopeDeliverables');
   const scopeStatus = document.getElementById('scopeStatus');
-  const formatArea = (area) => `${Number(area).toLocaleString('en-IN')} sq. ft.`;
+  const scopeWhatsApp = document.getElementById('scopeWhatsApp');
+  const scopeBookLink = document.getElementById('scopeBookLink');
+  const formatArea = (area) => `${Number(area).toLocaleString('en-IN')} sq ft`;
   propertySelect.addEventListener('change', () => propertySelect.setCustomValidity(''));
+  tierSelect.addEventListener('change', () => tierSelect.setCustomValidity(''));
   const updateArea = () => {
     const area = Number(areaInput.value);
     areaOutput.textContent = area >= Number(areaInput.max) ? '25,000+ sq. ft.' : formatArea(area);
@@ -584,9 +419,33 @@ if (scopeButton) {
   scopeButton.addEventListener('click', () => {
     if (!propertySelect.reportValidity() || !tierSelect.reportValidity() || !areaInput.reportValidity()) return;
     const propertyTypes = {
-      residential: ['Residential property', 'Room use, entrance context, orientation, circulation and interior-planning questions.'],
-      commercial: ['Commercial property', 'Workplace functions, entry and circulation, functional adjacencies and available layout information.'],
-      industrial: ['Industrial property', 'Site access, operational adjacencies and available building information for a coordinated project review.']
+      residential: {
+        name: 'Residential home',
+        deliverables: [
+          'Review the oriented floor plan, entry sequence and room-to-room relationships.',
+          'Discuss bedroom, kitchen, living and service functions against household routines.',
+          'Identify daylight, privacy, circulation and thermal-comfort questions for the design team.',
+          'Prioritise practical layout and interior options, considering non-demolition changes first where feasible.'
+        ]
+      },
+      commercial: {
+        name: 'Office or commercial space',
+        deliverables: [
+          'Review the oriented plan, public and staff entries, and main circulation routes.',
+          'Map work areas, meeting spaces, visitor areas and service functions by their operational relationships.',
+          'Identify daylight, glare, privacy, noise and thermal-comfort questions for the design team.',
+          'Prioritise practical layout and interior options, considering non-demolition changes first where feasible.'
+        ]
+      },
+      industrial: {
+        name: 'Industrial or factory site',
+        deliverables: [
+          'Review the available site plan, orientation, access points and surrounding context.',
+          'Discuss people, vehicle and material routes alongside production, storage and service adjacencies.',
+          'Identify site-planning, daylight, ventilation and operational questions for the project team.',
+          'Prepare a prioritised discussion brief; engineering, structural, fire and code decisions stay with qualified project professionals.'
+        ]
+      }
     };
     const propertyType = propertyTypes[propertySelect.value];
     if (!propertyType) {
@@ -595,15 +454,35 @@ if (scopeButton) {
       return;
     }
     propertySelect.setCustomValidity('');
-    const [propertyName, propertyScope] = propertyType;
+    const propertyName = propertyType.name;
     const area = Number(areaInput.value);
-    const format = tierSelect.value === 'onsite' ? 'On-site laser & compass visit' : 'Online blueprint audit';
-    const complexity = area > 15000 ? 'Large-format review' : area > 5000 ? 'Expanded plan review' : 'Focused plan review';
-    const deliverables = tierSelect.value === 'onsite'
-      ? ['Pre-visit drawing and brief review', 'Orientation and on-site spatial observations', 'Written priorities for follow-up with your design team']
-      : ['Review of the oriented plan and project brief', 'Room-use, circulation and directional observations', 'Prioritised questions and next steps for your design team'];
-    scopeTitle.textContent = `${complexity} · ${propertyName}`;
-    scopeCopy.textContent = `${format} for approximately ${formatArea(area)}; likely scope: ${propertyScope} Final scope and fees are confirmed after the studio reviews your brief.`;
+    const formatLabels = {
+      online: 'Online plan review · India and worldwide',
+      onsite_hisar: 'On-site visit · Hisar',
+      onsite_delhi_ncr: 'On-site visit · Delhi-NCR'
+    };
+    const format = formatLabels[tierSelect.value];
+    if (!format) {
+      tierSelect.setCustomValidity('Choose an available consultation format.');
+      tierSelect.reportValidity();
+      return;
+    }
+    tierSelect.setCustomValidity('');
+    const scale = area <= 2500
+      ? 'Focused review · one home or a defined area'
+      : area <= 10000
+        ? 'Expanded review · multiple rooms or work areas'
+        : 'Phased review · larger property or operational zones';
+    const deliverables = [
+      `${scale} for approximately ${formatArea(area)}`,
+      ...propertyType.deliverables,
+      tierSelect.value === 'online'
+        ? 'A remote review of the drawings and project brief you share, followed by prioritised observations and next-step questions.'
+        : 'A scheduled site visit in the selected service area, with orientation and spatial observations discussed against the available plan.',
+      'A concise set of project priorities to discuss with your architect, interior designer or appointed technical team.'
+    ];
+    scopeTitle.textContent = `${scale.split(' · ')[0]} · ${propertyName}`;
+    scopeCopy.textContent = `${format} for approximately ${formatArea(area)}; deliverables below are based on the information selected. The studio confirms the final scope and fee after reviewing the project brief and visit requirements.`;
     scopeList.replaceChildren(...deliverables.map((item) => {
       const listItem = document.createElement('li');
       listItem.textContent = item;
@@ -612,9 +491,15 @@ if (scopeButton) {
     scopeAnalysis.hidden = false;
     scopeTitle.focus();
     scopeStatus.textContent = 'Scope summary ready. Open WhatsApp to discuss this review with Devagya Vastu.';
-    const summary = `Hi Devagya Vastu, I would like to discuss an ${format.toLowerCase()} for a ${propertyName.toLowerCase()} of approximately ${formatArea(area)}`;
-    document.getElementById('scopeWhatsApp').dataset.waMessage = summary;
+    const summary = `Hi Devagya Vastu, I would like to discuss a consultation for my ${propertyName.toLowerCase()} (${formatArea(area)}). Preferred format: ${format}. Please share the fee and next steps after reviewing my brief.`;
+    scopeWhatsApp.dataset.waMessage = summary;
     document.querySelector('#scope-estimator').dataset.activeToolState = `${propertyName} · ${format} · ${formatArea(area)}`;
+    const bookUrl = new URL('../book/', window.location.href);
+    bookUrl.searchParams.set('property_type', propertySelect.value);
+    bookUrl.searchParams.set('area_sq_ft', String(area));
+    bookUrl.searchParams.set('consultation_format', formatLabels[tierSelect.value].replace(/[ ·]+/g, '-').toLowerCase());
+    bookUrl.hash = 'consultation-request';
+    scopeBookLink.href = bookUrl.toString();
     document.dispatchEvent(new CustomEvent('devagya:tool-interaction', {
       detail: { event: 'estimate_calculated', property_type: propertySelect.value, consultation_format: tierSelect.value, area_sq_ft: area }
     }));

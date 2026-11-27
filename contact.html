@@ -20,7 +20,7 @@ redirect_from:
   <meta name="twitter:title" content="Project Intake | Devagya Vastu">
   <meta name="twitter:description" content="Request architectural spatial planning, Vastu and interior design consultation for homes, workplaces and developments with Devagya Vastu.">
   <meta name="twitter:image" content="https://devagyavastu.com/logo-full.jpg">
-  <meta name="theme-color" content="#0A0A0A">
+  <meta name="theme-color" content="#FAF8F5">
   <link rel="manifest" href="../manifest.webmanifest">
   <title>Project Intake | Devagya Vastu</title>
   <link rel="canonical" href="https://devagyavastu.com/contact/">
@@ -29,8 +29,7 @@ redirect_from:
   <link rel="preconnect" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://www.google-analytics.com">
   <link rel="icon" href="../favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={theme:{extend:{colors:{navy:"#0A0A0A",bone:"#FFFFFF",brass:"#C8A456"},fontFamily:{sans:["DM Sans","Helvetica Neue","Arial","sans-serif"],serif:["Playfair Display","Georgia","serif"]}}}};</script>
+  <script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={theme:{extend:{colors:{navy:"#1E2421",bone:"#FAF8F5",brass:"#B89B72"},fontFamily:{sans:["Plus Jakarta Sans","Arial","sans-serif"],serif:["Cormorant Garamond","Georgia","serif"]}}}};</script>
   <link rel="stylesheet" href="../site.css">
   <link rel="stylesheet" href="../architectural.css">
   <script type="application/ld+json">
@@ -51,36 +50,30 @@ redirect_from:
     <section class="page-hero"><div class="container"><p class="eyebrow">Project enquiry</p><h1 class="display">Contact Devagya Vastu about your project.</h1><p class="page-answer">Devagya Vastu provides traditional Vastu consultation, architectural spatial planning and interior design consultation for homes, workplaces and developments. Share the project scope and location so we can understand your enquiry and discuss an appropriate next step.</p></div></section>
     <section class="section" id="intake" style="padding-top:10px">
       <div class="container intake-grid">
-        <form class="intake-form" id="projectIntakeForm" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="06802d3b-83fc-4107-9cf8-57fff3706002">
-          <input type="hidden" name="subject" value="New project enquiry - Devagya Vastu">
-          <input type="hidden" name="from_name" value="Devagya Website">
-          <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
-          <div class="field"><label for="contactName">Full name *</label><input id="contactName" name="name" autocomplete="name" required></div>
-          <div class="field"><label for="contactEmail">Email address *</label><input id="contactEmail" name="email" type="email" autocomplete="email" required></div>
-          <div class="field"><label for="contactPhone">Phone / WhatsApp *</label><input id="contactPhone" name="phone" type="tel" autocomplete="tel" required></div>
-          <div class="field"><label for="projectLocation">Project location *</label><input id="projectLocation" name="location" autocomplete="address-level2" placeholder="City, country" required></div>
-          <div class="field"><label for="projectScope">Project scope *</label><select id="projectScope" name="scope" required><option value="">Choose a scope</option><option>Residential Custom Home</option><option>Office</option><option>Commercial Development</option></select></div>
-          <div class="field"><label for="siteStatus">Site layout status *</label><select id="siteStatus" name="site_status" required><option value="">Choose the current status</option><option>Existing Structure</option><option>Vacant Land</option></select></div>
-          <input id="blueprintNames" type="hidden" name="plan_file_names">
-          <div class="field full">
-            <span class="drop-zone-label">Architectural plans or sketches</span>
-            <div class="drop-zone" id="dropZone">
-              <strong>Drop plans here, or browse files</strong>
-              <span>PDF, PNG or JPG · up to 10 MB each. Select a plan to prepare a WhatsApp message with your project brief.</span>
-              <label class="file-picker-label" for="blueprints">Browse files</label>
-              <input id="blueprints" type="file" accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg" multiple>
-              <ul class="upload-list" id="uploadList" aria-live="polite"></ul>
-              <p class="file-whatsapp-help">Your WhatsApp message will be ready in one click; attach the selected drawing in the chat before sending.</p>
-              <a class="button file-whatsapp-action" id="fileWhatsAppAction" data-wa-context="contact-file-brief" href="https://wa.me/919467496725" target="_blank" rel="noopener noreferrer" hidden></a>
+        <form class="intake-form consultation-intake" id="projectIntakeForm" data-consultation-intake data-wa-context="contact-intake">
+          <fieldset class="intake-step" data-intake-step="details">
+            <legend>Step 1 · Tell us a little about your project</legend>
+            <div class="field"><label for="contactName">Your name *</label><input id="contactName" name="name" autocomplete="name" required></div>
+            <div class="field"><label for="contactPhone">WhatsApp number *</label><input id="contactPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+            <div class="field"><label for="projectLocation">City / country *</label><input id="projectLocation" name="location" autocomplete="address-level2" required></div>
+            <div class="field"><label for="projectScope">Property type *</label><select id="projectScope" name="property_type" required><option value="">Choose a property type</option><option value="Residential home">Residential home</option><option value="Office or commercial space">Office or commercial space</option><option value="Industrial or factory site">Industrial or factory site</option><option value="Plot or property under consideration">Plot or property under consideration</option></select></div>
+            <div class="field full"><label for="projectNote">What would you like us to review? <span>(optional)</span></label><textarea id="projectNote" name="note" rows="4" placeholder="Share your main planning question, project stage or preferred consultation format."></textarea></div>
+            <p class="field full intake-privacy-note">Your details stay in this browser until you choose to open WhatsApp. Add your floor plan or photos directly in the chat.</p>
+            <button class="button field full" type="submit">Continue to WhatsApp <span aria-hidden="true">↗</span></button>
+          </fieldset>
+          <section class="intake-next-step full" data-intake-step="share" aria-labelledby="contactShareTitle" aria-live="polite" hidden>
+            <p class="eyebrow">Step 2 · Review and share</p>
+            <h2 id="contactShareTitle">Your project message is ready.</h2>
+            <p data-intake-summary></p>
+            <p class="intake-attachment-note">WhatsApp will open with your brief. Attach your floor plan or site photos in the chat, then send it to our studio.</p>
+            <div class="tool-actions">
+              <a class="button" data-intake-whatsapp data-wa-context="contact-intake" href="https://wa.me/919467496725" target="_blank" rel="noopener noreferrer">Open WhatsApp and share your brief <span aria-hidden="true">↗</span></a>
+              <button class="button button-secondary" type="button" data-intake-edit>Edit details</button>
             </div>
-          </div>
-          <div class="field full"><label for="frustrations">What is not working in the space? *</label><textarea id="frustrations" name="frustrations" required placeholder="Describe the functional, circulation, daylight or layout questions you would like us to consider."></textarea></div>
-          <div class="field full"><label style="display:flex;align-items:flex-start;gap:9px;font-weight:500"><input style="width:17px;min-height:17px;margin:1px 0 0;flex:0 0 auto" type="checkbox" id="updatesOptIn" name="updates_opt_in" value="yes"><span>I would also like occasional updates about spatial design (optional).</span></label></div>
-          <p class="field full form-message" id="intakeMessage" role="status" aria-live="polite"></p>
-          <button class="button" type="submit">Send project enquiry <span aria-hidden="true">↗</span></button>
-          <p class="field full" style="margin:0;color:var(--muted);font-size:.67rem;line-height:1.6">Your enquiry details are sent to Web3Forms for delivery to Devagya Vastu. Plan files are not uploaded with this form; use the WhatsApp option above to open a message listing your selected files, then attach them in the chat. The optional updates preference is separate from this project enquiry.</p>
+          </section>
+          <p class="field full form-message" data-intake-status role="status" aria-live="polite"></p>
         </form>
+        <noscript><p class="intake-privacy-note">To discuss your project or share plans, call or WhatsApp <a href="https://wa.me/919467496725">+91 94674 96725</a>.</p></noscript>
         <aside>
           <p class="eyebrow">Direct channels</p><h2 class="section-title" style="font-size:2rem">Speak with our team.</h2>
           <div class="direct-cards">
@@ -102,7 +95,6 @@ redirect_from:
   </main>
   <div data-site-footer></div>
   <script src="../components/navigation.js" defer></script>
-  <script src="../components/web3forms.js" defer></script>
-  <script src="../components/contact.js" defer></script>
+  <script src="../components/consultation-intake.js" defer></script>
 </body>
 </html>
