@@ -4,7 +4,7 @@ const contactLinks = {
   email: 'mailto:devagyavastu@gmail.com',
   instagram: 'https://www.instagram.com/devagyavastu/'
 };
-const isRootHostedPage = (document.body && document.body.dataset.rootPage === 'true') || window.location.pathname === '/' || window.location.pathname === '/index.html';
+const isRootHostedPage = (document.body && document.body.dataset.rootPage === 'true') || window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '/404.html';
 const relativeRoot = isRootHostedPage ? './' : '../';
 const sitePage = (page) => `${relativeRoot}${page ? `${page}/` : ''}`;
 const siteAsset = (path) => `${relativeRoot}${path}`;
@@ -57,8 +57,8 @@ const headerMarkup = `
   <header class="site-header luxury-header" id="siteHeader">
     <div class="site-header-inner">
       <a class="brand-lockup" href="${sitePage('')}" aria-label="Devagya Vastu home">
-        <img src="${siteAsset('assets/logo-mark-128.png')}" alt="" width="42" height="42">
-        <span><strong>DEVAGYA</strong><small>DEVAGYA VASTU · ARCHITECTURE &amp; SPATIAL SCIENCE</small></span>
+        <img src="${siteAsset('assets/logo-mark-128.png')}" alt="Devagya Vastu" width="42" height="42" loading="lazy" decoding="async">
+        <span><strong>DEVAGYA</strong><small>VASTU &amp; SIGNATURE SPACES</small></span>
       </a>
       <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation"><span></span><span></span></button>
       <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
@@ -96,17 +96,17 @@ const headerMarkup = `
     </div>
   </header>
   <div class="contact-dock" aria-label="Contact Devagya">
-    <a class="dock-link dock-whatsapp" data-wa-context="floating-contact" href="${contactLinks.whatsapp}?text=${encodeURIComponent('Hello Devagya Vastu, I would like to book a consultation for my property.')}" aria-label="Consult with an Architect-Vastu Specialist on WhatsApp" title="WhatsApp">${icon('whatsapp')}<span>WhatsApp</span></a>
+    <a class="dock-link dock-whatsapp" data-wa-context="floating-contact" href="${contactLinks.whatsapp}?text=${encodeURIComponent('Hello Devagya Vastu, I would like to book a consultation for my property.')}" aria-label="WhatsApp now, contact Devagya Vastu" title="WhatsApp now">${icon('whatsapp')}<span>WhatsApp Now</span></a>
     <a class="dock-link dock-phone" href="${contactLinks.phone}" aria-label="Call Devagya" title="Call">${icon('phone')}<span>Call</span></a>
     <a class="dock-link dock-email" href="${contactLinks.email}" aria-label="Email Devagya" title="Email">${icon('email')}<span>Email</span></a>
-    <a class="dock-link dock-book" href="${sitePage('book')}" aria-label="Book consultation" title="Book consultation">${icon('calendar')}<span>Book</span></a>
+    <a class="dock-link dock-book" href="${sitePage('book')}" aria-label="Book a spatial audit" title="Book a spatial audit">${icon('calendar')}<span>Book Audit</span></a>
   </div>`;
 
 const footerMarkup = `
   <footer class="site-footer luxury-footer">
     <div class="footer-main">
       <a class="brand-lockup footer-brand" href="${sitePage('')}" aria-label="Devagya Vastu home">
-        <img src="${siteAsset('assets/logo-mark-128.png')}" alt="" width="42" height="42">
+        <img src="${siteAsset('assets/logo-mark-128.png')}" alt="Devagya Vastu" width="42" height="42" loading="lazy" decoding="async">
         <span><strong>DEVAGYA</strong><small>VASTU &amp; SIGNATURE SPACES</small></span>
       </a>
       <div>

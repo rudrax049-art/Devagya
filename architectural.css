@@ -384,25 +384,27 @@ section { padding-block: clamp(4.5rem, 9vw, 8.5rem); }
   .site-header-inner { height: 70px; }
   .brand-lockup small { max-width: 235px; font-size: .48rem; }
   .primary-nav { background: rgba(250, 248, 245, .98) !important; }
-  .contact-dock { right: 0; bottom: 0; left: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; padding: 6px 12px max(6px, env(safe-area-inset-bottom)); border-top: 1px solid var(--border-architectural-hairline); background: rgba(250, 248, 245, .96); backdrop-filter: blur(14px); }
-  .dock-phone { display: grid; }
-  .dock-book { display: grid; }
-  .dock-link.dock-whatsapp { width: auto; height: 52px; min-height: 52px; justify-content: center; padding: 0 8px; border: 0; border-radius: 0; background: transparent; box-shadow: none; color: var(--trust-biophilic-sage); }
-  .dock-link.dock-whatsapp::before { display: none; }
-  .dock-link.dock-whatsapp span { color: var(--trust-biophilic-sage); font-size: 0; }
-  .dock-link.dock-whatsapp span::after { content: "WhatsApp"; font: 600 .68rem var(--font-sans); }
-  .dock-link.dock-whatsapp svg { width: 21px; height: 21px; }
-  .dock-link.dock-phone, .dock-link.dock-book { width: auto; height: 52px; min-height: 52px; grid-template-columns: 22px auto; justify-content: center; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
-  .dock-link.dock-phone span, .dock-link.dock-book span { position: static; width: auto; height: auto; overflow: visible; clip-path: none; color: var(--text-primary-obsidian); font-size: .68rem; }
   .home-page .home-hero { min-height: auto; padding-block: 4.5rem; }
   .home-page .home-hero-grid { grid-template-columns: 1fr; }
   .home-page .home-plan-visual { min-height: 330px; }
   .service-pillar-grid { grid-template-columns: 1fr 1fr; }
   .home-pillars .service-pillar-grid { grid-template-columns: 1fr 1fr; }
-  .site-footer, body > footer { padding-bottom: 100px; }
   .zone-insight-grid { grid-template-columns: 1fr; }
   .intake-step { grid-template-columns: minmax(0, 1fr); }
   .intake-step .full { grid-column: auto; }
+}
+@media (max-width: 767px) {
+  .contact-dock { top: auto; right: 0; bottom: 0; left: 0; z-index: 110; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 7px 12px max(7px, env(safe-area-inset-bottom)); border-top: 1px solid var(--border-architectural-hairline); background: rgba(250,248,245,.82); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+  .dock-phone, .dock-email { display: none; }
+  .dock-book { display: grid; }
+  .contact-dock .dock-link, .contact-dock .dock-link.dock-whatsapp { display: grid; width: auto; height: 48px; min-height: 48px; grid-template-columns: 22px auto; place-content: center; justify-content: center; gap: 8px; padding: 0 8px; border: 1px solid rgba(44,74,62,.18); border-radius: 3px; background: var(--trust-biophilic-sage); color: var(--bg-primary-alabaster); box-shadow: none; }
+  .contact-dock .dock-link.dock-phone, .contact-dock .dock-link.dock-email { display: none; }
+  .contact-dock .dock-link:hover { transform: none; }
+  .contact-dock .dock-link.dock-whatsapp::before { display: none; }
+  .contact-dock .dock-link span, .contact-dock .dock-link.dock-whatsapp span { position: static; width: auto; height: auto; overflow: visible; clip-path: none; color: var(--bg-primary-alabaster); font-size: .74rem; font-weight: 600; white-space: normal; }
+  .contact-dock .dock-link.dock-whatsapp span::after { content: none; }
+  .contact-dock .dock-link svg { width: 20px; height: 20px; }
+  .site-footer, body > footer { padding-bottom: calc(88px + env(safe-area-inset-bottom)); }
 }
 @media (max-width: 520px) {
   body { font-size: 1rem; }
@@ -416,6 +418,9 @@ section { padding-block: clamp(4.5rem, 9vw, 8.5rem); }
   .tools-page .devta-group-outer { grid-column: auto; }
   .tools-page .planning-tool { padding: 20px; }
   .direct-cards { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition-duration: .01ms !important; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }

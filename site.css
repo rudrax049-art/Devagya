@@ -472,13 +472,6 @@ img, svg { max-width: 100%; }
   .nav-tools-toggle { min-height: 64px; justify-content: space-between; width: 100%; border-bottom: 1px solid var(--line); font-family: var(--serif); font-size: 1.55rem; }
   .nav-dropdown { position: static; width: 100%; border: 0; border-bottom: 1px solid var(--line); box-shadow: none; }
   .nav-dropdown a { padding-left: 12px; }
-  .contact-dock { top: auto; right: 0; bottom: 0; left: 0; z-index: 95; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; transform: none; padding: 7px 12px max(7px, env(safe-area-inset-bottom)); border-top: 1px solid rgba(15,23,42,.12); background: rgba(248,248,246,.96); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
-  .dock-email { display: none; }
-  .dock-book { display: grid; }
-  .dock-link { width: auto; height: 52px; grid-template-columns: 22px auto; justify-content: center; gap: 8px; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
-  .dock-link span { position: static; width: auto; height: auto; overflow: visible; clip-path: none; color: var(--navy); font-size: .68rem; font-weight: 700; }
-  .dock-link:hover { transform: none; }
-  .site-footer { padding: 46px 18px 100px; }
   .footer-main { grid-template-columns: 1fr; gap: 22px; padding-bottom: 28px; }
   .footer-contact { justify-content: flex-start; flex-wrap: wrap; gap: 20px; }
   .footer-bottom { flex-direction: column; }
@@ -578,6 +571,30 @@ img, svg { max-width: 100%; }
 .insights-search > div { display: flex; gap: 8px; }
 .insights-search input { min-width: 0; min-height: 48px; flex: 1; padding: 10px 12px; border: 1px solid var(--line); background: var(--white); color: var(--navy); }
 .insights-search button { min-width: 96px; min-height: 48px; padding: 0 16px; border: 1px solid var(--gold); background: var(--gold); color: var(--black); font-weight: 700; cursor: pointer; }
+
+.home-faq-list, .service-faq-list { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.home-faq-item, .service-faq-item { border-bottom: 1px solid var(--line); background: var(--paper); }
+.home-faq-item summary, .service-faq-item summary { display: flex; min-height: 58px; align-items: center; justify-content: space-between; gap: 18px; padding: 16px 18px; color: var(--navy); font-family: var(--serif); font-size: 1.15rem; font-weight: 600; cursor: pointer; list-style: none; }
+.home-faq-item summary::-webkit-details-marker, .service-faq-item summary::-webkit-details-marker { display: none; }
+.home-faq-item summary::after, .service-faq-item summary::after { color: var(--brass); content: "+"; font-family: var(--sans); font-size: 1.2rem; }
+.home-faq-item[open] summary::after, .service-faq-item[open] summary::after { content: "−"; }
+.home-faq-item p, .service-faq-item p { max-width: 72ch; margin: 0; padding: 0 18px 20px; color: var(--muted); font-size: .9rem; line-height: 1.75; }
+.home-faq-item summary:focus-visible, .service-faq-item summary:focus-visible { outline-offset: -3px; }
+
+@media (max-width: 767px) {
+  .contact-dock { position: fixed; z-index: 110; top: auto; right: 0; bottom: 0; left: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 7px 12px max(7px, env(safe-area-inset-bottom)); border-top: 1px solid rgba(30,36,33,.12); background: rgba(250,248,245,.82); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+  .dock-phone, .dock-email { display: none; }
+  .dock-book { display: grid; }
+  .contact-dock .dock-link { width: auto; min-height: 48px; height: 48px; grid-template-columns: 22px auto; justify-content: center; gap: 8px; border: 1px solid rgba(44,74,62,.18); border-radius: 3px; background: var(--navy-soft); color: var(--white); box-shadow: none; }
+  .contact-dock .dock-link:hover { transform: none; }
+  .contact-dock .dock-link span { position: static; width: auto; height: auto; overflow: visible; clip-path: none; white-space: normal; color: var(--white); font-size: .74rem; }
+  .site-footer { padding: 46px 18px calc(88px + env(safe-area-inset-bottom)); }
+}
+
+@media (max-width: 600px) {
+  .home-faq-item summary, .service-faq-item summary { padding-inline: 12px; }
+  .home-faq-item p, .service-faq-item p { padding-inline: 12px; }
+}
 .insights-search p { min-height: 1.4em; margin: 0; color: var(--muted); font-size: .75rem; }
 @media (max-width: 820px) {
   .site-header .primary-nav { background: rgba(250,248,245,.99); }

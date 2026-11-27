@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* Scroll-reveal for content blocks */
   const revealEls = document.querySelectorAll('.fade-up');
-  if ('IntersectionObserver' in window) {
+  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !prefersReducedMotion) {
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
