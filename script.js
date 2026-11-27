@@ -71,41 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
     backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 
-  /* Sign-up / lead forms: progressive enhancement.
-     Each form works with plain HTML (action="https://api.web3forms.com/submit")
-     even if JavaScript fails. This just shows an inline success message
-     instead of navigating away, when JS is available. */
-  document.querySelectorAll('.signup-form').forEach((leadForm) => {
-    leadForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const submitBtn = leadForm.querySelector('button[type="submit"]');
-      const successEl = leadForm.querySelector('.form-success');
-      const errorEl = leadForm.querySelector('.form-error');
-      if (errorEl) errorEl.classList.remove('show');
-      const originalLabel = submitBtn ? submitBtn.textContent : '';
-      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
-      try {
-        const res = await fetch(leadForm.action, {
-          method: 'POST',
-          body: new FormData(leadForm),
-          headers: { Accept: 'application/json' }
-        });
-        const data = await res.json().catch(() => null);
-        if (res.ok && data && data.success === true) {
-          leadForm.reset();
-          if (successEl) successEl.classList.add('show');
-          document.dispatchEvent(new CustomEvent('devagya:form-success', { detail: { form: leadForm.id || 'signup-form' } }));
-        } else {
-          if (errorEl) errorEl.classList.add('show');
-        }
-      } catch (err) {
-        if (errorEl) errorEl.classList.add('show');
-      } finally {
-        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
-      }
-    });
-  });
-
   /* FAQ accordion */
   document.querySelectorAll('.faq-item').forEach((item) => {
     const btn = item.querySelector('.faq-q');

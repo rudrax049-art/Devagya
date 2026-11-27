@@ -96,7 +96,7 @@ const headerMarkup = `
     </div>
   </header>
   <div class="contact-dock" aria-label="Contact Devagya">
-    <a class="dock-link dock-whatsapp" data-wa-context="floating-contact" href="${contactLinks.whatsapp}?text=${encodeURIComponent('Hello Devagya Vastu, I would like to book a consultation for my property.')}" aria-label="Consult with an Architect-Vastu Specialist on WhatsApp" title="WhatsApp">${icon('whatsapp')}<span>Consult with an Architect-Vastu Specialist · WhatsApp</span></a>
+    <a class="dock-link dock-whatsapp" data-wa-context="floating-contact" href="${contactLinks.whatsapp}?text=${encodeURIComponent('Hello Devagya Vastu, I would like to book a consultation for my property.')}" aria-label="Consult with an Architect-Vastu Specialist on WhatsApp" title="WhatsApp">${icon('whatsapp')}<span>WhatsApp</span></a>
     <a class="dock-link dock-phone" href="${contactLinks.phone}" aria-label="Call Devagya" title="Call">${icon('phone')}<span>Call</span></a>
     <a class="dock-link dock-email" href="${contactLinks.email}" aria-label="Email Devagya" title="Email">${icon('email')}<span>Email</span></a>
     <a class="dock-link dock-book" href="${sitePage('book')}" aria-label="Book consultation" title="Book consultation">${icon('calendar')}<span>Book</span></a>
@@ -430,7 +430,6 @@ const hindiTranslations = {
   'Your email': 'आपका ईमेल',
   'Back': 'वापस',
   'Continue': 'आगे बढ़ें',
-  'Send with Web3Forms': 'Web3Forms से भेजें',
   'Open draft in WhatsApp': 'व्हाट्सऐप में विवरण खोलें',
   'Clear draft': 'ड्राफ़्ट मिटाएँ',
   'Your project summary will appear here as you complete the steps.': 'चरण पूरे करने पर परियोजना का सारांश यहाँ दिखेगा।',
@@ -488,10 +487,7 @@ const hindiTranslations = {
   'City / time zone': 'शहर / समय क्षेत्र',
   'City and country': 'शहर और देश',
   'What would you like to discuss?': 'आप किस विषय पर बात करना चाहेंगे?',
-  'The preferred dates are requests only. No live availability is displayed, and submitting this form does not reserve a time.': 'पसंदीदा तारीखें केवल अनुरोध हैं। लाइव उपलब्धता नहीं दिखाई जाती और फ़ॉर्म भेजने से समय आरक्षित नहीं होता।',
   'Send consultation request': 'परामर्श अनुरोध भेजें',
-  'Optional scheduler embed:': 'वैकल्पिक शेड्यूलर:',
-  'No third-party booking URL has been supplied. Until one is provided, consultation timing is coordinated directly after an enquiry.': 'किसी बाहरी बुकिंग लिंक की जानकारी नहीं दी गई है। ऐसा लिंक मिलने तक परामर्श का समय पूछताछ के बाद सीधे तय होगा।',
   'Vastu architecture projects, documented honestly.': 'वास्तु और वास्तुकला परियोजनाएँ, ईमानदारी से दर्ज।',
   'No client case studies are published here yet.': 'अभी यहाँ किसी ग्राहक की परियोजना-कथा प्रकाशित नहीं है।',
   'We share project details only when they are verified and the client has approved publication. Contact us to discuss your own project and the support it may need.': 'परियोजना का विवरण सत्यापित होने और ग्राहक की अनुमति मिलने पर ही साझा किया जाता है। अपनी परियोजना और आवश्यक सहायता पर चर्चा के लिए हमसे संपर्क करें।',

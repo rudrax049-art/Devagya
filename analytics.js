@@ -99,19 +99,6 @@
     });
   }, true);
 
-  document.addEventListener('submit', (event) => {
-    const form = event.target;
-    if (!(form instanceof HTMLFormElement) || !form.action.includes('web3forms.com')) return;
-    let attributionField = form.querySelector('input[name="utm_attribution"]');
-    if (!attributionField) {
-      attributionField = document.createElement('input');
-      attributionField.type = 'hidden';
-      attributionField.name = 'utm_attribution';
-      form.appendChild(attributionField);
-    }
-    attributionField.value = attributionText().replace(/^\nTraffic source: /, '');
-  }, true);
-
   document.addEventListener('devagya:tool-interaction', (event) => {
     const detail = event.detail || {};
     if (detail.event) {

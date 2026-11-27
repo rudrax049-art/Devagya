@@ -4,24 +4,24 @@
    ========================================================= */
 
 :root{
-  --black:#0A0A0A;
-  --gold:#C8A456;
-  --ink:#0A0A0A;
-  --ivory:#FFFFFF;
-  --stone:#F3F1EC;
-  --sage:#687568;
-  --forest:#0A0A0A;
+  --black:#1E2421;
+  --gold:#B89B72;
+  --ink:#1E2421;
+  --ivory:#FAF8F5;
+  --stone:#F2EFE9;
+  --sage:#525B56;
+  --forest:#2C4A3E;
   --brass:var(--gold);
   --white:#FFFFFF;
 
-  --ink-dim:rgba(23,26,29,0.66);
-  --ink-faint:rgba(23,26,29,0.45);
-  --ivory-dim:rgba(247,244,238,0.7);
-  --hairline:rgba(23,26,29,0.12);
-  --hairline-soft:rgba(23,26,29,0.08);
+  --ink-dim:rgba(82,91,86,0.78);
+  --ink-faint:rgba(82,91,86,0.55);
+  --ivory-dim:rgba(250,248,245,0.7);
+  --hairline:rgba(30,36,33,0.12);
+  --hairline-soft:rgba(30,36,33,0.08);
 
-  --serif:'Fraunces', Georgia, 'Times New Roman', serif;
-  --sans:'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --serif:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sans:'Plus Jakarta Sans', Arial, sans-serif;
   --maxw:1160px;
 }
 *{box-sizing:border-box;}
@@ -198,7 +198,6 @@ section{padding:96px 0;}
 .signup-panel{display:grid; grid-template-columns:1fr 1.15fr; gap:52px; align-items:start;}
 .signup-copy h2{font-family:var(--serif); font-weight:600; font-size:clamp(1.85rem,3.5vw,2.5rem); margin:0 0 16px; line-height:1.16;}
 .signup-copy p{font-size:1rem; line-height:1.68; color:var(--ink-dim); margin:0 0 14px; max-width:420px;}
-.signup-form{background:var(--white); border:1px solid var(--hairline); padding:32px;}
 .field-group{margin-bottom:26px;}
 .field-group:last-of-type{margin-bottom:0;}
 .field-group-label{font-size:0.78rem; font-weight:700; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.03em; margin:0 0 14px;}
