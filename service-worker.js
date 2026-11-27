@@ -1,4 +1,4 @@
-const CACHE_NAME = 'devagya-tools-v8';
+const CACHE_NAME = 'devagya-tools-v9';
 const CORE_ASSETS = [
   './',
   './tools/',
@@ -30,15 +30,43 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET' || new URL(event.request.url).origin !== self.location.origin) return;
+
   if (event.request.mode === 'navigate') {
-    event.respondWith(fetch(event.request).then((response) => {
-      if (response.ok) {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
-      }
-      return response;
-    }).catch(async () => (await caches.match(event.request)) || caches.match('./tools/')));
+    event.respondWith(
+      caches.match(event.request).then((cached) => {
+        const networkUpdate = fetch(event.request).then((response) => {
+          if (response.ok) {
+            const copy = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          }
+          return response;
+        });
+
+        if (cached) {
+          networkUpdate.catch(() => null);
+          return cached;
+        }
+        return networkUpdate.catch(() => caches.match('./tools/'));
+      })
+    );
     return;
   }
-  event.respondWith(caches.match(event.request).then((cached) => cached || fetch(event.request)));
+
+  event.respondWith(
+    caches.match(event.request).then((cached) => {
+      const networkUpdate = fetch(event.request).then((response) => {
+        if (response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+        }
+        return response;
+      });
+
+      if (cached) {
+        networkUpdate.catch(() => null);
+        return cached;
+      }
+      return networkUpdate;
+    })
+  );
 });
